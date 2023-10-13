@@ -1,6 +1,8 @@
 package com.heroesvillanos.dominio;
 import java.util.Map;
 
+import java.lang.reflect.ParameterizedType;
+
 public abstract class Personaje<T> implements Competidor<T>{
     private final String nombreReal;
     private final String alias;
@@ -35,5 +37,9 @@ public abstract class Personaje<T> implements Competidor<T>{
     public int getCaracteristica(Caracteristica caracteristica) {
          return caracteristicas.getOrDefault(caracteristica, 0);
     }
+	public void Show() {
+		Class<T> genericClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		System.out.println(nombreReal + " - " + alias + " del tipo: " + genericClass.getSimpleName());
+	}
 
 }
