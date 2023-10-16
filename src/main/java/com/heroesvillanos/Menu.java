@@ -18,8 +18,18 @@ public class Menu {
 				switch(opcion) {
 				case 1:
 					this.imprimirMenuPersonajes();
-					
-					
+					break;
+				case 2:
+					this.imprimirMenuLigas();
+					break;
+				case 3:
+					this.imprimirMenuCombate();
+					break;
+				case 4:
+					this.imprimirMenuReportes();
+					break;
+				case 0;
+					default;
 					
 				}
 				
@@ -35,18 +45,15 @@ public class Menu {
 		}
 		
 		
-		
-		
 	}
-	
 	
 	public void imprimirMenuPrincipal(){
 		System.out.println(
-				"1 Administración de Personajes\n"
-				+ "2 Administración de Ligas\n"
-				+ "3 Realización de combates\n"
-				+ "4 Reportes\n"
-				+ "0. Salir");
+			"1 Administración de Personajes\n"
+			+ "2 Administración de Ligas\n"
+			+ "3 Realización de combates\n"
+			+ "4 Reportes\n"
+			+ "0. Salir");
 		}
 	
 	public void imprimirMenuPersonajes() {
@@ -60,24 +67,24 @@ public class Menu {
 	
 	public void imprimirMenuLigas() {
 		System.out.println(
-				"1. Carga desde archivo\n"
-				+ "2. Creación\n"
-				+ "3. Listado\n"
-				+ "4. Guardar en archivo todas las ligas\n"
-				+ "0. Salir");
+			"1. Carga desde archivo\n"
+			+ "2. Creación\n"
+			+ "3. Listado\n"
+			+ "4. Guardar en archivo todas las ligas\n"
+			+ "0. Salir");
 	}
 	
 	public void imprimirMenuCombate() {
 		System.out.println(
-				"1. Personaje contra Liga (definiendo característica)\n"
-				+ "2. ○ Liga contra Liga (definiendo característica)\n"
-				+ "0. Salir");
+			"1. Personaje contra Liga (definiendo característica)\n"
+			+ "2. ○ Liga contra Liga (definiendo característica)\n"
+			+ "0. Salir");
 	}
 	
 	public void imprimirMenuReportes() {
 		System.out.println(
-				"1. Todos los personajes o ligas que venzan a un personaje dado para cierta característica\n"
-				+ "2. Listado ordenado de personajes por múltiples características\r\n"
-				+ "0. Salir");
+			"1. Todos los personajes o ligas que venzan a un personaje dado para cierta característica\n"
+			+ "2. Listado ordenado de personajes por múltiples características\r\n"
+			+ "0. Salir");
 	}
 }
