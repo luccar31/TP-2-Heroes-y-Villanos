@@ -5,6 +5,7 @@ import com.heroesvillanos.dominio.*;
 import java.util.List;
 
 public class Main {
+    /*
     public static void main(String[] args) {
         //Menu menu = Menu.getInstance();
         //menu.menu();
@@ -21,7 +22,8 @@ public class Main {
     	System.out.println("------------------------------------");
 
     }
-    
+     */
+    /*
     private static void EjemploError() {
     	
     	Competidor heroe1 = new Heroe("Edward Blake", "The Comedian");
@@ -76,4 +78,5 @@ public class Main {
         superLigaHeroes.Show();
         System.out.println();
     }
+     */
 }
