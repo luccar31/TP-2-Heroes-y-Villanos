@@ -35,11 +35,10 @@ public abstract class Personaje<T> implements Competidor<T>{
 
 
     public int getCaracteristica(Caracteristica caracteristica) {
-         return caracteristicas.getOrDefault(caracteristica, 0);
+        Integer valor = caracteristicas.get(caracteristica);
+        if (valor == null){
+            return 0;
+        }
+        return valor;
     }
-	public void Show() {
-		Class<T> genericClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		System.out.println(nombreReal + " - " + alias + " del tipo: " + genericClass.getSimpleName());
-	}
-
 }

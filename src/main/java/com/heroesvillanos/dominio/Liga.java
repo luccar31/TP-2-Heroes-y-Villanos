@@ -23,12 +23,5 @@ public class Liga<T> implements Competidor<T> {
     public <X extends Competidor<X>> boolean esGanador(Competidor<X> competidor) {
         return false;
     }
-       
-    @Override
-	public void Show() {
-    	for (Competidor<T> competidor : competidores)
-    	{
-    		competidor.Show();
-    	}
-	}
+
 }

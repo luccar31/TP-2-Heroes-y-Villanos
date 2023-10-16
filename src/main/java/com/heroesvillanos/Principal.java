@@ -2,6 +2,7 @@ package com.heroesvillanos;
 
 public class Principal {
     public static void main(String[] args) {
-        System.out.println("Hola mundo!");
+        Menu menu = Menu.getInstance();
+        menu.menu();
     }
 }
