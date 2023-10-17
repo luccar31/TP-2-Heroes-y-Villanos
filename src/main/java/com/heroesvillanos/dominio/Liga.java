@@ -24,8 +24,7 @@ public class Liga<T> implements Competidor<T> {
         return false;
     }
        
-    @Override
-	public void Show() {
+    public void Show() {
     	for (Competidor<T> competidor : competidores)
     	{
     		competidor.Show();

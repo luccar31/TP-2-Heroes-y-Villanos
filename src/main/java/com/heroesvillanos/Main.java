@@ -1,7 +1,9 @@
 package com.heroesvillanos;
 
 import com.heroesvillanos.dominio.*;
+import java.util.ArrayList;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
@@ -9,7 +11,21 @@ public class Main {
         //Menu menu = Menu.getInstance();
         //menu.menu();
     	
-    	System.out.println("------------------------------------");
+    	try {
+    		List<Personaje<?>> personaje = new ArrayList<Personaje<?>>(); 
+    		personaje = Archivo.leerPersonajes();
+			
+			//Personaje.crearPersonaje(personaje);
+			Personaje.listarPersonajes(personaje);
+			//Archivo.grabarPersonajes(personaje);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	/*System.out.println("------------------------------------");
         System.out.println("Caso Funcional: ");
         System.out.println("------------------------------------");
     	EjemploFuncional();
@@ -74,6 +90,6 @@ public class Main {
         
         System.out.println("Super liga de heroes: ");
         superLigaHeroes.Show();
-        System.out.println();
+        System.out.println();*/
     }
 }

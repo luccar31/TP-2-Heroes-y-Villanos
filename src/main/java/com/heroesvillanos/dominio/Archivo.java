@@ -7,14 +7,16 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.Iterator;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Archivo {
 	
-	public static List<Competidor<?>> leerPersonajes() throws IOException {
+	public static List<Personaje<?>> leerPersonajes() throws IOException {
 		
-		List<Competidor<?>> competidores = new ArrayList<Competidor<?>>();
+		List<Personaje<?>> personajes = new ArrayList<Personaje<?>>();
 		
 		Scanner scanner = null;
 		
@@ -46,11 +48,13 @@ public class Archivo {
 				caracteristicas.put(Caracteristica.DESTREZA, destreza);			
 				
 				if( tipo.equals("Héroe")) {
-					Heroe heroe = new Heroe(nombreReal, nombrePersonaje, caracteristicas);
-					competidores.add(heroe);
+					Heroe heroe = new Heroe(tipo, nombreReal, nombrePersonaje, caracteristicas);
+					personajes.add(heroe);
+					// Falta agregarlo a la lista de Heroes
 				} else if ( tipo.equals("Villano")) {
-					Villano villano = new Villano(nombreReal, nombrePersonaje, caracteristicas);
-					competidores.add(villano);
+					Villano villano = new Villano(tipo, nombreReal, nombrePersonaje, caracteristicas);
+					personajes.add(villano);
+					// Falta agregarlo a la lsita de Villanos
 					}
 			}
 		} catch(Exception e) {
@@ -58,11 +62,48 @@ public class Archivo {
 		} finally {
 			scanner.close();
 		}
-		/*for (Competidor<?> competidor : competidores) {
+		/*for (Personaje<?> personaje : personajes) {
 			
-			System.out.println(competidor);
+			System.out.println(personaje);
 		}*/
-		return competidores;
+		return personajes;
+	}
+	
+	public static void grabarPersonajes(List<Personaje<?>> personaje) {
+		FileWriter file = null;
+		PrintWriter printWriter = null;
+		
+		try {
+			file = new FileWriter("src/main/resources/personajes.out");
+			
+			printWriter = new PrintWriter(file);
+			
+			printWriter.println("Personajes: ");
+			printWriter.println("------------------------------------------");
+			
+			for (Personaje<?> personajes : personaje) {
+				printWriter.println();
+				printWriter.println(personajes.getNombreReal() + " es un " + personajes.getTipo() + 
+						" y su alias es: " + personajes.getAlias());
+				printWriter.println("  Sus caracteristicas son: ");
+				printWriter.println("   -Velocidad: " + personajes.getCaracteristica(Caracteristica.VELOCIDAD));
+				printWriter.println("   -Fuerza: " + personajes.getCaracteristica(Caracteristica.FUERZA));
+				printWriter.println("   -Resistencia: " + personajes.getCaracteristica(Caracteristica.RESISTENCIA));
+				printWriter.println("   -Destreza: " + personajes.getCaracteristica(Caracteristica.DESTREZA));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (file != null) {
+				try {
+					file.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }
