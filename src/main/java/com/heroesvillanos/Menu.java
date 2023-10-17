@@ -2,166 +2,221 @@ package com.heroesvillanos;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import static java.lang.System.exit;
 
 public class Menu {
-	
-	final static String[] opcionesMenuPrincipal = {
-			"-------------------------------",
-			"# Menu Principal:             #",
-			"-------------------------------",
-			"1- Administración de Personajes",
-            "2- Administración de Ligas",
-            "3- Realización de combates",
-            "4- Reportes",
-            "",
-            "0- Salir",
-            ""
+
+	private final static String[] OPCIONES_MENU_PRINCIPAL = {
+			"1 - Administración de Personajes",
+            "2 - Administración de Ligas",
+            "3 - Realización de combates",
+            "4 - Reportes",
+            "0 - Salir",
 	};
-	
-	final static String[] opcionesPersonajes = {
-			"-------------------------------",
-			"# Menu Personajes:            #",
-			"-------------------------------",
-			"1- Carga desde archivo",
-            "2- Creación",
-            "3- Listado",
-            "4- Guardar en archivo todos los personajes",
-            "",
-            "0- Salir",
-            ""
+
+	private final static String[] OPCIONES_MENU_PERSONAJES = {
+			"1 - Carga desde archivo",
+            "2 - Creación",
+            "3 - Listado",
+            "4 - Guardar en archivo",
+            "0 - Volver al menu principal",
 	};
-	
+
+	private final static String[] OPCIONES_MENU_LIGAS = {
+			"1 - Carga desde archivo",
+			"2 - Creación",
+			"3 - Listado",
+			"4 - Guardar en archivo",
+			"0 - Volver al menu principal",
+	};
+
+	private final static String[] OPCIONES_MENU_COMBATES = {
+			"1 - Personaje vs Personaje",
+			"2 - Personaje vs Liga",
+			"3 - Liga vs Liga",
+			"0 - Volver al menu principal",
+	};
+
+	private final static String[] OPCIONES_MENU_REPORTES = {
+			"1 - Listado por multiples caracteristicas",
+            "2 - Competidores que venzan a un personaje dado en una caracteristica",
+			"0 - Volver al menu principal",
+	};
+
 	public void desplegarMenu() {
 		menuPrincipal();
 	}
 
-	
-	private void imprimirMenu(String[] options) {
-		clearConsole();
-		for (String option : options){
-            System.out.println(option);
+	private void imprimirMenu(String nombreMenu, String[] opciones) {
+		Utils.limpiarConsola();
+		StringBuilder builder = new StringBuilder();
+		builder.append(Utils.repetirString(10, "*")).append("\n")
+				.append("#").append(nombreMenu).append("#").append("\n")
+				.append(Utils.repetirString(10, "*")).append("\n");
+
+		for (String option : opciones){
+            builder.append(option).append("\n");
         }
-        System.out.print("Elige una opción: ");
+		builder.append("Elige una opción: ");
+
+		System.out.print(builder);
 	}
-	
+
+
 	private void menuPrincipal() {
-		
-		imprimirMenu(opcionesMenuPrincipal);
-		
-		// Investigar Scanner - Tomar un solo input y procesar
-		while (true) {
-			try {
-				int opcion = leerOpcion();
-				
-				switch (opcion) {
+        int opcion;
+		do{
+            imprimirMenu("Menu principal", OPCIONES_MENU_PRINCIPAL);
+
+			opcion = leerOpcion();
+
+			switch (opcion) {
 				case 1:
 					this.menuPersonajes();
 					break;
 				case 2:
-					this.imprimirMenuLigas();
+					this.menuLigas();
 					break;
 				case 3:
-					this.imprimirMenuCombate();
+					this.menuCombates();
 					break;
 				case 4:
-					this.imprimirMenuReportes();
+					this.menuReportes();
 					break;
 				case 0:
-					System.out.println("Saliendo...");
-					// Delay
-					exit(0);
-				default:
-					System.out.println("Opción incorrecta");
-					// Delay para poder leer "Opción incorrecta"
-					imprimirMenu(opcionesMenuPrincipal);
 					break;
-					//opcion = entrada.nextInt();
-				}
-			} catch (Exception e) {
-				System.out.println("Ingrese un valor valido");
-				imprimirMenu(opcionesMenuPrincipal);
-			}
-			
-		}
-	}
-
-	private void menuPersonajes() {
-		imprimirMenu(opcionesPersonajes);
-		
-		while (true) {
-			try {
-				int opcion = leerOpcion();
-				
-				switch (opcion) {
-				case 1:
-					this.menuPersonajes();
-					break;
-				case 2:
-					this.imprimirMenuLigas();
-					break;
-				case 3:
-					this.imprimirMenuCombate();
-					break;
-				case 4:
-					this.imprimirMenuReportes();
-					break;
-				case 0:
-					System.out.println("Volviendo...");
-					// Delay
-					menuPrincipal();
+				case -1:
+					System.out.println("Input invalido!");
 					break;
 				default:
-					System.out.println("Opción incorrecta");
-					// Delay para poder leer "Opción incorrecta"
-					imprimirMenu(opcionesPersonajes);
-					break;
-				}
-			} catch (Exception e) {
-				System.out.println("Ingrese un valor valido");
-				imprimirMenu(opcionesPersonajes);
+                    System.out.println("Opción invalida!");
 			}
-			
-		}
+		}while (opcion != 0);
 	}
 
+    private void menuPersonajes() {
+        int opcion;
+        do{
+            imprimirMenu("Menu de personajes", OPCIONES_MENU_PERSONAJES);
 
-	public void imprimirMenuLigas() {
-		System.out.println("1. Carga desde archivo\n" + "2. Creación\n" + "3. Listado\n"
-				+ "4. Guardar en archivo todas las ligas\n" + "0. Salir");
-	}
+            opcion = leerOpcion();
 
-	public void imprimirMenuCombate() {
-		System.out.println("1. Personaje contra Liga (definiendo característica)\n"
-				+ "2. ○ Liga contra Liga (definiendo característica)\n" + "0. Salir");
-	}
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ejecutando opción 1 del menu...");
+                    break;
+                case 2:
+                    System.out.println("Ejecutando opción 2 del menu...");
+                    break;
+                case 3:
+                    System.out.println("Ejecutando opción 3 del menu...");
+                    break;
+                case 4:
+                    System.out.println("Ejecutando opción 4 del menu...");
+                    break;
+                case 0:
+                    System.out.println("Volviendo al menu principal...");
+                    break;
+                case -1:
+                    System.out.println("Input invalido!");
+                    break;
+                default:
+                    System.out.println("Opción invalida!");
+            }
+        } while (opcion != 0);
+    }
 
-	public void imprimirMenuReportes() {
-		System.out.println("1. Todos los personajes o ligas que venzan a un personaje dado para cierta característica\n"
-				+ "2. Listado ordenado de personajes por múltiples características\r\n" + "0. Salir");
-	}
+    private void menuLigas() {
+        int opcion;
+        do{
+            imprimirMenu("Menu de ligas", OPCIONES_MENU_LIGAS);
 
-	private final static void clearConsole() {
-		
-	   System.out.print("\033[H\033[2J");  
-	   System.out.flush();  
-		try {
-			final String os = System.getProperty("os.name");
-			
-			if (os.contains("Windows")) {
-				Runtime.getRuntime().exec("cls");
-			} else {
-				Runtime.getRuntime().exec("clear");
-			}
-		} catch (final Exception e) {
-			// Handle any exceptions.
-		}
-	}
-	
+            opcion = leerOpcion();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ejecutando opción 1 del menu...");
+                    break;
+                case 2:
+                    System.out.println("Ejecutando opción 2 del menu...");
+                    break;
+                case 3:
+                    System.out.println("Ejecutando opción 3 del menu...");
+                    break;
+                case 4:
+                    System.out.println("Ejecutando opción 4 del menu...");
+                    break;
+                case 0:
+                    System.out.println("Volviendo al menu principal...");
+                    break;
+                case -1:
+                    System.out.println("Input invalido!");
+                    break;
+                default:
+                    System.out.println("Opción invalida!");
+            }
+        } while (opcion != 0);
+    }
+
+    private void menuCombates() {
+        int opcion;
+        do{
+            imprimirMenu("Menu de combates", OPCIONES_MENU_COMBATES);
+
+            opcion = leerOpcion();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ejecutando opción 1 del menu...");
+                    break;
+                case 2:
+                    System.out.println("Ejecutando opción 2 del menu...");
+                    break;
+                case 3:
+                    System.out.println("Ejecutando opción 3 del menu...");
+                    break;
+                case 0:
+                    System.out.println("Volviendo al menu principal...");
+                    break;
+                case -1:
+                    System.out.println("Input invalido!");
+                    break;
+                default:
+                    System.out.println("Opción invalida!");
+            }
+        } while (opcion != 0);
+    }
+
+    private void menuReportes() {
+        int opcion;
+        do{
+            imprimirMenu("Menu de reportes", OPCIONES_MENU_REPORTES);
+
+            opcion = leerOpcion();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ejecutando opción 1 del menu...");
+                    break;
+                case 2:
+                    System.out.println("Ejecutando opción 2 del menu...");
+                    break;
+                case 0:
+                    System.out.println("Volviendo al menu principal...");
+                    break;
+                case -1:
+                    System.out.println("Input invalido!");
+                    break;
+                default:
+                    System.out.println("Opción invalida!");
+            }
+        } while (opcion != 0);
+    }
+
+
+
 	private static int leerOpcion() {
         Scanner s = new Scanner(System.in);
         int opc;
-        //System.out.print("Seleccione la opcion: ");
         try{
             opc = s.nextInt();
         }
