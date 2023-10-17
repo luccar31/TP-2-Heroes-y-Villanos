@@ -74,22 +74,14 @@ public class Archivo {
 		PrintWriter printWriter = null;
 		
 		try {
-			file = new FileWriter("src/main/resources/personajes.out");
+			file = new FileWriter("src/main/resources/personajes.in");
 			
 			printWriter = new PrintWriter(file);
-			
-			printWriter.println("Personajes: ");
-			printWriter.println("------------------------------------------");
-			
 			for (Personaje<?> personajes : personaje) {
-				printWriter.println();
-				printWriter.println(personajes.getNombreReal() + " es un " + personajes.getTipo() + 
-						" y su alias es: " + personajes.getAlias());
-				printWriter.println("  Sus caracteristicas son: ");
-				printWriter.println("   -Velocidad: " + personajes.getCaracteristica(Caracteristica.VELOCIDAD));
-				printWriter.println("   -Fuerza: " + personajes.getCaracteristica(Caracteristica.FUERZA));
-				printWriter.println("   -Resistencia: " + personajes.getCaracteristica(Caracteristica.RESISTENCIA));
-				printWriter.println("   -Destreza: " + personajes.getCaracteristica(Caracteristica.DESTREZA));
+				printWriter.println(personajes.getTipo() + "," + personajes.getNombreReal() + "," + 
+						personajes.getAlias() + "," + personajes.getCaracteristica(Caracteristica.VELOCIDAD) + 
+						"," + personajes.getCaracteristica(Caracteristica.FUERZA) + "," + personajes.getCaracteristica(Caracteristica.RESISTENCIA) +
+						"," + personajes.getCaracteristica(Caracteristica.RESISTENCIA) + "," + personajes.getCaracteristica(Caracteristica.DESTREZA));
 			}
 			
 			
