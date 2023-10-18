@@ -1,17 +1,19 @@
 package com.heroesvillanos.dominio;
+import java.util.Collections;
 import java.util.Map;
 
-import java.lang.reflect.ParameterizedType;
-
-public abstract class Personaje<T> implements Competidor<T>{
+public class Personaje implements Competidor {
     private final String nombreReal;
     private final String alias;
+    private final TipoCompetidor tipo;
     private final Map<Caracteristica, Integer> caracteristicas;
 
-    protected Personaje(String nombreReal, String alias, Map<Caracteristica, Integer> caracteristica) {
+
+    protected Personaje(String nombreReal, String alias, TipoCompetidor tipo, Map<Caracteristica, Integer> caracteristica) {
         this.nombreReal = nombreReal;
         this.alias = alias;
-        this.caracteristicas = caracteristica;
+        this.tipo = tipo;
+        this.caracteristicas = Collections.unmodifiableMap(caracteristica);
     }
 
     public String getNombreReal() {
@@ -22,17 +24,20 @@ public abstract class Personaje<T> implements Competidor<T>{
         return alias;
     }
 
-    public <X extends Competidor<X>> boolean esGanador(Competidor<X> competidor){
+    public boolean esGanador(Competidor competidor){
         return false;
     }
-    
+
+    public TipoCompetidor getTipo() {
+        return this.tipo;
+    }
+
     @Override
     public String toString() {
     	return "Nombre del competidor: " + this.alias + 
     			", Nombre real del competidor: " + this.nombreReal +
     			", Caracteristicas: " + this.caracteristicas;
     }
-
 
     public int getCaracteristica(Caracteristica caracteristica) {
         Integer valor = caracteristicas.get(caracteristica);
