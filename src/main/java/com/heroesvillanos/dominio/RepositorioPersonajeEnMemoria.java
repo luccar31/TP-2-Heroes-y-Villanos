@@ -1,26 +1,21 @@
 package com.heroesvillanos.dominio;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
-import java.io.File;
-
-public class RepositorioPersonajeEnMemoria implements RepositorioPersonaje{
-
-    private final EntradaDatos entradaDatos;
+public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
     private List<Personaje> personajes;
 
-    public RepositorioPersonajeEnMemoria(EntradaDatos entradaDatos){
-        this.entradaDatos = entradaDatos;
-        personajes = entradaDatos.cargarPersonajes();
+    public RepositorioPersonajeEnMemoria() {
+        this.personajes = new ArrayList<Personaje>();
     }
 
-    public List<Personaje> obtenerTodosLosPersonajes() {
+    public List<Personaje> listar() {
         return personajes;
+    }
+
+    public void guardar(Personaje entidad) {
+        this.personajes.add(entidad);
     }
 
 }
