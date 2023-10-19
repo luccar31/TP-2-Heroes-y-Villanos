@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main {
+    /*
     public static void main(String[] args) {
         //Menu menu = Menu.getInstance();
         //menu.menu();
@@ -37,7 +38,8 @@ public class Main {
     	System.out.println("------------------------------------");
 
     }
-    
+     */
+    /*
     private static void EjemploError() {
     	
     	Competidor heroe1 = new Heroe("Edward Blake", "The Comedian");
@@ -91,5 +93,5 @@ public class Main {
         System.out.println("Super liga de heroes: ");
         superLigaHeroes.Show();
         System.out.println();*/
-    }
+
 }

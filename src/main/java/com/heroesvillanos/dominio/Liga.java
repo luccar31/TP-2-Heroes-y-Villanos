@@ -1,33 +1,43 @@
 package com.heroesvillanos.dominio;
 
+import com.heroesvillanos.exception.TipoCompetidorNoSoportado;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Liga<T> implements Competidor<T> {
+public class Liga implements Competidor {
 
-    public Set<Competidor<T>> competidores;
+    private final TipoCompetidor tipo;
+    public Set<Competidor> competidores;
 
-    public Liga(){
-        this.competidores = new HashSet<Competidor<T>>();
+    public Liga(TipoCompetidor tipo){
+        this.competidores = new HashSet<Competidor>();
+        this.tipo = tipo;
     }
 
-    public Liga(Competidor<T>... competidores){
-        this.competidores = new HashSet<Competidor<T>>(Arrays.asList(competidores));
+    public Liga(TipoCompetidor tipo, Competidor... competidores){
+        for(Competidor competidor : competidores){
+            if(competidor.getTipo() != tipo){
+                throw new TipoCompetidorNoSoportado("La liga soporta el tipo: " + tipo);
+            }
+        }
+        this.competidores = new HashSet<Competidor>(Arrays.asList(competidores));
+        this.tipo = tipo;
     }
 
-    public boolean agregarCompetidor(Competidor<T> competidor){
+    public boolean agregarCompetidor(Competidor competidor){
+        if(competidor.getTipo() != null){
+            throw new TipoCompetidorNoSoportado("La liga soporta el tipo: " + this.tipo);
+        }
         return this.competidores.add(competidor);
     }
 
-    public <X extends Competidor<X>> boolean esGanador(Competidor<X> competidor) {
+    public boolean esGanador(Competidor competidor) {
         return false;
     }
-       
-    public void Show() {
-    	for (Competidor<T> competidor : competidores)
-    	{
-    		competidor.Show();
-    	}
-	}
+
+    public TipoCompetidor getTipo() {
+        return this.tipo;
+    }
 }
