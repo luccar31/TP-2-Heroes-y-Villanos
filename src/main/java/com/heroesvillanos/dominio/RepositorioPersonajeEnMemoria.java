@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
-    private List<Personaje> personajes;
+    private final List<Personaje> personajes;
 
     public RepositorioPersonajeEnMemoria() {
         this.personajes = new ArrayList<Personaje>();
