@@ -7,10 +7,18 @@ public class Principal {
         Menu menu = Menu.getInstance();
         menu.menu();
 
-        Persistencia<Personaje> persistencia = new PersistenciaPersonajesEnArchivo("personaje1");
+        Persistencia<Personaje> persistencia = new PersistenciaPersonajesEnArchivo("personajes");
         Repositorio<Personaje> repositorio = new RepositorioPersonajeEnMemoria();
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(repositorio, persistencia);
         servicioPersonajes.cargarPersonajes();
         servicioPersonajes.listarPersonajes();
+        
+        //LIGAS
+        Persistencia<Liga> persistenciaLigas = new PersistenciaLigasEnArchivo("ligas");
+        Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
+        IServiciosLigas servicioLigas = new ServicioLigas(repositorioLigas, persistenciaLigas);
+        servicioLigas.cargarLiga();
+        servicioLigas.listarLigas();
+        
     }
 }
