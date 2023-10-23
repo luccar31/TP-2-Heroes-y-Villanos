@@ -11,7 +11,6 @@ public class CombateComparator implements Comparator<Personaje>{
 		this.c = c;
 	}
 	
-	@SuppressWarnings("static-access")
 	public int compare(Personaje a, Personaje b) {
 		String[] caracteristicas = {"VELOCIDAD", "FUERZA", "RESISTENCIA", "DESTREZA", "VELOCIDAD", "FUERZA", "RESISTENCIA"}; 
 		int restaCaracteristica = -1;
