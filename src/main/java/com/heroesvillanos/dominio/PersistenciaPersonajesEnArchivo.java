@@ -19,6 +19,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<Personaje> 
         Scanner scanner = null;
         String fileName = "src/main/resources/archivos/personajes.in";
 		File file = null; 
+        int id = 0;
         try {
         	file = new File(fileName);
             scanner = new Scanner(file);
@@ -39,8 +40,9 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<Personaje> 
                 int resistencia = Integer.parseInt(partes[5]); // Resistencia
                 int destreza = Integer.parseInt(partes[6]); // Destreza
 
-                personajes.add(new Personaje(nombreReal, nombrePersonaje, TipoCompetidor.obtenerPor(tipo),
+                personajes.add(new Personaje(id, nombreReal, nombrePersonaje, TipoCompetidor.obtenerPor(tipo),
                         velocidad, fuerza, resistencia, destreza));
+                id++;
             }
         } catch (Exception e) {
             e.printStackTrace();
