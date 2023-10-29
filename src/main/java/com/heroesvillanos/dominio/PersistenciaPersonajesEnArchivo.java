@@ -16,7 +16,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<Personaje> 
     public List<Personaje> cargar() {
         List<Personaje> personajes = new ArrayList<Personaje>();
         Scanner scanner = null;
-
+        int id = 0;
         try {
             scanner = new Scanner(archivo.crearFile(TipoArchivo.ENTRADA));
             String linea;
@@ -36,8 +36,9 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<Personaje> 
                 int resistencia = Integer.parseInt(partes[5]); // Resistencia
                 int destreza = Integer.parseInt(partes[6]); // Destreza
 
-                personajes.add(new Personaje(nombreReal, nombrePersonaje, TipoCompetidor.obtenerPor(tipo),
+                personajes.add(new Personaje(id, nombreReal, nombrePersonaje, TipoCompetidor.obtenerPor(tipo),
                         velocidad, fuerza, resistencia, destreza));
+                id++;
             }
         } catch (Exception e) {
             e.printStackTrace();

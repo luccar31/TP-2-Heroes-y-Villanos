@@ -1,8 +1,6 @@
 package com.heroesvillanos.dominio;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ServicioPersonajes implements IServicioPersonajes {
 
@@ -25,7 +23,8 @@ public class ServicioPersonajes implements IServicioPersonajes {
     }
 
     public Personaje crearPersonaje(String nombreReal, String alias, TipoCompetidor tipo, int vel, int fue, int res, int des) {
-        Personaje personaje = new Personaje(nombreReal, alias, tipo, vel, fue, res, des);
+        int id = repositorio.listar().get(repositorio.listar().size()).getId();
+        Personaje personaje = new Personaje(id, nombreReal, alias, tipo, vel, fue, res, des);
         repositorio.guardar(personaje);
         return personaje;
     }

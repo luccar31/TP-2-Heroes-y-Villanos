@@ -4,13 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Personaje implements Competidor {
+    private final int id;
     private final String nombreReal;
     private final String alias;
     private final TipoCompetidor tipo;
     private final Map<Caracteristica, Integer> caracteristicas;
 
-    public Personaje(String nombreReal, String alias, TipoCompetidor tipo,
+    public int getId() {
+        return id;
+    }
+
+    public Personaje(int id, String nombreReal, String alias, TipoCompetidor tipo,
                      int velocidad, int fuerza, int resistencia, int destreza){
+        this.id = id;
         Map<Caracteristica, Integer> caracteristicas = new HashMap<Caracteristica, Integer>();
         caracteristicas.put(Caracteristica.VELOCIDAD, velocidad);
         caracteristicas.put(Caracteristica.FUERZA, fuerza);
@@ -22,7 +28,8 @@ public class Personaje implements Competidor {
         this.caracteristicas = Collections.unmodifiableMap(caracteristicas);
     }
 
-    public Personaje(String nombreReal, String alias, TipoCompetidor tipo, Map<Caracteristica, Integer> caracteristicas) {
+    public Personaje(int id, String nombreReal, String alias, TipoCompetidor tipo, Map<Caracteristica, Integer> caracteristicas) {
+        this.id = id;
         this.nombreReal = nombreReal;
         this.alias = alias;
         this.tipo = tipo;
@@ -59,4 +66,5 @@ public class Personaje implements Competidor {
         }
         return valor;
     }
+
 }
