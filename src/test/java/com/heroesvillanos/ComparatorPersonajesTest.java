@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ComparatorPersonajesTest {
 
-    private List<Personaje> personajes;
+    /*private List<Personaje> personajes;
 
     @Before
     public void before(){
@@ -42,65 +42,138 @@ public class ComparatorPersonajesTest {
         personajes.add(new Personaje(24,"X","X", TipoCompetidor.HEROE, 700, 300, 500, 400));
         personajes.add(new Personaje(25,"Y","Y", TipoCompetidor.HEROE, 800, 500, 200, 500));
 
-    }
+    }*/
 
     @Test
     public void comparacion_direccion_ascendente_caracteristicas_velocidad(){
-        Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.ASCENDENTE,
-                Caracteristica.VELOCIDAD, Caracteristica.FUERZA, Caracteristica.RESISTENCIA, Caracteristica.DESTREZA);
+        List<Personaje> personajes = new ArrayList<>();
+
+        personajes.add(new Personaje( 1,"A","A", TipoCompetidor.HEROE, 800, 200, 400, 600));
+        personajes.add(new Personaje( 2,"B","B", TipoCompetidor.HEROE, 300, 100, 700, 100));
+        personajes.add(new Personaje( 3,"C","C", TipoCompetidor.HEROE, 600, 500, 100, 300));
+
+        Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.ASCENDENTE, Caracteristica.VELOCIDAD);
 
         personajes.sort(comparator);
 
-        imprimirOrden();
-    }
-
-    private void imprimirOrden() {
-        for(Personaje p : personajes){
-            System.out.println(p.getNombreReal() + "  - " +
-                    " V:" + p.getCaracteristica(Caracteristica.VELOCIDAD) +
-                    " F:" + p.getCaracteristica(Caracteristica.FUERZA) +
-                    " R:" + p.getCaracteristica(Caracteristica.RESISTENCIA) +
-                    " D:" + p.getCaracteristica(Caracteristica.DESTREZA));
-        }
+        Assert.assertEquals(2, personajes.get(0).getId());
+        Assert.assertEquals(3, personajes.get(1).getId());
+        Assert.assertEquals(1, personajes.get(2).getId());
     }
 
     @Test
     public void comparacion_direccion_descendente_caracteristicas_velocidad(){
+        List<Personaje> personajes = new ArrayList<>();
+
+        personajes.add(new Personaje( 1,"A","A", TipoCompetidor.HEROE, 800, 200, 400, 600));
+        personajes.add(new Personaje( 2,"B","B", TipoCompetidor.HEROE, 300, 100, 700, 100));
+        personajes.add(new Personaje( 3,"C","C", TipoCompetidor.HEROE, 600, 500, 100, 300));
+
         Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.DESCENDENTE,
                 Caracteristica.VELOCIDAD);
 
         personajes.sort(comparator);
 
-        System.out.println(personajes);
+        Assert.assertEquals(1, personajes.get(0).getId());
+        Assert.assertEquals(3, personajes.get(1).getId());
+        Assert.assertEquals(2, personajes.get(2).getId());
     }
 
     @Test
-    public void comparacion_direccion_descendente_caracteristicas_velocidad_y_fuerza(){
-        Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.DESCENDENTE,
-                Caracteristica.VELOCIDAD, Caracteristica.FUERZA);
+    public void comparacion_direccion_ascendente_caracteristicas_fuerza(){
+        List<Personaje> personajes = new ArrayList<>();
 
-        personajes.sort(comparator);
+        personajes.add(new Personaje( 1,"A","A", TipoCompetidor.HEROE, 800, 200, 400, 600));
+        personajes.add(new Personaje( 2,"B","B", TipoCompetidor.HEROE, 300, 100, 700, 100));
+        personajes.add(new Personaje( 3,"C","C", TipoCompetidor.HEROE, 600, 500, 100, 300));
 
-        Assert.assertEquals("d", personajes.get(5).getNombreReal());
-        Assert.assertEquals("e", personajes.get(4).getNombreReal());
-        Assert.assertEquals("f", personajes.get(3).getNombreReal());
-        Assert.assertEquals("c", personajes.get(2).getNombreReal());
-        Assert.assertEquals("a", personajes.get(1).getNombreReal());
-        Assert.assertEquals("b", personajes.get(0).getNombreReal());
-    }
-
-    @Test
-    public void comparacion_direccion_ascendente_caracteristicas_velocidad_y_fuerza(){
         Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.ASCENDENTE,
-                Caracteristica.FUERZA, Caracteristica.VELOCIDAD);
+                Caracteristica.FUERZA);
 
         personajes.sort(comparator);
 
-        Assert.assertEquals("d", personajes.get(0).getNombreReal());
-        Assert.assertEquals("e", personajes.get(1).getNombreReal());
-        Assert.assertEquals("f", personajes.get(2).getNombreReal());
-        Assert.assertEquals("c", personajes.get(3).getNombreReal());
-        Assert.assertEquals("a", personajes.get(4).getNombreReal());
-        Assert.assertEquals("b", personajes.get(5).getNombreReal());
+        Assert.assertEquals(2, personajes.get(0).getId());
+        Assert.assertEquals(1, personajes.get(1).getId());
+        Assert.assertEquals(3, personajes.get(2).getId());
+    }
+
+    @Test
+    public void comparacion_direccion_descendente_caracteristicas_fuerza(){
+        List<Personaje> personajes = new ArrayList<>();
+
+        personajes.add(new Personaje( 1,"A","A", TipoCompetidor.HEROE, 800, 200, 400, 600));
+        personajes.add(new Personaje( 2,"B","B", TipoCompetidor.HEROE, 300, 100, 700, 100));
+        personajes.add(new Personaje( 3,"C","C", TipoCompetidor.HEROE, 600, 500, 100, 300));
+
+        Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.DESCENDENTE,
+                Caracteristica.FUERZA);
+
+        personajes.sort(comparator);
+
+        Assert.assertEquals(3, personajes.get(0).getId());
+        Assert.assertEquals(1, personajes.get(1).getId());
+        Assert.assertEquals(2, personajes.get(2).getId());
+    }
+
+    @Test
+    public void comparacion_direccion_ascendente_caracteristicas_fuerza_y_destreza(){
+        List<Personaje> personajes = new ArrayList<>();
+
+        personajes.add(new Personaje(1,"L","L", TipoCompetidor.HEROE, 500, 100, 100, 300));
+        personajes.add(new Personaje(2,"M","M", TipoCompetidor.HEROE, 600, 700, 600, 400));
+        personajes.add(new Personaje(3,"N","N", TipoCompetidor.HEROE, 200, 700, 300, 500));
+        personajes.add(new Personaje(4,"O","O", TipoCompetidor.HEROE, 300, 800, 700, 200));
+        personajes.add(new Personaje(5,"P","P", TipoCompetidor.HEROE, 100, 400, 200, 800));
+
+        Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.ASCENDENTE,
+                Caracteristica.FUERZA, Caracteristica.DESTREZA);
+
+        personajes.sort(comparator);
+
+        Assert.assertEquals(1, personajes.get(0).getId());
+        Assert.assertEquals(5, personajes.get(1).getId());
+        Assert.assertEquals(2, personajes.get(2).getId());
+        Assert.assertEquals(3, personajes.get(3).getId());
+        Assert.assertEquals(4, personajes.get(4).getId());
+    }
+
+    @Test
+    public void comparacion_direccion_descendente_caracteristicas_fuerza_y_destreza(){
+        List<Personaje> personajes = new ArrayList<>();
+
+        personajes.add(new Personaje(1,"L","L", TipoCompetidor.HEROE, 500, 100, 100, 300));
+        personajes.add(new Personaje(2,"M","M", TipoCompetidor.HEROE, 600, 700, 600, 400));
+        personajes.add(new Personaje(3,"N","N", TipoCompetidor.HEROE, 200, 700, 300, 500));
+        personajes.add(new Personaje(4,"O","O", TipoCompetidor.HEROE, 300, 800, 700, 200));
+        personajes.add(new Personaje(5,"P","P", TipoCompetidor.HEROE, 100, 400, 200, 800));
+
+        Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.DESCENDENTE,
+                Caracteristica.FUERZA, Caracteristica.DESTREZA);
+
+        personajes.sort(comparator);
+
+        Assert.assertEquals(4, personajes.get(0).getId());
+        Assert.assertEquals(3, personajes.get(1).getId());
+        Assert.assertEquals(2, personajes.get(2).getId());
+        Assert.assertEquals(5, personajes.get(3).getId());
+        Assert.assertEquals(1, personajes.get(4).getId());
+    }
+
+    @Test
+    public void comparacion_todas_caracteristicas_iguales_queda_orden_de_lista(){
+        List<Personaje> personajes = new ArrayList<>();
+
+        personajes.add(new Personaje(1,"L","L", TipoCompetidor.HEROE, 100, 100, 100, 100));
+        personajes.add(new Personaje(2,"M","M", TipoCompetidor.HEROE, 100, 100, 100, 100));
+        personajes.add(new Personaje(3,"N","N", TipoCompetidor.HEROE, 100, 100, 100, 50));
+
+        Comparator<Personaje> comparator = new PersonajeCaracteristicaComparator(DireccionOrden.ASCENDENTE,
+                Caracteristica.FUERZA, Caracteristica.DESTREZA);
+
+        personajes.sort(comparator);
+
+        Assert.assertEquals(3, personajes.get(0).getId());
+        Assert.assertEquals(1, personajes.get(1).getId());
+        Assert.assertEquals(2, personajes.get(2).getId());
     }
 }
