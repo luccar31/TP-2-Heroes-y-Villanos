@@ -6,15 +6,16 @@ public class ServicioLigas implements IServiciosLigas{
 	
     private final Repositorio<Liga> repositorio;
     private final Persistencia<Liga> persistencia;
+    private final Repositorio<Personaje> personajes;
     
-    
-    public ServicioLigas(Repositorio<Liga> repositorio, Persistencia<Liga> persistencia){
+    public ServicioLigas(Repositorio<Liga> repositorio, Persistencia<Liga> persistencia,Repositorio<Personaje> personajes){
         this.repositorio = repositorio;
         this.persistencia = persistencia;
+        this.personajes = personajes;
     }
     
     public void cargarLiga() {
-        for(Liga l : persistencia.cargar()){
+        for(Liga l : persistencia.cargar(personajes.listar())){
             repositorio.guardar(l);
         }
     }
@@ -23,8 +24,8 @@ public class ServicioLigas implements IServiciosLigas{
         return repositorio.listar();
     }
 
-    public Liga crearLiga(TipoCompetidor tipo) {
-        Liga liga = new Liga(tipo);
+    public Liga crearLiga(TipoCompetidor tipo, String nombre, int id) {
+        Liga liga = new Liga(tipo,nombre,id);
         repositorio.guardar(liga);
         return liga;
     }

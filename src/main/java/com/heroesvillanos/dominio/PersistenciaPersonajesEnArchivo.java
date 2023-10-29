@@ -2,6 +2,7 @@ package com.heroesvillanos.dominio;
 
 import com.heroesvillanos.dominio.Archivo.TipoArchivo;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.util.*;
 
@@ -16,9 +17,11 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<Personaje> 
     public List<Personaje> cargar() {
         List<Personaje> personajes = new ArrayList<Personaje>();
         Scanner scanner = null;
-
+        String fileName = "src/main/resources/archivos/personajes.in";
+		File file = null; 
         try {
-            scanner = new Scanner(archivo.crearFile(TipoArchivo.ENTRADA));
+        	file = new File(fileName);
+            scanner = new Scanner(file);
             String linea;
 
             while (scanner.hasNextLine()) {
