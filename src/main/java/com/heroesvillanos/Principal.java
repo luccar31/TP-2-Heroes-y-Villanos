@@ -8,20 +8,19 @@ public class Principal {
     public static void main(String[] args) {
         Menu menu = Menu.getInstance();
         menu.menu();
-        
+
+        Repositorio<Personaje> personajeRepositorio = new RepositorioPersonajeEnMemoria();
+        Repositorio<Liga> ligaRepositorio = new RepositorioLigasEnMemoria();
 		
-        Persistencia<Personaje> persistencia = new PersistenciaPersonajesEnArchivo("personajes");
-        Repositorio<Personaje> repositorio = new RepositorioPersonajeEnMemoria();
-        IServicioPersonajes servicioPersonajes = new ServicioPersonajes(repositorio, persistencia);
-        servicioPersonajes.cargarPersonajes();
-        servicioPersonajes.listarPersonajes();
-        
+        Persistencia<Personaje> personajePersistencia = new PersistenciaPersonajesEnArchivo();
+        Persistencia<Liga> ligaPersistencia = new PersistenciaLigasEnArchivo(personajeRepositorio);
+
+        IServicioPersonajes servicioPersonajes = new ServicioPersonajes(personajeRepositorio, personajePersistencia);
+        IServiciosLigas serviciosLigas = new ServicioLigas(ligaRepositorio, ligaPersistencia, personajeRepositorio);
+
         //LIGAS
-        Persistencia<Liga> persistenciaLigas = new PersistenciaLigasEnArchivo("ligas");
-        Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
-        IServiciosLigas servicioLigas = new ServicioLigas(repositorioLigas, persistenciaLigas);
-        servicioLigas.cargarLiga();
-        servicioLigas.listarLigas();
+        serviciosLigas.cargarLiga();
+        serviciosLigas.listarLigas();
         
     }
 }

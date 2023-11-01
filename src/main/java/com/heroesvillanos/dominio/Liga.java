@@ -10,6 +10,19 @@ public class Liga implements Competidor {
 
     private final TipoCompetidor tipo;
     private final String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Set<Competidor> getCompetidores() {
+        return competidores;
+    }
+
     private final int id;
     public Set<Competidor> competidores;
 

@@ -15,7 +15,7 @@ public class ServicioLigas implements IServiciosLigas{
     }
     
     public void cargarLiga() {
-        for(Liga l : persistencia.cargar(personajes.listar())){
+        for(Liga l : persistencia.cargar()){
             repositorio.guardar(l);
         }
     }

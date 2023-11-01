@@ -18,4 +18,14 @@ public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
         this.personajes.add(entidad);
     }
 
+    public Personaje obtenerPorNombre(String alias) {
+        Personaje busqueda = null;
+        for (Personaje personaje : personajes) {
+            if (personaje.getAlias().equals(alias)) {
+                busqueda = personaje;
+            }
+        }
+        return busqueda;
+    }
+
 }

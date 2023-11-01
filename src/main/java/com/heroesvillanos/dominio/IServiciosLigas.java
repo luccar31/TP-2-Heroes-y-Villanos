@@ -6,6 +6,5 @@ public interface IServiciosLigas {
     void cargarLiga();
     List<Liga> listarLigas();
     Liga crearLiga(TipoCompetidor tipo);
-
     void guardarLigas();
 }
