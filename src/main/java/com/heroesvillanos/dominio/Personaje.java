@@ -10,6 +10,10 @@ public class Personaje implements Competidor {
     private final TipoCompetidor tipo;
     private final Map<Caracteristica, Integer> caracteristicas;
 
+    public int getId() {
+        return id;
+    }
+
     public Personaje(int id, String nombreReal, String alias, TipoCompetidor tipo,
                      int velocidad, int fuerza, int resistencia, int destreza){
         this.id = id;
@@ -55,10 +59,6 @@ public class Personaje implements Competidor {
     			", Caracteristicas: " + this.caracteristicas;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public int getCaracteristica(Caracteristica caracteristica) {
         Integer valor = caracteristicas.get(caracteristica);
         if (valor == null){
@@ -66,4 +66,5 @@ public class Personaje implements Competidor {
         }
         return valor;
     }
+
 }

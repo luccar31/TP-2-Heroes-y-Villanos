@@ -23,7 +23,7 @@ public class ServicioPersonajes implements IServicioPersonajes {
     }
 
     public Personaje crearPersonaje(String nombreReal, String alias, TipoCompetidor tipo, int vel, int fue, int res, int des) {
-        int id = this.repositorio.listar().get(repositorio.listar().size()).getId() + 1;
+        int id = repositorio.listar().get(repositorio.listar().size()).getId() + 1;
         Personaje personaje = new Personaje(id, nombreReal, alias, tipo, vel, fue, res, des);
         repositorio.guardar(personaje);
         return personaje;
