@@ -1,4 +1,8 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.servicios;
+
+import com.heroesvillanos.dominio.*;
+import com.heroesvillanos.persistencia.Persistencia;
+import com.heroesvillanos.repositorio.Repositorio;
 
 import java.util.List;
 
@@ -22,6 +26,11 @@ public class ServicioLigas implements IServiciosLigas{
 
     public List<Liga> listarLigas() {
         return repositorio.listar();
+    }
+
+    @Override
+    public Liga crearLiga(TipoCompetidor tipo) {
+        return null;
     }
 
     public Liga crearLiga(TipoCompetidor tipo, String nombre, int id) {

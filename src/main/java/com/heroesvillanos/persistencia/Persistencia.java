@@ -1,4 +1,4 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.persistencia;
 
 import java.util.List;
 

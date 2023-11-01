@@ -1,4 +1,7 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.servicios;
+
+import com.heroesvillanos.dominio.Liga;
+import com.heroesvillanos.dominio.TipoCompetidor;
 
 import java.util.List;
 

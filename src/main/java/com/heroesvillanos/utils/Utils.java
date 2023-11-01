@@ -1,4 +1,4 @@
-package com.heroesvillanos;
+package com.heroesvillanos.utils;
 
 public final class Utils {
     public static String repetirString(int n, String s) {

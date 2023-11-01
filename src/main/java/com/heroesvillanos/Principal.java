@@ -1,13 +1,19 @@
 package com.heroesvillanos;
 
-import java.io.File;
-
 import com.heroesvillanos.dominio.*;
+import com.heroesvillanos.persistencia.Persistencia;
+import com.heroesvillanos.persistencia.PersistenciaLigasEnArchivo;
+import com.heroesvillanos.persistencia.PersistenciaPersonajesEnArchivo;
+import com.heroesvillanos.repositorio.Repositorio;
+import com.heroesvillanos.repositorio.RepositorioLigasEnMemoria;
+import com.heroesvillanos.repositorio.RepositorioPersonajeEnMemoria;
+import com.heroesvillanos.servicios.IServicioPersonajes;
+import com.heroesvillanos.servicios.IServiciosLigas;
+import com.heroesvillanos.servicios.ServicioLigas;
+import com.heroesvillanos.servicios.ServicioPersonajes;
 
 public class Principal {
     public static void main(String[] args) {
-        Menu menu = Menu.getInstance();
-        menu.menu();
 
         Repositorio<Personaje> personajeRepositorio = new RepositorioPersonajeEnMemoria();
         Repositorio<Liga> ligaRepositorio = new RepositorioLigasEnMemoria();

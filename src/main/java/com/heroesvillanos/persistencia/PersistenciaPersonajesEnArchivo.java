@@ -1,4 +1,8 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.persistencia;
+
+import com.heroesvillanos.dominio.Caracteristica;
+import com.heroesvillanos.dominio.Personaje;
+import com.heroesvillanos.dominio.TipoCompetidor;
 
 import java.io.File;
 import java.io.FileWriter;

@@ -1,4 +1,7 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.persistencia;
+
+import com.heroesvillanos.dominio.*;
+import com.heroesvillanos.repositorio.Repositorio;
 
 import java.io.File;
 import java.io.IOException;

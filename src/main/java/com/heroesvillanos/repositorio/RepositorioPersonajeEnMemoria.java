@@ -1,4 +1,6 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.repositorio;
+
+import com.heroesvillanos.dominio.Personaje;
 
 import java.util.ArrayList;
 import java.util.List;

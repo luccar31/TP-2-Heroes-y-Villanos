@@ -1,4 +1,6 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.repositorio;
+
+import com.heroesvillanos.dominio.Liga;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,11 @@ public class RepositorioLigasEnMemoria implements Repositorio<Liga>{
 			}
 		}
 		return busqueda;
+	}
+
+	@Override
+	public Liga obtenerPorIdentificador(int id) {
+		return null;
 	}
 
 }

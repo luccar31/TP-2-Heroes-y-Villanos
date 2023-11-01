@@ -1,4 +1,6 @@
-package com.heroesvillanos;
+package com.heroesvillanos.utils;
+
+import com.heroesvillanos.utils.Utils;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

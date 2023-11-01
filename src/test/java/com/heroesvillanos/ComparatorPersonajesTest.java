@@ -1,8 +1,8 @@
 package com.heroesvillanos;
 
+import com.heroesvillanos.comparators.PersonajeCaracteristicaComparator;
 import com.heroesvillanos.dominio.*;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;

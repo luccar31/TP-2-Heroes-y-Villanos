@@ -1,4 +1,8 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.comparators;
+
+import com.heroesvillanos.dominio.Caracteristica;
+import com.heroesvillanos.dominio.DireccionOrden;
+import com.heroesvillanos.dominio.Personaje;
 
 import java.util.Arrays;
 import java.util.Comparator;

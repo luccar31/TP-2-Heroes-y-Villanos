@@ -1,4 +1,9 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.servicios;
+
+import com.heroesvillanos.persistencia.Persistencia;
+import com.heroesvillanos.dominio.Personaje;
+import com.heroesvillanos.repositorio.Repositorio;
+import com.heroesvillanos.dominio.TipoCompetidor;
 
 import java.util.List;
 
