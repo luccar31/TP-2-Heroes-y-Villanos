@@ -2,7 +2,7 @@ package com.heroesvillanos.persistencia;
 
 import java.util.List;
 
-public interface Persistencia<T> {
-    List<T> cargar();
-    void guardar(List<T> lista);
+public interface Persistencia<Dto, Entidad> {
+    List<Dto> leerDatos();
+    void guardar(List<Entidad> datos);
 }

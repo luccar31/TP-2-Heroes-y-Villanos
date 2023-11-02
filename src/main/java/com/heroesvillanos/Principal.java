@@ -17,16 +17,16 @@ public class Principal {
 
         Repositorio<Personaje> personajeRepositorio = new RepositorioPersonajeEnMemoria();
         Repositorio<Liga> ligaRepositorio = new RepositorioLigasEnMemoria();
-		
-        Persistencia<Personaje> personajePersistencia = new PersistenciaPersonajesEnArchivo();
-        Persistencia<Liga> ligaPersistencia = new PersistenciaLigasEnArchivo(personajeRepositorio);
+
+        Persistencia<PersonajeDto, Personaje> personajePersistencia = new PersistenciaPersonajesEnArchivo("src/main/resources/archivos/personajes.in");
+        Persistencia<LigaDto, Liga> ligaPersistencia = new PersistenciaLigasEnArchivo("src/main/resources/archivos/ligas.in");
 
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(personajeRepositorio, personajePersistencia);
-        IServiciosLigas serviciosLigas = new ServicioLigas(ligaRepositorio, ligaPersistencia, personajeRepositorio);
+        IServiciosLigas serviciosLigas = new ServicioLigas(ligaRepositorio, personajeRepositorio, ligaPersistencia);
 
         //LIGAS
-        serviciosLigas.cargarLiga();
-        serviciosLigas.listarLigas();
+        serviciosLigas.cargar();
+        serviciosLigas.listar();
         
     }
 }

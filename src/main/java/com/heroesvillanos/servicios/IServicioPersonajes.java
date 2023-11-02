@@ -6,10 +6,10 @@ import com.heroesvillanos.dominio.TipoCompetidor;
 import java.util.List;
 
 public interface IServicioPersonajes {
-    void cargarPersonajes();
-    List<Personaje> listarPersonajes();
-    Personaje crearPersonaje(String nombreReal, String alias, TipoCompetidor tipo,
-                             int vel, int fue, int res, int des);
+    List<Personaje> cargar();
+    List<Personaje> listar();
+    Personaje crear(String nombreReal, String alias, TipoCompetidor tipo,
+                    int vel, int fue, int res, int des);
 
-    void guardarPersonajes();
+    void persistir();
 }

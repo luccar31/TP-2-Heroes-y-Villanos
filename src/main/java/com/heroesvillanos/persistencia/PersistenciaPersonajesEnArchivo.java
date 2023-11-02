@@ -1,84 +1,72 @@
 package com.heroesvillanos.persistencia;
 
-import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.Personaje;
-import com.heroesvillanos.dominio.TipoCompetidor;
+import com.heroesvillanos.dominio.PersonajeDto;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class PersistenciaPersonajesEnArchivo implements Persistencia<Personaje> {
+public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDto, Personaje> {
 
-    public PersistenciaPersonajesEnArchivo() {
+    private final File file;
+    public PersistenciaPersonajesEnArchivo(String filename) {
+        file = new File(filename);
     }
 
-    public List<Personaje> cargar() {
-        List<Personaje> personajes = new ArrayList<Personaje>();
+    public List<PersonajeDto> leerDatos() {
+        List<PersonajeDto> datos = new ArrayList<PersonajeDto>();
         Scanner scanner = null;
-        String fileName = "src/main/resources/archivos/personajes.in";
-		File file = null; 
-        int id = 0;
         try {
-        	file = new File(fileName);
             scanner = new Scanner(file);
-            String linea;
 
             while (scanner.hasNextLine()) {
-                linea = scanner.nextLine();
-                String[] partes = linea.split(",");
-
-                for (int i = 0; i < partes.length; i++)
-                    partes[i] = partes[i].trim();
-
-                String tipo = partes[0]; // Heroe o Villano?
-                String nombreReal = partes[1]; // Nombre Real
-                String nombrePersonaje = partes[2]; // Nombre Personaje
-                int velocidad = Integer.parseInt(partes[3]); // Velocidad
-                int fuerza = Integer.parseInt(partes[4]); // Fuerza
-                int resistencia = Integer.parseInt(partes[5]); // Resistencia
-                int destreza = Integer.parseInt(partes[6]); // Destreza
-
-                personajes.add(new Personaje(id, nombreReal, nombrePersonaje, TipoCompetidor.obtenerPor(tipo),
-                        velocidad, fuerza, resistencia, destreza));
-                id++;
+                datos.add(crearDto(scanner.nextLine()));
             }
-        } catch (Exception e) {
+        }
+        catch (IOException | IllegalStateException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             if(scanner != null){
                 scanner.close();
             }
         }
 
-        return personajes;
+        return datos;
+    }
+
+    private PersonajeDto crearDto(String dato) {
+        String[] partes = dato.split(",");
+
+        String tipo = partes[0].trim(); // Heroe o Villano?
+        String nombreReal = partes[1].trim(); // Nombre Real
+        String nombrePersonaje = partes[2].trim(); // Nombre Personaje
+        int velocidad = Integer.parseInt(partes[3].trim()); // Velocidad
+        int fuerza = Integer.parseInt(partes[4].trim()); // Fuerza
+        int resistencia = Integer.parseInt(partes[5].trim()); // Resistencia
+        int destreza = Integer.parseInt(partes[6].trim()); // Destreza
+
+        return new PersonajeDto(nombreReal, nombrePersonaje, tipo, velocidad, fuerza, resistencia, destreza);
     }
 
     public void guardar(List<Personaje> personajes) {
-        String fileName = "src/main/resources/archivos/personajes.in";
-        FileWriter file = null;
-
+        FileWriter writer = null;
         try {
-            file = new FileWriter(fileName);
+            writer = new FileWriter(file);
 
             for (Personaje personaje : personajes) {
-                String linea = String.format("%s,%s,%s,%n,%d,%d,%d,%d\n",
-                        personaje.getTipo(),
-                        personaje.getNombreReal(),
-                        personaje.getAlias(),
-                        personaje.getCaracteristica(Caracteristica.VELOCIDAD),
-                        personaje.getCaracteristica(Caracteristica.FUERZA),
-                        personaje.getCaracteristica(Caracteristica.RESISTENCIA),
-                        personaje.getCaracteristica(Caracteristica.DESTREZA)
-                );
-                file.write(linea);
+                writer.write(personaje.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (file != null) {
+            if (writer != null) {
                 try{
-                    file.close();
+                    writer.close();
                 }
                 catch (Exception e){
                     throw new RuntimeException(e);
