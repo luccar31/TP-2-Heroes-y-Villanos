@@ -15,6 +15,11 @@ public class Liga implements Competidor {
         return nombre;
     }
 
+    @Override
+    public String getNombreCompetidor() {
+        return nombre;
+    }
+
     public int getId() {
         return id;
     }
@@ -58,5 +63,21 @@ public class Liga implements Competidor {
 
     public TipoCompetidor getTipo() {
         return this.tipo;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.nombre);
+        int i = 0;
+        for(Competidor competidor : competidores){
+            if(i < competidores.size()){
+                builder.append(", ");
+            }
+            builder.append(competidor.getNombreCompetidor());
+            i++;
+        }
+
+        return builder.toString();
     }
 }

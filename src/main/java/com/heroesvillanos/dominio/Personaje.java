@@ -53,10 +53,18 @@ public class Personaje implements Competidor {
     }
 
     @Override
+    public String getNombreCompetidor() {
+        return this.alias;
+    }
+
+    @Override
     public String toString() {
-    	return "Nombre del competidor: " + this.alias + 
-    			", Nombre real del competidor: " + this.nombreReal +
-    			", Caracteristicas: " + this.caracteristicas;
+    	return String.format("%s, %s, %s, %d, %d, %d, %d",
+                this.tipo.toString(), this.nombreReal,this.alias,
+                this.caracteristicas.get(Caracteristica.VELOCIDAD),
+                this.caracteristicas.get(Caracteristica.FUERZA),
+                this.caracteristicas.get(Caracteristica.RESISTENCIA),
+                this.caracteristicas.get(Caracteristica.DESTREZA));
     }
 
     public int getCaracteristica(Caracteristica caracteristica) {
