@@ -1,9 +1,9 @@
 package com.heroesvillanos;
 
 import com.heroesvillanos.dominio.Liga;
-import com.heroesvillanos.dominio.LigaDto;
+import com.heroesvillanos.dominio.RegistroLiga;
 import com.heroesvillanos.dominio.Personaje;
-import com.heroesvillanos.dominio.PersonajeDto;
+import com.heroesvillanos.dominio.RegistroPersonaje;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.persistencia.PersistenciaLigasEnArchivo;
 import com.heroesvillanos.persistencia.PersistenciaPersonajesEnArchivo;
@@ -21,8 +21,8 @@ public class Principal {
         Repositorio<Personaje> personajeRepositorio = new RepositorioPersonajeEnMemoria();
         Repositorio<Liga> ligaRepositorio = new RepositorioLigasEnMemoria();
 
-        Persistencia<PersonajeDto, Personaje> personajePersistencia = new PersistenciaPersonajesEnArchivo("src/main/resources/archivos/personajes.in");
-        Persistencia<LigaDto, Liga> ligaPersistencia = new PersistenciaLigasEnArchivo("src/main/resources/archivos/ligas.in");
+        Persistencia<RegistroPersonaje, Personaje> personajePersistencia = new PersistenciaPersonajesEnArchivo("src/main/resources/archivos/personajes.in");
+        Persistencia<RegistroLiga, Liga> ligaPersistencia = new PersistenciaLigasEnArchivo("src/main/resources/archivos/ligas.in");
 
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(personajeRepositorio, personajePersistencia);
         IServiciosLigas serviciosLigas = new ServicioLigas(ligaRepositorio, personajeRepositorio, ligaPersistencia);

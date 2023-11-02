@@ -11,10 +11,10 @@ import java.util.NoSuchElementException;
 public class ServicioLigas implements IServiciosLigas {
 
     private final Repositorio<Liga> repositorioLigas;
-    private final Persistencia<LigaDto, Liga> persistencia;
+    private final Persistencia<RegistroLiga, Liga> persistencia;
     private final Repositorio<Personaje> repositorioPersonajes;
 
-    public ServicioLigas(Repositorio<Liga> repositorioLigas, Repositorio<Personaje> repositorioPersonajes, Persistencia<LigaDto, Liga> persistencia) {
+    public ServicioLigas(Repositorio<Liga> repositorioLigas, Repositorio<Personaje> repositorioPersonajes, Persistencia<RegistroLiga, Liga> persistencia) {
         this.repositorioLigas = repositorioLigas;
         this.persistencia = persistencia;
         this.repositorioPersonajes = repositorioPersonajes;
@@ -34,9 +34,9 @@ public class ServicioLigas implements IServiciosLigas {
             throw new IllegalStateException("Los personajes no están cargados. Deben cargarse previo a cargar las ligas");
         }
 
-        List<LigaDto> dtos = persistencia.leerDatos();
+        List<RegistroLiga> dtos = persistencia.leerDatos();
 
-        for (LigaDto dto : dtos) {
+        for (RegistroLiga dto : dtos) {
 
             //buscamos si ya existe el nombre de la liga en las ligas ya dadas de alta
             if (repositorioLigas.obtenerPorNombre(dto.getNombre()) != null) {

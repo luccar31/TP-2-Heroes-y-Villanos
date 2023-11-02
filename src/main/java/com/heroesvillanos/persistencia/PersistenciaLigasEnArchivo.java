@@ -1,7 +1,7 @@
 package com.heroesvillanos.persistencia;
 
 import com.heroesvillanos.dominio.Liga;
-import com.heroesvillanos.dominio.LigaDto;
+import com.heroesvillanos.dominio.RegistroLiga;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PersistenciaLigasEnArchivo implements Persistencia<LigaDto, Liga> {
+public class PersistenciaLigasEnArchivo implements Persistencia<RegistroLiga, Liga> {
 
     private final File file;
 
@@ -19,8 +19,8 @@ public class PersistenciaLigasEnArchivo implements Persistencia<LigaDto, Liga> {
     }
 
     @Override
-    public List<LigaDto> leerDatos() {
-        List<LigaDto> datos = new ArrayList<>();
+    public List<RegistroLiga> leerDatos() {
+        List<RegistroLiga> datos = new ArrayList<>();
         Scanner scanner = null;
 
         try {
@@ -40,13 +40,13 @@ public class PersistenciaLigasEnArchivo implements Persistencia<LigaDto, Liga> {
         return datos;
     }
 
-    private LigaDto crearDto(String linea) {
+    private RegistroLiga crearDto(String linea) {
         String[] campos = linea.split(",");
         String[] competidores = new String[campos.length];
         for (int i = 1; i < campos.length; i++) {
             competidores[i - 1] = campos[i].trim();
         }
-        return new LigaDto(campos[0].trim(), competidores);
+        return new RegistroLiga(campos[0].trim(), competidores);
     }
 
     @Override

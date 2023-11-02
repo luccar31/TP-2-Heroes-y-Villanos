@@ -1,7 +1,7 @@
 package com.heroesvillanos.persistencia;
 
 import com.heroesvillanos.dominio.Personaje;
-import com.heroesvillanos.dominio.PersonajeDto;
+import com.heroesvillanos.dominio.RegistroPersonaje;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDto, Personaje> {
+public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPersonaje, Personaje> {
 
     private final File file;
 
@@ -18,8 +18,8 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDt
         file = new File(filename);
     }
 
-    public List<PersonajeDto> leerDatos() {
-        List<PersonajeDto> datos = new ArrayList<PersonajeDto>();
+    public List<RegistroPersonaje> leerDatos() {
+        List<RegistroPersonaje> datos = new ArrayList<RegistroPersonaje>();
         Scanner scanner = null;
         try {
             scanner = new Scanner(file);
@@ -38,7 +38,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDt
         return datos;
     }
 
-    private PersonajeDto crearDto(String dato) {
+    private RegistroPersonaje crearDto(String dato) {
         String[] partes = dato.split(",");
 
         String tipo = partes[0].trim(); // Heroe o Villano?
@@ -49,7 +49,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDt
         int resistencia = Integer.parseInt(partes[5].trim()); // Resistencia
         int destreza = Integer.parseInt(partes[6].trim()); // Destreza
 
-        return new PersonajeDto(nombreReal, nombrePersonaje, tipo, velocidad, fuerza, resistencia, destreza);
+        return new RegistroPersonaje(nombreReal, nombrePersonaje, tipo, velocidad, fuerza, resistencia, destreza);
     }
 
     public void guardar(List<Personaje> personajes) {

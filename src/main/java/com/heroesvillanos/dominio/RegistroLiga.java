@@ -3,7 +3,7 @@ package com.heroesvillanos.dominio;
 import java.util.Arrays;
 import java.util.List;
 
-public class LigaDto {
+public class RegistroLiga {
     private final String nombreLiga;
 
     public String getNombre() {
@@ -16,7 +16,7 @@ public class LigaDto {
 
     private final List<String> nombreCompetidores;
 
-    public LigaDto(String nombreLiga, String... nombreCompetidores) {
+    public RegistroLiga(String nombreLiga, String... nombreCompetidores) {
         this.nombreLiga = nombreLiga;
         this.nombreCompetidores = Arrays.asList(nombreCompetidores);
     }

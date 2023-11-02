@@ -1,6 +1,6 @@
 package com.heroesvillanos.dominio;
 
-public class PersonajeDto {
+public class RegistroPersonaje {
     private final String nombre;
     private final String alias;
     private final TipoCompetidor tipo;
@@ -37,7 +37,7 @@ public class PersonajeDto {
         return des;
     }
 
-    public PersonajeDto(String nombre, String alias, String tipo, int vel, int fue, int res, int des) {
+    public RegistroPersonaje(String nombre, String alias, String tipo, int vel, int fue, int res, int des) {
         this.nombre = nombre;
         this.alias = alias;
         this.tipo = TipoCompetidor.obtenerPor(tipo);

@@ -1,7 +1,7 @@
 package com.heroesvillanos.servicios;
 
 import com.heroesvillanos.dominio.Personaje;
-import com.heroesvillanos.dominio.PersonajeDto;
+import com.heroesvillanos.dominio.RegistroPersonaje;
 import com.heroesvillanos.dominio.TipoCompetidor;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.repositorio.Repositorio;
@@ -11,9 +11,9 @@ import java.util.List;
 public class ServicioPersonajes implements IServicioPersonajes {
 
     private final Repositorio<Personaje> repositorio;
-    private final Persistencia<PersonajeDto, Personaje> persistencia;
+    private final Persistencia<RegistroPersonaje, Personaje> persistencia;
 
-    public ServicioPersonajes(Repositorio<Personaje> repositorioPersonajes, Persistencia<PersonajeDto, Personaje> persistencia) {
+    public ServicioPersonajes(Repositorio<Personaje> repositorioPersonajes, Persistencia<RegistroPersonaje, Personaje> persistencia) {
         this.repositorio = repositorioPersonajes;
         this.persistencia = persistencia;
     }
@@ -21,9 +21,9 @@ public class ServicioPersonajes implements IServicioPersonajes {
     public List<Personaje> cargar() {
         int id = 0;
 
-        List<PersonajeDto> dtos = persistencia.leerDatos();
+        List<RegistroPersonaje> dtos = persistencia.leerDatos();
 
-        for (PersonajeDto dto : dtos) {
+        for (RegistroPersonaje dto : dtos) {
 
             //si el nombre del personaje ya existe en el repo, entonces no se puede crear
             if (repositorio.obtenerPorNombre(dto.getAlias()) != null) {
