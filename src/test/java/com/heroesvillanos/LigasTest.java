@@ -14,7 +14,7 @@ import java.util.Map;
 public class LigasTest {
 
     @Test
-    public void toStringFuncionaSegunLoEsperado_ligaVacia(){
+    public void toStringFuncionaSegunLoEsperado_ligaVacia() {
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 
         Assert.assertEquals("Liga vacia", liga.toString());
@@ -22,7 +22,7 @@ public class LigasTest {
 
     @Test
     @Ignore("falla cuando se corre sin modo debug (?)")
-    public void toStringFuncionaSegunLoEsperado_conPersonajes(){
+    public void toStringFuncionaSegunLoEsperado_conPersonajes() {
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.HEROE, caracteristicas);
         Personaje personaje2 = new Personaje(1, "Nombre 2", "Alias 2", TipoCompetidor.HEROE, caracteristicas);

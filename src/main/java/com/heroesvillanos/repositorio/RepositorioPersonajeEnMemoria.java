@@ -36,12 +36,12 @@ public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
     @Override
     public Personaje obtenerPorIdentificador(int id) {
         Personaje encontrado = null;
-        for(Personaje p : this.personajes){
-            if(p.getId() == id){
+        for (Personaje p : this.personajes) {
+            if (p.getId() == id) {
                 encontrado = p;
             }
         }
-        if(encontrado == null){
+        if (encontrado == null) {
             throw new NoSuchElementException("No se encontró el personaje con id: " + id);
         }
         return encontrado;

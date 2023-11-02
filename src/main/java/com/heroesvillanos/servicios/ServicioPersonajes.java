@@ -1,12 +1,11 @@
 package com.heroesvillanos.servicios;
 
-import com.heroesvillanos.dominio.PersonajeDto;
-import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.dominio.Personaje;
-import com.heroesvillanos.repositorio.Repositorio;
+import com.heroesvillanos.dominio.PersonajeDto;
 import com.heroesvillanos.dominio.TipoCompetidor;
+import com.heroesvillanos.persistencia.Persistencia;
+import com.heroesvillanos.repositorio.Repositorio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServicioPersonajes implements IServicioPersonajes {
@@ -14,7 +13,7 @@ public class ServicioPersonajes implements IServicioPersonajes {
     private final Repositorio<Personaje> repositorio;
     private final Persistencia<PersonajeDto, Personaje> persistencia;
 
-    public ServicioPersonajes(Repositorio<Personaje> repositorioPersonajes, Persistencia<PersonajeDto, Personaje> persistencia){
+    public ServicioPersonajes(Repositorio<Personaje> repositorioPersonajes, Persistencia<PersonajeDto, Personaje> persistencia) {
         this.repositorio = repositorioPersonajes;
         this.persistencia = persistencia;
     }
@@ -24,10 +23,10 @@ public class ServicioPersonajes implements IServicioPersonajes {
 
         List<PersonajeDto> dtos = persistencia.leerDatos();
 
-        for(PersonajeDto dto : dtos){
+        for (PersonajeDto dto : dtos) {
 
             //si el nombre del personaje ya existe en el repo, entonces no se puede crear
-            if(repositorio.obtenerPorNombre(dto.getAlias()) != null){
+            if (repositorio.obtenerPorNombre(dto.getAlias()) != null) {
                 throw new IllegalArgumentException("El personaje que se quiere crear ya existe");
             }
 

@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDto, Personaje> {
 
     private final File file;
+
     public PersistenciaPersonajesEnArchivo(String filename) {
         file = new File(filename);
     }
@@ -26,12 +27,10 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDt
             while (scanner.hasNextLine()) {
                 datos.add(crearDto(scanner.nextLine()));
             }
-        }
-        catch (IOException | IllegalStateException e) {
+        } catch (IOException | IllegalStateException e) {
             e.printStackTrace();
-        }
-        finally {
-            if(scanner != null){
+        } finally {
+            if (scanner != null) {
                 scanner.close();
             }
         }
@@ -65,10 +64,9 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<PersonajeDt
             e.printStackTrace();
         } finally {
             if (writer != null) {
-                try{
+                try {
                     writer.close();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }

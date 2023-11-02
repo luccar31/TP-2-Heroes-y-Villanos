@@ -1,7 +1,7 @@
 package com.heroesvillanos.dominio;
 
 public enum Caracteristica {
-	VELOCIDAD,
+    VELOCIDAD,
     FUERZA,
     RESISTENCIA,
     DESTREZA;

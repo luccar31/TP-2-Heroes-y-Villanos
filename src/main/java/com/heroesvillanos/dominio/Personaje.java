@@ -1,4 +1,5 @@
 package com.heroesvillanos.dominio;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +16,7 @@ public class Personaje implements Competidor {
     }
 
     public Personaje(int id, String nombreReal, String alias, TipoCompetidor tipo,
-                     int velocidad, int fuerza, int resistencia, int destreza){
+                     int velocidad, int fuerza, int resistencia, int destreza) {
         this.id = id;
         Map<Caracteristica, Integer> caracteristicas = new HashMap<Caracteristica, Integer>();
         caracteristicas.put(Caracteristica.VELOCIDAD, velocidad);
@@ -44,7 +45,7 @@ public class Personaje implements Competidor {
         return alias;
     }
 
-    public boolean esGanador(Competidor competidor){
+    public boolean esGanador(Competidor competidor) {
         return false;
     }
 
@@ -59,8 +60,8 @@ public class Personaje implements Competidor {
 
     @Override
     public String toString() {
-    	return String.format("%s, %s, %s, %d, %d, %d, %d",
-                this.tipo.toString(), this.nombreReal,this.alias,
+        return String.format("%s, %s, %s, %d, %d, %d, %d",
+                this.tipo.toString(), this.nombreReal, this.alias,
                 this.caracteristicas.get(Caracteristica.VELOCIDAD),
                 this.caracteristicas.get(Caracteristica.FUERZA),
                 this.caracteristicas.get(Caracteristica.RESISTENCIA),
@@ -69,7 +70,7 @@ public class Personaje implements Competidor {
 
     public int getCaracteristica(Caracteristica caracteristica) {
         Integer valor = caracteristicas.get(caracteristica);
-        if (valor == null){
+        if (valor == null) {
             return 0;
         }
         return valor;

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class ServicioLigas implements IServiciosLigas{
-	
+public class ServicioLigas implements IServiciosLigas {
+
     private final Repositorio<Liga> repositorioLigas;
     private final Persistencia<LigaDto, Liga> persistencia;
     private final Repositorio<Personaje> repositorioPersonajes;
 
-    public ServicioLigas(Repositorio<Liga> repositorioLigas, Repositorio<Personaje> repositorioPersonajes, Persistencia<LigaDto, Liga> persistencia){
+    public ServicioLigas(Repositorio<Liga> repositorioLigas, Repositorio<Personaje> repositorioPersonajes, Persistencia<LigaDto, Liga> persistencia) {
         this.repositorioLigas = repositorioLigas;
         this.persistencia = persistencia;
         this.repositorioPersonajes = repositorioPersonajes;
@@ -23,23 +23,23 @@ public class ServicioLigas implements IServiciosLigas{
     //devuelve una lista de ligas para poder testear
     @Override
     public List<Liga> cargar() {
-        if(!repositorioLigas.listar().isEmpty()){
+        if (!repositorioLigas.listar().isEmpty()) {
             throw new IllegalStateException("Las ligas ya fueron cargadas");
         }
 
         int id = 0;
         //si no se cargaron los personajes, excepcion porque se deben cargar primero los personajes
         //para poder realizar busquedas
-        if(repositorioPersonajes.listar().isEmpty()){
+        if (repositorioPersonajes.listar().isEmpty()) {
             throw new IllegalStateException("Los personajes no están cargados. Deben cargarse previo a cargar las ligas");
         }
 
         List<LigaDto> dtos = persistencia.leerDatos();
 
-        for(LigaDto dto : dtos){
+        for (LigaDto dto : dtos) {
 
             //buscamos si ya existe el nombre de la liga en las ligas ya dadas de alta
-            if(repositorioLigas.obtenerPorNombre(dto.getNombre()) != null){
+            if (repositorioLigas.obtenerPorNombre(dto.getNombre()) != null) {
                 //excepcion porque ya existe la liga en la lista de ligas hasta ahora cargadas
                 throw new IllegalArgumentException("La liga que se quiere crear ya existe");
             }
@@ -49,11 +49,11 @@ public class ServicioLigas implements IServiciosLigas{
             //para los nombres restantes buscamos si son ligas o son personajes,
             //y creamos una lista de competidores
             List<Competidor> competidores = new ArrayList<Competidor>();
-            for(String nombreCompetidor : dto.getNombreCompetidores()){
+            for (String nombreCompetidor : dto.getNombreCompetidores()) {
                 Competidor c = obtenerCompetidor(nombreCompetidor);
 
                 //si no se encuentra ningun competidor con tal nombre
-                if(c == null){
+                if (c == null) {
                     //excepcion porque no existe ningun competidor con tal nombre
                     throw new NoSuchElementException("No existe competidor con el nombre de " + nombreCompetidor);
                 }
@@ -90,7 +90,7 @@ public class ServicioLigas implements IServiciosLigas{
         c = repositorioLigas.obtenerPorNombre(nombreCompetidor);
 
         //si se encontro retorno la liga
-        if(c != null){
+        if (c != null) {
             return c;
         }
 

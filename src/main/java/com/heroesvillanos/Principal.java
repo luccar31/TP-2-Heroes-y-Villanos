@@ -1,6 +1,9 @@
 package com.heroesvillanos;
 
-import com.heroesvillanos.dominio.*;
+import com.heroesvillanos.dominio.Liga;
+import com.heroesvillanos.dominio.LigaDto;
+import com.heroesvillanos.dominio.Personaje;
+import com.heroesvillanos.dominio.PersonajeDto;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.persistencia.PersistenciaLigasEnArchivo;
 import com.heroesvillanos.persistencia.PersistenciaPersonajesEnArchivo;
@@ -27,6 +30,6 @@ public class Principal {
         //LIGAS
         serviciosLigas.cargar();
         serviciosLigas.listar();
-        
+
     }
 }
