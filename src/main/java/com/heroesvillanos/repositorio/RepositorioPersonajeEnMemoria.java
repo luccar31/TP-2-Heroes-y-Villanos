@@ -23,10 +23,10 @@ public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
         this.personajes.add(entidad);
     }
 
-    public Personaje obtenerPorNombre(String alias) {
+    public Personaje obtenerPorNombre(String nombre) {
         Personaje busqueda = null;
         for (Personaje personaje : personajes) {
-            if (personaje.getAlias().equals(alias)) {
+            if (personaje.getNombreReal().equals(nombre)) {
                 busqueda = personaje;
             }
         }
@@ -40,9 +40,6 @@ public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
             if (p.getId() == id) {
                 encontrado = p;
             }
-        }
-        if (encontrado == null) {
-            throw new NoSuchElementException("No se encontró el personaje con id: " + id);
         }
         return encontrado;
     }

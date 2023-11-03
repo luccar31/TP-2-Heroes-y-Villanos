@@ -1,6 +1,10 @@
 package com.heroesvillanos.servicios;
 
 import com.heroesvillanos.dominio.*;
+import com.heroesvillanos.exception.CompetidorNoEncontrado;
+import com.heroesvillanos.exception.LigaYaExistenteException;
+import com.heroesvillanos.exception.LigasYaCargadasException;
+import com.heroesvillanos.exception.PersonajesNoCargadosException;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.repositorio.Repositorio;
 
@@ -24,14 +28,14 @@ public class ServicioLigas implements IServiciosLigas {
     @Override
     public List<Liga> cargar() {
         if (!repositorioLigas.listar().isEmpty()) {
-            throw new IllegalStateException("Las ligas ya fueron cargadas");
+            throw new LigasYaCargadasException("Las ligas ya fueron cargadas");
         }
 
         int id = 0;
         //si no se cargaron los personajes, excepcion porque se deben cargar primero los personajes
         //para poder realizar busquedas
         if (repositorioPersonajes.listar().isEmpty()) {
-            throw new IllegalStateException("Los personajes no están cargados. Deben cargarse previo a cargar las ligas");
+            throw new PersonajesNoCargadosException("Los personajes no están cargados. Deben cargarse previo a cargar las ligas");
         }
 
         List<RegistroLiga> dtos = persistencia.leerDatos();
@@ -41,7 +45,7 @@ public class ServicioLigas implements IServiciosLigas {
             //buscamos si ya existe el nombre de la liga en las ligas ya dadas de alta
             if (repositorioLigas.obtenerPorNombre(dto.getNombre()) != null) {
                 //excepcion porque ya existe la liga en la lista de ligas hasta ahora cargadas
-                throw new IllegalArgumentException("La liga que se quiere crear ya existe");
+                throw new LigaYaExistenteException("La liga que se quiere crear ya existe");
             }
 
             TipoCompetidor tipoCompetidor = null;
@@ -55,18 +59,21 @@ public class ServicioLigas implements IServiciosLigas {
                 //si no se encuentra ningun competidor con tal nombre
                 if (c == null) {
                     //excepcion porque no existe ningun competidor con tal nombre
-                    throw new NoSuchElementException("No existe competidor con el nombre de " + nombreCompetidor);
+                    throw new CompetidorNoEncontrado("No existe competidor con el nombre de " + nombreCompetidor);
                 }
 
                 //se setea el tipo de la liga con el tipo del primer competidor encontrado
                 if (tipoCompetidor == null) {
                     tipoCompetidor = c.getTipo();
                 }
+
+                /* -- codigo comentado porque esto ya lo maneja la propia clase de liga --
                 //si el competidor obtenido no es del tipo de la liga
                 //entonces se lanza excepcion
                 if (tipoCompetidor != null && c.getTipo() != tipoCompetidor) {
                     throw new IllegalArgumentException("El competidor no es compatible con la liga");
                 }
+                 */
 
                 competidores.add(c);
             }

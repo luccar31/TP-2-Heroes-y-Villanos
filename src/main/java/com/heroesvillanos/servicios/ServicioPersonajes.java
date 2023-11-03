@@ -3,6 +3,7 @@ package com.heroesvillanos.servicios;
 import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.RegistroPersonaje;
 import com.heroesvillanos.dominio.TipoCompetidor;
+import com.heroesvillanos.exception.PersonajeYaExistenteException;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.repositorio.Repositorio;
 
@@ -26,8 +27,8 @@ public class ServicioPersonajes implements IServicioPersonajes {
         for (RegistroPersonaje dto : dtos) {
 
             //si el nombre del personaje ya existe en el repo, entonces no se puede crear
-            if (repositorio.obtenerPorNombre(dto.getAlias()) != null) {
-                throw new IllegalArgumentException("El personaje que se quiere crear ya existe");
+            if (repositorio.obtenerPorNombre(dto.getNombre()) != null) {
+                throw new PersonajeYaExistenteException("El personaje que se quiere crear ya existe");
             }
 
             repositorio.guardar(

@@ -32,7 +32,13 @@ public class RepositorioLigasEnMemoria implements Repositorio<Liga> {
 
     @Override
     public Liga obtenerPorIdentificador(int id) {
-        return null;
+        Liga busqueda = null;
+        for (Liga liga : ligas) {
+            if (liga.getId() == id) {
+                busqueda = liga;
+            }
+        }
+        return busqueda;
     }
 
 }

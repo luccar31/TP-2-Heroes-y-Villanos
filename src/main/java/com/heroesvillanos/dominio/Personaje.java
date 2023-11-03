@@ -69,11 +69,7 @@ public class Personaje implements Competidor {
     }
 
     public int getCaracteristica(Caracteristica caracteristica) {
-        Integer valor = caracteristicas.get(caracteristica);
-        if (valor == null) {
-            return 0;
-        }
-        return valor;
+        return caracteristicas.getOrDefault(caracteristica, 0);
     }
 
 }

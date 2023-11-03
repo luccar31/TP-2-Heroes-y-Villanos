@@ -29,7 +29,7 @@ public class Liga implements Competidor {
     }
 
     private final int id;
-    public Set<Competidor> competidores;
+    private final Set<Competidor> competidores;
 
     public Liga(TipoCompetidor tipo, String nombre, int id) {
         this.nombre = nombre;

@@ -2,6 +2,7 @@ package com.heroesvillanos.servicios;
 
 import com.heroesvillanos.comparators.PersonajeCaracteristicaComparator;
 import com.heroesvillanos.dominio.*;
+import com.heroesvillanos.exception.CompetidorNoEncontrado;
 import com.heroesvillanos.repositorio.Repositorio;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class ServicioReportes implements IServicioReportes {
 
     public List<Competidor> competidoresQueVenzan(int id) {
         Personaje personaje = repositorioPersonajes.obtenerPorIdentificador(id);
+        if(personaje == null){
+            throw new CompetidorNoEncontrado();
+        }
         List<Competidor> competidores = new ArrayList<>();
         competidores.addAll(repositorioPersonajes.listar());
         competidores.addAll(repositorioLigas.listar());

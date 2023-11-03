@@ -2,6 +2,7 @@ package com.heroesvillanos.persistencia;
 
 import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.RegistroPersonaje;
+import com.heroesvillanos.exception.FormatoPersonajeIncorrectoException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -39,17 +40,32 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
     }
 
     private RegistroPersonaje crearDto(String dato) {
-        String[] partes = dato.split(",");
+        //si el formato de la linea es valido se puede demostrar con
+        //esta expresion regular ^(Héroe|Villano),[^,]+,[^,]+,\d+,\d+,\d+,\d+$
+        try{
+            String[] partes = dato.split(",");
 
-        String tipo = partes[0].trim(); // Heroe o Villano?
-        String nombreReal = partes[1].trim(); // Nombre Real
-        String nombrePersonaje = partes[2].trim(); // Nombre Personaje
-        int velocidad = Integer.parseInt(partes[3].trim()); // Velocidad
-        int fuerza = Integer.parseInt(partes[4].trim()); // Fuerza
-        int resistencia = Integer.parseInt(partes[5].trim()); // Resistencia
-        int destreza = Integer.parseInt(partes[6].trim()); // Destreza
+            for (int i = 0; i < partes.length; i++) {
+                String trimmed = partes[i].trim();
+                if(trimmed.isEmpty()){
+                    throw new RuntimeException("Cadena vacia");
+                }
+                partes[i] = trimmed;
+            }
 
-        return new RegistroPersonaje(nombreReal, nombrePersonaje, tipo, velocidad, fuerza, resistencia, destreza);
+            String tipo = partes[0]; // Heroe o Villano?
+            String nombreReal = partes[1]; // Nombre Real
+            String nombrePersonaje = partes[2]; // Nombre Personaje
+            int velocidad = Integer.parseInt(partes[3]); // Velocidad
+            int fuerza = Integer.parseInt(partes[4]); // Fuerza
+            int resistencia = Integer.parseInt(partes[5]); // Resistencia
+            int destreza = Integer.parseInt(partes[6]); // Destreza
+
+            return new RegistroPersonaje(nombreReal, nombrePersonaje, tipo, velocidad, fuerza, resistencia, destreza);
+        }
+        catch (Exception e){
+            throw new FormatoPersonajeIncorrectoException(e);
+        }
     }
 
     public void guardar(List<Personaje> personajes) {
@@ -58,7 +74,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
             writer = new FileWriter(file);
 
             for (Personaje personaje : personajes) {
-                writer.write(personaje.toString());
+                writer.write(personaje.toString() + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
