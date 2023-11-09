@@ -5,8 +5,8 @@ import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.DireccionOrden;
 import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.TipoCompetidor;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -59,9 +59,9 @@ public class ComparatorPersonajesTest {
 
         personajes.sort(comparator);
 
-        Assert.assertEquals(2, personajes.get(0).getId());
-        Assert.assertEquals(3, personajes.get(1).getId());
-        Assert.assertEquals(1, personajes.get(2).getId());
+        Assertions.assertEquals(2, personajes.get(0).getId());
+        Assertions.assertEquals(3, personajes.get(1).getId());
+        Assertions.assertEquals(1, personajes.get(2).getId());
     }
 
     @Test
@@ -77,9 +77,9 @@ public class ComparatorPersonajesTest {
 
         personajes.sort(comparator);
 
-        Assert.assertEquals(1, personajes.get(0).getId());
-        Assert.assertEquals(3, personajes.get(1).getId());
-        Assert.assertEquals(2, personajes.get(2).getId());
+        Assertions.assertEquals(1, personajes.get(0).getId());
+        Assertions.assertEquals(3, personajes.get(1).getId());
+        Assertions.assertEquals(2, personajes.get(2).getId());
     }
 
     @Test
@@ -95,9 +95,9 @@ public class ComparatorPersonajesTest {
 
         personajes.sort(comparator);
 
-        Assert.assertEquals(2, personajes.get(0).getId());
-        Assert.assertEquals(1, personajes.get(1).getId());
-        Assert.assertEquals(3, personajes.get(2).getId());
+        Assertions.assertEquals(2, personajes.get(0).getId());
+        Assertions.assertEquals(1, personajes.get(1).getId());
+        Assertions.assertEquals(3, personajes.get(2).getId());
     }
 
     @Test
@@ -113,9 +113,9 @@ public class ComparatorPersonajesTest {
 
         personajes.sort(comparator);
 
-        Assert.assertEquals(3, personajes.get(0).getId());
-        Assert.assertEquals(1, personajes.get(1).getId());
-        Assert.assertEquals(2, personajes.get(2).getId());
+        Assertions.assertEquals(3, personajes.get(0).getId());
+        Assertions.assertEquals(1, personajes.get(1).getId());
+        Assertions.assertEquals(2, personajes.get(2).getId());
     }
 
     @Test
@@ -133,11 +133,11 @@ public class ComparatorPersonajesTest {
 
         personajes.sort(comparator);
 
-        Assert.assertEquals(1, personajes.get(0).getId());
-        Assert.assertEquals(5, personajes.get(1).getId());
-        Assert.assertEquals(2, personajes.get(2).getId());
-        Assert.assertEquals(3, personajes.get(3).getId());
-        Assert.assertEquals(4, personajes.get(4).getId());
+        Assertions.assertEquals(1, personajes.get(0).getId());
+        Assertions.assertEquals(5, personajes.get(1).getId());
+        Assertions.assertEquals(2, personajes.get(2).getId());
+        Assertions.assertEquals(3, personajes.get(3).getId());
+        Assertions.assertEquals(4, personajes.get(4).getId());
     }
 
     @Test
@@ -155,11 +155,11 @@ public class ComparatorPersonajesTest {
 
         personajes.sort(comparator);
 
-        Assert.assertEquals(4, personajes.get(0).getId());
-        Assert.assertEquals(3, personajes.get(1).getId());
-        Assert.assertEquals(2, personajes.get(2).getId());
-        Assert.assertEquals(5, personajes.get(3).getId());
-        Assert.assertEquals(1, personajes.get(4).getId());
+        Assertions.assertEquals(4, personajes.get(0).getId());
+        Assertions.assertEquals(3, personajes.get(1).getId());
+        Assertions.assertEquals(2, personajes.get(2).getId());
+        Assertions.assertEquals(5, personajes.get(3).getId());
+        Assertions.assertEquals(1, personajes.get(4).getId());
     }
 
     @Test
@@ -175,8 +175,8 @@ public class ComparatorPersonajesTest {
 
         personajes.sort(comparator);
 
-        Assert.assertEquals(3, personajes.get(0).getId());
-        Assert.assertEquals(1, personajes.get(1).getId());
-        Assert.assertEquals(2, personajes.get(2).getId());
+        Assertions.assertEquals(3, personajes.get(0).getId());
+        Assertions.assertEquals(1, personajes.get(1).getId());
+        Assertions.assertEquals(2, personajes.get(2).getId());
     }
 }

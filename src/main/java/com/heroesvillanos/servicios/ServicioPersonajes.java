@@ -47,8 +47,14 @@ public class ServicioPersonajes implements IServicioPersonajes {
     }
 
     public Personaje crear(String nombreReal, String alias, TipoCompetidor tipo, int vel, int fue, int res, int des) {
-        int ultimoId = repositorio.listar().get(repositorio.listar().size()).getId();
-        Personaje personaje = new Personaje(ultimoId + 1, nombreReal, alias, tipo, vel, fue, res, des);
+        int ultimoId;
+        if(repositorio.listar().isEmpty()){
+            ultimoId = 0;
+        }
+        else{
+            ultimoId = repositorio.listar().get(repositorio.listar().size()).getId() + 1;
+        }
+        Personaje personaje = new Personaje(ultimoId, nombreReal, alias, tipo, vel, fue, res, des);
         repositorio.guardar(personaje);
         return personaje;
     }

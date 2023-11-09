@@ -1,20 +1,20 @@
 package com.heroesvillanos;
 
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 public class MainTest {
 
     @Test
     public void assertTrue() {
-        Assert.assertTrue(true);
+        Assertions.assertTrue(true);
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void assertFalse() {
-        Assert.fail();
+        Assertions.fail();
     }
 }

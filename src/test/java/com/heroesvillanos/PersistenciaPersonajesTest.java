@@ -4,13 +4,12 @@ import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.RegistroPersonaje;
 import com.heroesvillanos.dominio.TipoCompetidor;
-import com.heroesvillanos.exception.FormatoPersonajeIncorrectoException;
+import com.heroesvillanos.exception.FormatoArchivoInvalidoException;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.persistencia.PersistenciaPersonajesEnArchivo;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,7 +26,7 @@ public class PersistenciaPersonajesTest {
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesVacioTest.in");
         List<RegistroPersonaje> registros = persistencia.leerDatos();
 
-        Assert.assertEquals(0, registros.size());
+        Assertions.assertEquals(0, registros.size());
     }
 
     @Test
@@ -35,36 +34,42 @@ public class PersistenciaPersonajesTest {
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesCorrectosTest.in");
         List<RegistroPersonaje> registros = persistencia.leerDatos();
 
-        Assert.assertEquals(1, registros.size());
-        Assert.assertEquals(TipoCompetidor.HEROE, registros.get(0).getTipo());
-        Assert.assertEquals("Edward Blake", registros.get(0).getNombre());
-        Assert.assertEquals("The Comedian", registros.get(0).getAlias());
-        Assert.assertEquals(100, registros.get(0).getVel());
-        Assert.assertEquals(200, registros.get(0).getFue());
-        Assert.assertEquals(150, registros.get(0).getRes());
-        Assert.assertEquals(50, registros.get(0).getDes());
-    }
-
-    @Test(expected = FormatoPersonajeIncorrectoException.class)
-    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto1(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato1Test.in");
-        persistencia.leerDatos();
-    }
-
-    @Test(expected = FormatoPersonajeIncorrectoException.class)
-    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto2(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato2Test.in");
-        persistencia.leerDatos();
-    }
-
-    @Test(expected = FormatoPersonajeIncorrectoException.class)
-    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto3(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato3Test.in");
-        persistencia.leerDatos();
+        Assertions.assertEquals(1, registros.size());
+        Assertions.assertEquals(TipoCompetidor.HEROE, registros.get(0).getTipo());
+        Assertions.assertEquals("Edward Blake", registros.get(0).getNombre());
+        Assertions.assertEquals("The Comedian", registros.get(0).getAlias());
+        Assertions.assertEquals(100, registros.get(0).getVel());
+        Assertions.assertEquals(200, registros.get(0).getFue());
+        Assertions.assertEquals(150, registros.get(0).getRes());
+        Assertions.assertEquals(50, registros.get(0).getDes());
     }
 
     @Test
-    public void test() throws IOException {
+    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto1(){
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato1Test.in");
+        Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
+            persistencia.leerDatos();
+        });
+    }
+
+    @Test
+    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto2(){
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato2Test.in");
+        Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
+            persistencia.leerDatos();
+        });
+    }
+
+    @Test
+    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto3(){
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato3Test.in");
+        Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
+            persistencia.leerDatos();
+        });
+    }
+
+    @Test
+    public void dadaUnaListaDePersonajes_cuandoSeGuardanEnArchivo_seLeenCorrectamente() throws IOException {
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);
@@ -83,10 +88,11 @@ public class PersistenciaPersonajesTest {
         Path path = Paths.get("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesGuardadoTest.in");
         List<String> lineas = Files.readAllLines(path);
 
-        Assert.assertNotNull(lineas);
-        Assert.assertEquals(2, lineas.size());
-        Assert.assertEquals("Héroe, Nombre 1, Alias 1, 100, 100, 100, 100", lineas.get(0));
-        Assert.assertEquals("Héroe, Nombre 2, Alias 2, 100, 100, 100, 100", lineas.get(1));
-
+        Assertions.assertNotNull(lineas);
+        Assertions.assertEquals(2, lineas.size());
+        Assertions.assertEquals("Héroe, Nombre 1, Alias 1, 100, 100, 100, 100", lineas.get(0));
+        Assertions.assertEquals("Héroe, Nombre 2, Alias 2, 100, 100, 100, 100", lineas.get(1));
     }
+
+
 }

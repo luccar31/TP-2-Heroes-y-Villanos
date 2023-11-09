@@ -6,8 +6,8 @@ import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.TipoCompetidor;
 import com.heroesvillanos.repositorio.Repositorio;
 import com.heroesvillanos.repositorio.RepositorioPersonajeEnMemoria;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class RepositorioPersonajesTest {
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
         repositorioPersonajes.guardar(personaje1);
 
-        Assert.assertEquals(1, repositorioPersonajes.listar().size());
+        Assertions.assertEquals(1, repositorioPersonajes.listar().size());
     }
 
     @Test
@@ -40,8 +40,8 @@ public class RepositorioPersonajesTest {
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
         repositorioPersonajes.guardar(personaje1);
 
-        Assert.assertNotNull(repositorioPersonajes.listar());
-        Assert.assertEquals(1, repositorioPersonajes.listar().get(0).getId());
+        Assertions.assertNotNull(repositorioPersonajes.listar());
+        Assertions.assertEquals(1, repositorioPersonajes.listar().get(0).getId());
     }
 
     @Test
@@ -57,8 +57,8 @@ public class RepositorioPersonajesTest {
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
         repositorioPersonajes.guardar(personaje1);
 
-        Assert.assertNotNull(repositorioPersonajes.obtenerPorNombre("Nombre 1"));
-        Assert.assertEquals(1, repositorioPersonajes.obtenerPorNombre("Nombre 1").getId());
+        Assertions.assertNotNull(repositorioPersonajes.obtenerPorNombre("Nombre 1"));
+        Assertions.assertEquals(1, repositorioPersonajes.obtenerPorNombre("Nombre 1").getId());
     }
 
     @Test
@@ -74,8 +74,8 @@ public class RepositorioPersonajesTest {
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
         repositorioPersonajes.guardar(personaje1);
 
-        Assert.assertNotNull(repositorioPersonajes.obtenerPorIdentificador(1));
-        Assert.assertEquals("Nombre 1", repositorioPersonajes.obtenerPorIdentificador(1).getNombreReal());
+        Assertions.assertNotNull(repositorioPersonajes.obtenerPorIdentificador(1));
+        Assertions.assertEquals("Nombre 1", repositorioPersonajes.obtenerPorIdentificador(1).getNombreReal());
     }
 
 }

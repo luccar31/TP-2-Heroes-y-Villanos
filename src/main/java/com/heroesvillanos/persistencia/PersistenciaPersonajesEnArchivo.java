@@ -2,7 +2,8 @@ package com.heroesvillanos.persistencia;
 
 import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.RegistroPersonaje;
-import com.heroesvillanos.exception.FormatoPersonajeIncorrectoException;
+import com.heroesvillanos.exception.FormatoArchivoInvalidoException;
+import com.heroesvillanos.exception.LecturaDeArchivoException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -28,9 +29,11 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
             while (scanner.hasNextLine()) {
                 datos.add(crearDto(scanner.nextLine()));
             }
-        } catch (IOException | IllegalStateException e) {
-            e.printStackTrace();
-        } finally {
+        }
+        catch (IOException e) {
+            throw new LecturaDeArchivoException(e);
+        }
+        finally {
             if (scanner != null) {
                 scanner.close();
             }
@@ -64,7 +67,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
             return new RegistroPersonaje(nombreReal, nombrePersonaje, tipo, velocidad, fuerza, resistencia, destreza);
         }
         catch (Exception e){
-            throw new FormatoPersonajeIncorrectoException(e);
+            throw new FormatoArchivoInvalidoException(e);
         }
     }
 
@@ -76,15 +79,23 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
             for (Personaje personaje : personajes) {
                 writer.write(personaje.toString() + "\n");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+        }
+        catch (IOException e) {
+            throw new LecturaDeArchivoException(e);
+        }
+        finally {
+            cerrarWriter(writer);
+        }
+
+    }
+
+    private void cerrarWriter(FileWriter writer) {
+        if (writer != null) {
+            try {
+                writer.close();
+            }
+            catch (IOException e) {
+                throw new LecturaDeArchivoException(e);
             }
         }
     }

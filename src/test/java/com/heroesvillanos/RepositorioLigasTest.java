@@ -4,8 +4,8 @@ import com.heroesvillanos.dominio.Liga;
 import com.heroesvillanos.dominio.TipoCompetidor;
 import com.heroesvillanos.repositorio.Repositorio;
 import com.heroesvillanos.repositorio.RepositorioLigasEnMemoria;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class RepositorioLigasTest {
 
@@ -16,7 +16,7 @@ public class RepositorioLigasTest {
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
         repositorioLigas.guardar(liga);
 
-        Assert.assertEquals(1, repositorioLigas.listar().size());
+        Assertions.assertEquals(1, repositorioLigas.listar().size());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class RepositorioLigasTest {
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
         repositorioLigas.guardar(liga);
 
-        Assert.assertEquals(1, repositorioLigas.listar().get(0).getId());
+        Assertions.assertEquals(1, repositorioLigas.listar().get(0).getId());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class RepositorioLigasTest {
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
         repositorioLigas.guardar(liga);
 
-        Assert.assertEquals(1, repositorioLigas.obtenerPorNombre("Liga vacia").getId());
+        Assertions.assertEquals(1, repositorioLigas.obtenerPorNombre("Liga vacia").getId());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class RepositorioLigasTest {
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
         repositorioLigas.guardar(liga);
 
-        Assert.assertEquals("Liga vacia", repositorioLigas.obtenerPorIdentificador(1).getNombre());
+        Assertions.assertEquals("Liga vacia", repositorioLigas.obtenerPorIdentificador(1).getNombre());
     }
 
 }
