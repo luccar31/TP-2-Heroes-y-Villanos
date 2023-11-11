@@ -3,6 +3,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.heroesvillanos.comparators.CombateComparator;
+
 public class Personaje implements Competidor {
     private final String nombreReal;
     private final String alias;
@@ -37,8 +39,14 @@ public class Personaje implements Competidor {
         return alias;
     }
 
-    public boolean esGanador(Competidor competidor){
-        return false;
+    public boolean esGanador(Competidor competidor, Caracteristica caracteristicas) throws IllegalMatchException{
+    	if(this.tipo.equals(competidor.getTipo())) {
+    		throw new IllegalMatchException("No pueden competir personajes del mismo tipo.");
+    	} else {
+    		CombateComparator cc = new CombateComparator();
+        	cc.Comparator(caracteristicas);
+    		return cc.compare(this, competidor) > 0 ? true : false;
+    	}
     }
 
     public TipoCompetidor getTipo() {

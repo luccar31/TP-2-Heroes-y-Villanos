@@ -1,5 +1,6 @@
 package com.heroesvillanos.dominio;
 
+import com.heroesvillanos.comparators.CombateComparator;
 import com.heroesvillanos.exception.TipoCompetidorNoSoportado;
 
 import java.util.Arrays;
@@ -33,11 +34,22 @@ public class Liga implements Competidor {
         return this.competidores.add(competidor);
     }
 
-    public boolean esGanador(Competidor competidor) {
-        return false;
-    }
-
     public TipoCompetidor getTipo() {
         return this.tipo;
     }
+
+	public boolean esGanador(Competidor competidor, Caracteristica caracteristica) throws IllegalMatchException{
+    	if(this.tipo.equals(competidor.getTipo())) {
+    		throw new IllegalMatchException("No pueden competir personajes del mismo tipo.");
+    	} else {
+    		CombateComparator cc = new CombateComparator();
+        	cc.Comparator(caracteristica);
+    		return cc.compare(this, competidor) > 0 ? true : false;
+    	}
+	}
+
+	public int getCaracteristica(Caracteristica caracteristicas) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

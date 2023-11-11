@@ -4,15 +4,14 @@ import java.util.Comparator;
 
 import com.heroesvillanos.dominio.*;
 
-public class CombateComparator implements Comparator<Personaje>{
+public class CombateComparator implements Comparator<Competidor>{
 	private Caracteristica c = null;
 	
 	public void Comparator(Caracteristica c) {
 		this.c = c;
 	}
 	
-	@SuppressWarnings("static-access")
-	public int compare(Personaje a, Personaje b) {
+	public int compare(Competidor a, Competidor b) {
 		String[] caracteristicas = {"VELOCIDAD", "FUERZA", "RESISTENCIA", "DESTREZA", "VELOCIDAD", "FUERZA", "RESISTENCIA"}; 
 		int restaCaracteristica = -1;
 		for (int i = 0; i < caracteristicas.length; i++) {
@@ -25,5 +24,6 @@ public class CombateComparator implements Comparator<Personaje>{
 		}
 		return restaCaracteristica;
 	}
+
 
 }
