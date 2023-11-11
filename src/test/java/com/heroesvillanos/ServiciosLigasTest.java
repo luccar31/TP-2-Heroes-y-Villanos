@@ -4,6 +4,8 @@ import com.heroesvillanos.dominio.Liga;
 import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.RegistroLiga;
 import com.heroesvillanos.dominio.TipoCompetidor;
+import com.heroesvillanos.exception.LigasYaCargadasException;
+import com.heroesvillanos.exception.PersonajesNoCargadosException;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.repositorio.Repositorio;
 import com.heroesvillanos.servicios.ServicioLigas;
@@ -21,7 +23,7 @@ import static org.mockito.Mockito.*;
 public class ServiciosLigasTest {
 
     private Repositorio<Liga> repositorio;
-
+    private Repositorio<Personaje> repositorioPersonajes;
     @InjectMocks
     private ServicioLigas servicioLigas;
 
@@ -29,7 +31,10 @@ public class ServiciosLigasTest {
     private String nombreLiga;
 
     private final List<Liga> list = new ArrayList<>();
-
+    private final List<Liga> emptyList = new ArrayList<>();
+    private final List<Personaje> personajeList = new ArrayList<>();
+    private final List<Personaje> emptyPersonaje = new ArrayList<>();
+    
     @BeforeEach
     public void init() {
         tipoCompetidor = TipoCompetidor.HEROE;
@@ -48,5 +53,20 @@ public class ServiciosLigasTest {
         doNothing().when(repositorio).guardar(any(Liga.class));
         Liga outputLiga = servicioLigas.crear(tipoCompetidor, nombreLiga);
         Assertions.assertEquals(list.get(0).getId() + 1, outputLiga.getId());
+    }
+    @Test
+    public void listaCargada_DebeArrojarListaYaCargadaException(){
+        when(repositorio.listar()).thenReturn(list);
+        Assertions.assertThrows(LigasYaCargadasException.class, () -> {
+            servicioLigas.cargar();
+        });
+    }
+
+    @Test
+    public void personajesNoCargadosEnCargarLista_DebeArrojarPersonajesNoCargadosException(){
+        when(repositorioPersonajes.listar()).thenReturn(emptyPersonaje);
+        Assertions.assertThrows(PersonajesNoCargadosException.class, () -> {
+            servicioLigas.cargar();
+        });
     }
 }
