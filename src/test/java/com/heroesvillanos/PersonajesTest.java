@@ -22,4 +22,6 @@ public class PersonajesTest {
 
         Assertions.assertEquals("Héroe, Nombre 1, Alias 1, 100, 100, 100, 100", personaje1.toString());
     }
+
+
 }

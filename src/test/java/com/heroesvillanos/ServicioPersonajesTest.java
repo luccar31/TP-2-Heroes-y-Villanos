@@ -12,14 +12,16 @@ import com.heroesvillanos.servicios.IServicioPersonajes;
 import com.heroesvillanos.servicios.ServicioPersonajes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ServicioPersonajesTest {
 
     @Test
     public void test(){
+        //DADO
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);
@@ -30,15 +32,18 @@ public class ServicioPersonajesTest {
 
         Repositorio<Personaje> repositorio = new RepositorioPersonajeEnMemoria();
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\servicioPersonaje\\personajes.in");
-
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(repositorio, persistencia);
+
+        //CUANDO
         List<Personaje> lista = servicioPersonajes.cargar();
 
+        //ENTONCES
         Assertions.assertEquals(4, lista.size());
     }
 
     @Test
     public void test1(){
+        //DADO
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);
@@ -51,22 +56,28 @@ public class ServicioPersonajesTest {
         repositorio.guardar(personaje1);
 
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(repositorio, persistencia);
+        //CUANDO
         List<Personaje> lista = servicioPersonajes.listar();
 
+        //ENTONCES
         Assertions.assertEquals(1, lista.size());
         Assertions.assertEquals("Alias 1", lista.get(0).getNombreCompetidor());
     }
 
     @Test
     public void test2(){
+        //DADO
         Repositorio<Personaje> repositorio = new RepositorioPersonajeEnMemoria();
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("");
 
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(repositorio, persistencia);
 
+        //CUANDO
         Personaje personaje = servicioPersonajes.crear("Nombre 1", "Alias 1", TipoCompetidor.HEROE, 100, 100, 100, 100);
 
         List<Personaje> lista = servicioPersonajes.listar();
+
+        //ENTONCES
         Assertions.assertEquals(1, lista.size());
         Assertions.assertEquals("Nombre 1", personaje.getNombreReal());
     }

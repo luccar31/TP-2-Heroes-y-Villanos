@@ -15,6 +15,7 @@ import java.util.Map;
 public class RepositorioPersonajesTest {
     @Test
     public void alGuardarUnPersonajeEnRepositorio_SePuedeListar(){
+        //DADO
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);
@@ -23,6 +24,7 @@ public class RepositorioPersonajesTest {
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.HEROE, caracteristicas);
 
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
+        //
         repositorioPersonajes.guardar(personaje1);
 
         Assertions.assertEquals(1, repositorioPersonajes.listar().size());

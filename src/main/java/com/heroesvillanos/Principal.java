@@ -27,9 +27,5 @@ public class Principal {
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(personajeRepositorio, personajePersistencia);
         IServiciosLigas serviciosLigas = new ServicioLigas(ligaRepositorio, personajeRepositorio, ligaPersistencia);
 
-        //LIGAS
-        serviciosLigas.cargar();
-        serviciosLigas.listar();
-
     }
 }
