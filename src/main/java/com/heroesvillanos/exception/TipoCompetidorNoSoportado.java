@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class TipoCompetidorNoSoportado extends IllegalArgumentException{
+public class TipoCompetidorNoSoportado extends IllegalArgumentException {
     public TipoCompetidorNoSoportado() {
     }
 

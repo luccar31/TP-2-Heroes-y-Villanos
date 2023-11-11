@@ -6,11 +6,11 @@ import com.heroesvillanos.dominio.*;
 
 public class CombateComparator implements Comparator<Competidor>{
 	private Caracteristica c = null;
-	
+
 	public void Comparator(Caracteristica c) {
 		this.c = c;
 	}
-	
+
 	public int compare(Competidor a, Competidor b) {
 		String[] caracteristicas = {"VELOCIDAD", "FUERZA", "RESISTENCIA", "DESTREZA", "VELOCIDAD", "FUERZA", "RESISTENCIA"}; 
 		int restaCaracteristica = -1;
@@ -24,6 +24,5 @@ public class CombateComparator implements Comparator<Competidor>{
 		}
 		return restaCaracteristica;
 	}
-
 
 }
