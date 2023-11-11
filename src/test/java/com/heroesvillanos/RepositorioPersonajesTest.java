@@ -24,9 +24,11 @@ public class RepositorioPersonajesTest {
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.HEROE, caracteristicas);
 
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
-        //
+
+        //CUANDO
         repositorioPersonajes.guardar(personaje1);
 
+        //ENTONCES
         Assertions.assertEquals(1, repositorioPersonajes.listar().size());
     }
 
