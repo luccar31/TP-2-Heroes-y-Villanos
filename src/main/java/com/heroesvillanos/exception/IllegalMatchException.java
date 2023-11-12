@@ -1,4 +1,4 @@
-package com.heroesvillanos.dominio;
+package com.heroesvillanos.exception;
 
 public class IllegalMatchException extends Exception {
 	public IllegalMatchException(String errorMessage) {

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.heroesvillanos.comparators.CombateComparator;
+import com.heroesvillanos.exception.IllegalMatchException;
 
 public class Personaje implements Competidor {
     private final int id;

@@ -1,10 +1,12 @@
 package com.heroesvillanos.dominio;
 
 import com.heroesvillanos.comparators.CombateComparator;
+import com.heroesvillanos.exception.IllegalMatchException;
 import com.heroesvillanos.exception.TipoCompetidorNoSoportado;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Liga implements Competidor {
@@ -52,7 +54,8 @@ public class Liga implements Competidor {
     }
 
     public boolean agregarCompetidor(Competidor competidor) {
-        if (competidor.getTipo() != null) {
+    	// Cambie null por tipo
+        if (competidor.getTipo() != tipo) {
             throw new TipoCompetidorNoSoportado("La liga soporta el tipo: " + this.tipo);
         }
         return this.competidores.add(competidor);
@@ -78,8 +81,11 @@ public class Liga implements Competidor {
     }
 
     public int getCaracteristica(Caracteristica caracteristicas) {
-		// TODO Auto-generated method stub
-		return 0;
+    	int valor = 0;
+    	for (Competidor competidor : competidores) {
+    		valor += competidor.getCaracteristica(caracteristicas);
+    	}
+		return valor / competidores.size();
 	}
 
     @Override
