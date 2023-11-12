@@ -8,7 +8,6 @@ import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.Liga;
 import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.TipoCompetidor;
-import com.heroesvillanos.exception.IllegalMatchException;
 
 public class EsGanadorLigasTest {
 		
@@ -34,22 +33,22 @@ public class EsGanadorLigasTest {
 		}
 		
 		@Test
-		public void ligaEsGanador() throws IllegalMatchException {
+		public void ligaEsGanador() {
 			Assertions.assertEquals(ligaHeroe.esGanador(ligaJusticiera, Caracteristica.FUERZA), true);
 		}
 		
 		@Test
-		public void ligaEsPerdedor() throws IllegalMatchException {
+		public void ligaEsPerdedor() {
 			Assertions.assertEquals(ligaHeroe.esGanador(ligaJusticiera, Caracteristica.VELOCIDAD), false);
 		}
 		
 		@Test
-		public void ligaEsGanadorContraPersonaje() throws IllegalMatchException {
+		public void ligaEsGanadorContraPersonaje() {
 			Assertions.assertEquals(ligaHeroe.esGanador(p6, Caracteristica.VELOCIDAD), true);
 		}
 		
 		@Test
-		public void ligaEsPerdedorContraPersonaje() throws IllegalMatchException {
+		public void ligaEsPerdedorContraPersonaje() {
 			Assertions.assertEquals(ligaHeroe.esGanador(p4, Caracteristica.VELOCIDAD), false);
 		}
 }

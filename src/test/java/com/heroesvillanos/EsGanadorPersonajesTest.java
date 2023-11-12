@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.heroesvillanos.dominio.*;
-import com.heroesvillanos.exception.IllegalMatchException;
 
 public class EsGanadorPersonajesTest {
 	
@@ -25,22 +24,22 @@ public class EsGanadorPersonajesTest {
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaEsGanador() throws IllegalMatchException {
+	public void dadoPersonajeCuandoPeleaEsGanador() {
 		Assertions.assertEquals(p1.esGanador(p2, Caracteristica.FUERZA), true);
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaEsPerdedor() throws IllegalMatchException {
+	public void dadoPersonajeCuandoPeleaEsPerdedor() {
 		Assertions.assertEquals(p1.esGanador(p2, Caracteristica.VELOCIDAD), false);
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaContraLigaEsGanador() throws IllegalMatchException {
+	public void dadoPersonajeCuandoPeleaContraLigaEsGanador() {
 		Assertions.assertEquals(p1.esGanador(liga, Caracteristica.VELOCIDAD), true);
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaContraLigaEsPerdedor() throws IllegalMatchException {
+	public void dadoPersonajeCuandoPeleaContraLigaEsPerdedor() {
 		Assertions.assertEquals(p1.esGanador(liga, Caracteristica.RESISTENCIA), false);
 	}
 }
