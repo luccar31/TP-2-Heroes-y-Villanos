@@ -11,24 +11,6 @@ public class Liga implements Competidor {
 
     private final TipoCompetidor tipo;
     private final String nombre;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    @Override
-    public String getNombreCompetidor() {
-        return nombre;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Set<Competidor> getCompetidores() {
-        return competidores;
-    }
-
     private final int id;
     private final Set<Competidor> competidores;
 
@@ -58,28 +40,21 @@ public class Liga implements Competidor {
         return this.competidores.add(competidor);
     }
 
-    public TipoCompetidor getTipo() {
-        return this.tipo;
-    }
-
-	public boolean esGanador(Competidor competidor, Caracteristica caracteristica) throws IllegalMatchException{
+	public boolean esGanador(Competidor competidor, Caracteristica caracteristica){
     	if(this.tipo.equals(competidor.getTipo())) {
-    		throw new IllegalMatchException("No pueden competir personajes del mismo tipo.");
+    		throw new TipoCompetidorNoSoportado("No pueden competir personajes del mismo tipo.");
     	} else {
-    		CombateComparator cc = new CombateComparator();
-        	cc.Comparator(caracteristica);
-    		return cc.compare(this, competidor) > 0 ? true : false;
+    		CombateComparator cc = new CombateComparator(caracteristica);
+    		return cc.compare(this, competidor) > 0;
     	}
 	}
 
-    @Override
-    public boolean esGanador(Competidor competidor) {
-        return false;
-    }
-
-    public int getCaracteristica(Caracteristica caracteristicas) {
-		// TODO Auto-generated method stub
-		return 0;
+    public int getCaracteristica(Caracteristica caracteristica) {
+        int suma = 0;
+        for(Competidor competidor : this.competidores){
+            suma += competidor.getCaracteristica(caracteristica);
+        }
+		return suma / competidores.size();
 	}
 
     @Override
@@ -96,5 +71,22 @@ public class Liga implements Competidor {
         }
 
         return builder.toString();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    @Override
+    public String getNombreCompetidor() {
+        return this.getNombre();
+    }
+    public int getId() {
+        return id;
+    }
+    public Set<Competidor> getCompetidores() {
+        return competidores;
+    }
+    public TipoCompetidor getTipo() {
+        return this.tipo;
     }
 }

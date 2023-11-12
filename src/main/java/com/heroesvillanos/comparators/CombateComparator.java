@@ -5,9 +5,9 @@ import java.util.Comparator;
 import com.heroesvillanos.dominio.*;
 
 public class CombateComparator implements Comparator<Competidor>{
-	private Caracteristica c = null;
+	private Caracteristica c;
 
-	public void Comparator(Caracteristica c) {
+	public CombateComparator(Caracteristica c) {
 		this.c = c;
 	}
 

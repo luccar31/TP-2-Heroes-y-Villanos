@@ -1,11 +1,8 @@
 package com.heroesvillanos.dominio;
 
 public interface Competidor {
-    boolean esGanador(Competidor competidor, Caracteristica caracteristica) throws IllegalMatchException;
-    boolean esGanador(Competidor competidor);
-
+    boolean esGanador(Competidor competidor, Caracteristica caracteristica);
     TipoCompetidor getTipo();
-    public int getCaracteristica(Caracteristica caracteristica);
-
+    int getCaracteristica(Caracteristica caracteristica);
     String getNombreCompetidor();
 }

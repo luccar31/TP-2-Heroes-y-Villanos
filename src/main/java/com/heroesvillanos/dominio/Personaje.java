@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.heroesvillanos.comparators.CombateComparator;
+import com.heroesvillanos.exception.TipoCompetidorNoSoportado;
 
 public class Personaje implements Competidor {
     private final int id;
@@ -13,9 +14,6 @@ public class Personaje implements Competidor {
     private final TipoCompetidor tipo;
     private final Map<Caracteristica, Integer> caracteristicas;
 
-    public int getId() {
-        return id;
-    }
 
     public Personaje(int id, String nombreReal, String alias, TipoCompetidor tipo,
                      int velocidad, int fuerza, int resistencia, int destreza) {
@@ -28,7 +26,7 @@ public class Personaje implements Competidor {
         this.nombreReal = nombreReal;
         this.alias = alias;
         this.tipo = tipo;
-        this.caracteristicas = Collections.unmodifiableMap(caracteristicas);
+        this.caracteristicas = caracteristicas;
     }
 
     public Personaje(int id, String nombreReal, String alias, TipoCompetidor tipo, Map<Caracteristica, Integer> caracteristicas) {
@@ -36,38 +34,16 @@ public class Personaje implements Competidor {
         this.nombreReal = nombreReal;
         this.alias = alias;
         this.tipo = tipo;
-        this.caracteristicas = Collections.unmodifiableMap(caracteristicas);
+        this.caracteristicas = caracteristicas;
     }
 
-    public String getNombreReal() {
-        return nombreReal;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public boolean esGanador(Competidor competidor, Caracteristica caracteristicas) throws IllegalMatchException {
+    public boolean esGanador(Competidor competidor, Caracteristica caracteristica) {
         if (this.tipo.equals(competidor.getTipo())) {
-            throw new IllegalMatchException("No pueden competir personajes del mismo tipo.");
+            throw new TipoCompetidorNoSoportado("No pueden competir personajes del mismo tipo.");
         } else {
-            CombateComparator cc = new CombateComparator();
-            cc.Comparator(caracteristicas);
-            return cc.compare(this, competidor) > 0 ? true : false;
+            CombateComparator cc = new CombateComparator(caracteristica);
+            return cc.compare(this, competidor) > 0;
         }
-    }
-
-    public boolean esGanador(Competidor competidor) {
-        return false;
-    }
-
-    public TipoCompetidor getTipo() {
-        return this.tipo;
-    }
-
-    @Override
-    public String getNombreCompetidor() {
-        return this.alias;
     }
 
     @Override
@@ -82,6 +58,22 @@ public class Personaje implements Competidor {
 
     public int getCaracteristica(Caracteristica caracteristica) {
         return caracteristicas.getOrDefault(caracteristica, 0);
+    }
+    public TipoCompetidor getTipo() {
+        return this.tipo;
+    }
+    @Override
+    public String getNombreCompetidor() {
+        return this.getAlias();
+    }
+    public String getNombreReal() {
+        return nombreReal;
+    }
+    public String getAlias() {
+        return alias;
+    }
+    public int getId() {
+        return id;
     }
 
 }

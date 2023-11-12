@@ -26,21 +26,29 @@ public class ServicioReportes implements IServicioReportes {
         return personajes;
     }
 
-    public List<Competidor> competidoresQueVenzan(int id) {
-        Personaje personaje = repositorioPersonajes.obtenerPorIdentificador(id);
+    public List<Competidor> competidoresQueVenzan(String nombre, Caracteristica caracteristica) {
+        Personaje personaje = repositorioPersonajes.obtenerPorNombre(nombre);
+
         if(personaje == null){
             throw new CompetidorNoEncontrado();
         }
+
+        List<Competidor> leGanan = new ArrayList<>();
+
         List<Competidor> competidores = new ArrayList<>();
         competidores.addAll(repositorioPersonajes.listar());
         competidores.addAll(repositorioLigas.listar());
 
-        for (Competidor c : competidores) {
-            if (!c.esGanador(personaje)) {
-                competidores.remove(c);
+        for (Competidor competidor : competidores) {
+            if (personajeValido(personaje, competidor) && competidor.esGanador(personaje, caracteristica)) {
+                leGanan.add(competidor);
             }
         }
 
-        return competidores;
+        return leGanan;
+    }
+
+    private boolean personajeValido(Personaje personaje, Competidor competidor) {
+        return competidor.equals(personaje) && competidor.getTipo() != personaje.getTipo();
     }
 }

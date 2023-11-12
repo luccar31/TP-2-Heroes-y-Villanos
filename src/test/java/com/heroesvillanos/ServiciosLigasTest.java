@@ -32,7 +32,6 @@ public class ServiciosLigasTest {
     private String nombreLiga;
 
     private final List<Liga> list = new ArrayList<>();
-    private final List<Liga> emptyList = new ArrayList<>();
     private final List<Personaje> personajeEmptyList = new ArrayList<>();
     private final List<Personaje> personajeList = new ArrayList<>();
 
