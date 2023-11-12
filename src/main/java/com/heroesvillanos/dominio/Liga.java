@@ -34,7 +34,8 @@ public class Liga implements Competidor {
     }
 
     public boolean agregarCompetidor(Competidor competidor) {
-        if (competidor.getTipo() != null) {
+    	// Cambie null por tipo
+        if (competidor.getTipo() != tipo) {
             throw new TipoCompetidorNoSoportado("La liga soporta el tipo: " + this.tipo);
         }
         return this.competidores.add(competidor);
