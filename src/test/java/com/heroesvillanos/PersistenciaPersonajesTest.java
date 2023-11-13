@@ -22,7 +22,7 @@ import java.util.Map;
 public class PersistenciaPersonajesTest {
 
     @Test
-    public void dadoQueTenemosUnArchivoVacio_cuandoLeemos_noHayRegistros(){
+    public void dado_que_tenemos_un_archivo_vacio_cuando_leemos_no_hay_registros(){
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesVacioTest.in");
         List<RegistroPersonaje> registros = persistencia.leerDatos();
 
@@ -30,7 +30,7 @@ public class PersistenciaPersonajesTest {
     }
 
     @Test
-    public void dadoQueTenemosUnArchivoConPersonaje_cuandoLeemos_existeRegistroYEsCorrecto(){
+    public void dado_que_tenemos_un_archivo_con_personaje_cuando_leemos_existe_registro_yes_correcto(){
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesCorrectosTest.in");
         List<RegistroPersonaje> registros = persistencia.leerDatos();
 
@@ -45,7 +45,7 @@ public class PersistenciaPersonajesTest {
     }
 
     @Test
-    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto1(){
+    public void dado_que_tenemos_un_archivo_invalido_cuando_leemos_se_lanza_excepcion_formato_incorrecto_1(){
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato1Test.in");
         Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
             persistencia.leerDatos();
@@ -53,7 +53,7 @@ public class PersistenciaPersonajesTest {
     }
 
     @Test
-    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto2(){
+    public void dado_que_tenemos_un_archivo_invalido_cuando_leemos_se_lanza_excepcion_formato_incorrecto_2(){
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato2Test.in");
         Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
             persistencia.leerDatos();
@@ -61,7 +61,7 @@ public class PersistenciaPersonajesTest {
     }
 
     @Test
-    public void dadoQueTenemosUnArchivoInvalido_cuandoLeemos_seLanzaExcepcionFormatoIncorrecto3(){
+    public void dado_que_tenemos_un_archivo_invalido_cuando_leemos_se_lanza_excepcion_formato_incorrecto_3(){
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato3Test.in");
         Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
             persistencia.leerDatos();
@@ -69,7 +69,7 @@ public class PersistenciaPersonajesTest {
     }
 
     @Test
-    public void dadaUnaListaDePersonajes_cuandoSeGuardanEnArchivo_seLeenCorrectamente() throws IOException {
+    public void dada_una_lista_de_personajes_cuando_se_guardan_en_archivo_se_leen_correctamente() throws IOException {
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);

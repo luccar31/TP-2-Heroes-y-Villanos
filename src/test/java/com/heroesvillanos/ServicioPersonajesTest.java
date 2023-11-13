@@ -20,7 +20,7 @@ import java.util.Map;
 public class ServicioPersonajesTest {
 
     @Test
-    public void test(){
+    public void dado_archivo_de_personajes_cuando_servicio_carga_entonces_lista_no_vacia(){
         //DADO
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
@@ -42,7 +42,7 @@ public class ServicioPersonajesTest {
     }
 
     @Test
-    public void test1(){
+    public void dado_personaje_cuando_servicio_lista_entonces_lista_correctamente(){
         //DADO
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
@@ -65,7 +65,7 @@ public class ServicioPersonajesTest {
     }
 
     @Test
-    public void test2(){
+    public void dado_datos_cuando_servicio_crea_personaje_entonces_personaje_creado_correctamente(){
         //DADO
         Repositorio<Personaje> repositorio = new RepositorioPersonajeEnMemoria();
         Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("");

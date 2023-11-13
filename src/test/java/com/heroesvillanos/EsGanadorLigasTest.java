@@ -33,22 +33,22 @@ public class EsGanadorLigasTest {
 		}
 		
 		@Test
-		public void ligaEsGanador() {
+		public void liga_es_ganador() {
 			Assertions.assertEquals(ligaHeroe.esGanador(ligaJusticiera, Caracteristica.FUERZA), true);
 		}
 		
 		@Test
-		public void ligaEsPerdedor() {
+		public void liga_es_perdedor() {
 			Assertions.assertEquals(ligaHeroe.esGanador(ligaJusticiera, Caracteristica.VELOCIDAD), false);
 		}
 		
 		@Test
-		public void ligaEsGanadorContraPersonaje() {
+		public void liga_es_ganador_contra_personaje() {
 			Assertions.assertEquals(ligaHeroe.esGanador(p6, Caracteristica.VELOCIDAD), true);
 		}
 		
 		@Test
-		public void ligaEsPerdedorContraPersonaje() {
+		public void liga_es_perdedor_contra_personaje() {
 			Assertions.assertEquals(ligaHeroe.esGanador(p4, Caracteristica.VELOCIDAD), false);
 		}
 }
