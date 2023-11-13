@@ -17,10 +17,10 @@ public class ReportesBase extends MenuBase {
 	protected void desplegarOpciones(int opcion) {
 		switch (opcion) {
 	        case 1:
-	            System.out.println("Ejecutando opción 1 del menu...");
+	            //
 	            break;
 	        case 2:
-	            System.out.println("Ejecutando opción 2 del menu...");
+	            new CompetidoresQueVenzanPorCaracteristica().loopOpciones();
 	            break;
 	        case 0:
 	        	DesplegarMenuPrincipal();

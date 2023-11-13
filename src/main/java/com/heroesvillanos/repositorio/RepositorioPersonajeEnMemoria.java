@@ -14,10 +14,6 @@ public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
 
     @Override
     public List<Personaje> listar() {
-    	for (Personaje p : personajes)
-    	{
-    		System.out.println(p.toString());
-    	}
         return personajes;
     }
 

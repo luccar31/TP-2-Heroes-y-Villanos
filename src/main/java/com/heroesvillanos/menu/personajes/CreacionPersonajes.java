@@ -45,7 +45,6 @@ public class CreacionPersonajes extends MenuBase {
 		int res = 0;
 		int des = 0;
 		
-		int opc = 0;
 		for (int i = 0 ; i < 7 ; ++i)
 		{
 			Scanner s = new Scanner(System.in);

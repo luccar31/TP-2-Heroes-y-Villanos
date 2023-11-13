@@ -1,6 +1,7 @@
 package com.heroesvillanos.menu.ligas;
 
 import com.heroesvillanos.menu.MenuBase;
+import com.heroesvillanos.menu.Utils;
 import com.heroesvillanos.menu.ligas.CreacionLigas;
 
 public class AdministracionLigas extends MenuBase {
@@ -20,13 +21,13 @@ public class AdministracionLigas extends MenuBase {
 	protected void desplegarOpciones(int opcion) {
 		switch (opcion) {
 	        case 1:
-	        	servicioLigas.cargar();
+	        	Utils.PrintLista(servicioLigas.cargar(), "Carga desde Archivo");
 	            break;
 	        case 2:
 	            new CreacionLigas().loopOpciones();
 	            break;
 	        case 3:
-	        	servicioLigas.listar();
+	        	Utils.PrintLista(servicioLigas.listar(), "Listado de Ligas");
 	            break;
 	        case 4:
 	        	servicioLigas.persistir();

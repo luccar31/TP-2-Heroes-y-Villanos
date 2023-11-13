@@ -5,12 +5,14 @@ import java.util.Scanner;
 
 import com.heroesvillanos.Principal;
 import com.heroesvillanos.servicios.IServicioPersonajes;
+import com.heroesvillanos.servicios.IServicioReportes;
 import com.heroesvillanos.servicios.IServiciosLigas;
 
 public class MenuBase {
 
 	public IServicioPersonajes servicioPersonajes;
 	public IServiciosLigas servicioLigas;
+	public IServicioReportes servicioReportes;
 	protected String[] opciones = { "Falta declarar opciones en el menu "};
 	protected String titulo = "Falta declarar el titulo en el menu";
 
@@ -18,6 +20,7 @@ public class MenuBase {
 	{
 		servicioPersonajes = Principal.getServicioPersonajesInstance();
 		servicioLigas = Principal.getServicioLigasInstance();
+		servicioReportes = Principal.getServicioReportesInstance();
 	}
     
     public void DesplegarMenuPrincipal() {

@@ -12,13 +12,16 @@ import com.heroesvillanos.repositorio.Repositorio;
 import com.heroesvillanos.repositorio.RepositorioLigasEnMemoria;
 import com.heroesvillanos.repositorio.RepositorioPersonajeEnMemoria;
 import com.heroesvillanos.servicios.IServicioPersonajes;
+import com.heroesvillanos.servicios.IServicioReportes;
 import com.heroesvillanos.servicios.IServiciosLigas;
 import com.heroesvillanos.servicios.ServicioLigas;
 import com.heroesvillanos.servicios.ServicioPersonajes;
+import com.heroesvillanos.servicios.ServicioReportes;
 
 public final class Principal {
 	private static IServicioPersonajes servicioPersonajes;
 	private static IServiciosLigas serviciosLigas;
+	private static IServicioReportes servicioReportes;
 	
     public static void main(String[] args) {
     	
@@ -37,6 +40,7 @@ public final class Principal {
     	
     	servicioPersonajes = new ServicioPersonajes(personajeRepositorio, personajePersistencia);
     	serviciosLigas = new ServicioLigas(ligaRepositorio, personajeRepositorio, ligaPersistencia);
+    	servicioReportes = new ServicioReportes(personajeRepositorio, ligaRepositorio);
     }
     
     public static IServicioPersonajes getServicioPersonajesInstance()
@@ -55,5 +59,13 @@ public final class Principal {
     		Init();
     	}
     	return serviciosLigas;
+    }
+    
+    public static IServicioReportes getServicioReportesInstance() {
+    	if (servicioReportes == null)
+    	{
+    		Init();
+    	}
+    	return servicioReportes;
     }
 }
