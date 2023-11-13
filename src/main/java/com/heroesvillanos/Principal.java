@@ -19,53 +19,47 @@ import com.heroesvillanos.servicios.ServicioPersonajes;
 import com.heroesvillanos.servicios.ServicioReportes;
 
 public final class Principal {
-	private static IServicioPersonajes servicioPersonajes;
-	private static IServiciosLigas serviciosLigas;
-	private static IServicioReportes servicioReportes;
-	
+    private static IServicioPersonajes servicioPersonajes;
+    private static IServiciosLigas serviciosLigas;
+    private static IServicioReportes servicioReportes;
+
     public static void main(String[] args) {
-    	
-    	Init();
-    	MenuBase menu = new MenuBase();
-    	menu.DesplegarMenuPrincipal();
+        init();
+        MenuBase menu = new MenuBase();
+        menu.desplegarMenuPrincipal();
     }
-    
-    private static void Init() {
-    	
-    	Repositorio<Personaje> personajeRepositorio = new RepositorioPersonajeEnMemoria();
-    	Repositorio<Liga> ligaRepositorio = new RepositorioLigasEnMemoria();
-    	
-    	Persistencia<RegistroPersonaje, Personaje> personajePersistencia = new PersistenciaPersonajesEnArchivo("src/main/resources/archivos/personajes.in");
-    	Persistencia<RegistroLiga, Liga> ligaPersistencia = new PersistenciaLigasEnArchivo("src/main/resources/archivos/ligas.in");
-    	
-    	servicioPersonajes = new ServicioPersonajes(personajeRepositorio, personajePersistencia);
-    	serviciosLigas = new ServicioLigas(ligaRepositorio, personajeRepositorio, ligaPersistencia);
-    	servicioReportes = new ServicioReportes(personajeRepositorio, ligaRepositorio);
+
+    private static void init() {
+
+        Repositorio<Personaje> personajeRepositorio = new RepositorioPersonajeEnMemoria();
+        Repositorio<Liga> ligaRepositorio = new RepositorioLigasEnMemoria();
+
+        Persistencia<RegistroPersonaje, Personaje> personajePersistencia = new PersistenciaPersonajesEnArchivo("src/main/resources/archivos/personajes.in");
+        Persistencia<RegistroLiga, Liga> ligaPersistencia = new PersistenciaLigasEnArchivo("src/main/resources/archivos/ligas.in");
+
+        servicioPersonajes = new ServicioPersonajes(personajeRepositorio, personajePersistencia);
+        serviciosLigas = new ServicioLigas(ligaRepositorio, personajeRepositorio, ligaPersistencia);
+        servicioReportes = new ServicioReportes(personajeRepositorio, ligaRepositorio);
     }
-    
-    public static IServicioPersonajes getServicioPersonajesInstance()
-    {
-    	if (servicioPersonajes == null)
-    	{
-    		Init();
-    	}
-    	return servicioPersonajes;
+
+    public static IServicioPersonajes getServicioPersonajesInstance() {
+        if (servicioPersonajes == null) {
+            init();
+        }
+        return servicioPersonajes;
     }
-    
-    public static IServiciosLigas getServicioLigasInstance()
-    {
-    	if (serviciosLigas == null)
-    	{
-    		Init();
-    	}
-    	return serviciosLigas;
+
+    public static IServiciosLigas getServicioLigasInstance() {
+        if (serviciosLigas == null) {
+            init();
+        }
+        return serviciosLigas;
     }
-    
+
     public static IServicioReportes getServicioReportesInstance() {
-    	if (servicioReportes == null)
-    	{
-    		Init();
-    	}
-    	return servicioReportes;
+        if (servicioReportes == null) {
+            init();
+        }
+        return servicioReportes;
     }
 }
