@@ -9,6 +9,8 @@ import com.heroesvillanos.repositorio.Repositorio;
 
 import java.util.List;
 
+
+
 public class ServicioPersonajes implements IServicioPersonajes {
 
     private final Repositorio<Personaje> repositorio;
@@ -27,8 +29,9 @@ public class ServicioPersonajes implements IServicioPersonajes {
         for (RegistroPersonaje dto : dtos) {
 
             //si el nombre del personaje ya existe en el repo, entonces no se puede crear
-            if (repositorio.obtenerPorNombre(dto.getNombre()) != null) {
-                throw new PersonajeYaExistenteException("El personaje que se quiere crear ya existe");
+        	Personaje p = repositorio.obtenerPorNombre(dto.getNombre());
+            if (p != null) {
+                throw new PersonajeYaExistenteException("El personaje que se quiere crear ya existe: " + p.getAlias());
             }
 
             repositorio.guardar(
