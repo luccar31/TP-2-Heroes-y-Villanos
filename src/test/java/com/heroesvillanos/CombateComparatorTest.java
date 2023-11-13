@@ -20,25 +20,25 @@ public class CombateComparatorTest {
         p2 = new Personaje(2, "Nombre2", "Alias2", TipoCompetidor.HEROE, 15, 25, 35, 45);
     }
     @Test
-    public void compararVelocidad_P1MasLentoQueP2() {
+    public void comparar_velocidad_p_1_mas_lento_que_p_2() {
         CombateComparator comparator = new CombateComparator(Caracteristica.VELOCIDAD);
         assertTrue(comparator.compare(p1, p2) < 0);
     }
 
     @Test
-    public void compararFuerza_P1MasDebilQueP2() {
+    public void comparar_fuerza_p_1_mas_debil_que_p_2() {
         CombateComparator comparator = new CombateComparator(Caracteristica.FUERZA);
         assertTrue(comparator.compare(p1, p2) < 0);
     }
 
     @Test
-    public void compararResistencia_P1MenosResistenteQueP2() {
+    public void comparar_resistencia_p_1_menos_resistente_que_p_2() {
         CombateComparator comparator = new CombateComparator(Caracteristica.RESISTENCIA);
         assertTrue(comparator.compare(p1, p2) < 0);
     }
 
     @Test
-    public void compararDestrza_P1MenosAgilQueP2() {
+    public void comparar_destrza_p_1_menos_agil_que_p_2() {
         CombateComparator comparator = new CombateComparator(Caracteristica.RESISTENCIA);
         assertTrue(comparator.compare(p1, p2) < 0);
     }

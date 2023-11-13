@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class RepositorioPersonajesTest {
     @Test
-    public void alGuardarUnPersonajeEnRepositorio_SePuedeListar(){
+    public void al_guardar_un_personaje_en_repositorio_se_puede_listar(){
         //DADO
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
@@ -33,7 +33,7 @@ public class RepositorioPersonajesTest {
     }
 
     @Test
-    public void alGuardarUnPersonajeEnRepositorio_SeGuardaCorrectamente(){
+    public void al_guardar_un_personaje_en_repositorio_se_guarda_correctamente(){
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);
@@ -49,7 +49,7 @@ public class RepositorioPersonajesTest {
     }
 
     @Test
-    public void alGuardarUnPersonajeEnRepositorio_SePuedeObtenerPorNombre(){
+    public void al_guardar_un_personaje_en_repositorio_se_puede_obtener_por_nombre(){
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);
@@ -66,7 +66,7 @@ public class RepositorioPersonajesTest {
     }
 
     @Test
-    public void alGuardarUnPersonajeEnRepositorio_SePuedeObtenerSuNombrePorIdentificador(){
+    public void al_guardar_un_personaje_en_repositorio_se_puede_obtener_su_nombre_por_identificador(){
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         caracteristicas.put(Caracteristica.VELOCIDAD, 100);
         caracteristicas.put(Caracteristica.FUERZA, 100);

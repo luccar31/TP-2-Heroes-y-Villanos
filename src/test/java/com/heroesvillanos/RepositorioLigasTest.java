@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class RepositorioLigasTest {
 
     @Test
-    public void alGuardarUnaLigaEnRepositorio_SePuedeListar(){
+    public void al_guardar_una_liga_en_repositorio_se_puede_listar(){
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
@@ -20,7 +20,7 @@ public class RepositorioLigasTest {
     }
 
     @Test
-    public void alGuardarUnaLigaEnRepositorio_SeGuardaCorrectamente(){
+    public void al_guardar_una_liga_en_repositorio_se_guarda_correctamente(){
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
@@ -30,7 +30,7 @@ public class RepositorioLigasTest {
     }
 
     @Test
-    public void alGuardarUnaLigaEnRepositorio_SePuedeObtenerPorNombre(){
+    public void al_guardar_una_liga_en_repositorio_se_puede_obtener_por_nombre(){
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
@@ -40,7 +40,7 @@ public class RepositorioLigasTest {
     }
 
     @Test
-    public void alGuardarUnaLigaEnRepositorio_SePuedeObtenerSuNombrePorIdentificador(){
+    public void al_guardar_una_liga_en_repositorio_se_puede_obtener_su_nombre_por_identificador(){
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();

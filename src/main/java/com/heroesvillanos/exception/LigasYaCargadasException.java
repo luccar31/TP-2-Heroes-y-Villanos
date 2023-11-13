@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class LigasYaCargadasException extends RuntimeException{
+public class LigasYaCargadasException extends RuntimeException {
     public LigasYaCargadasException() {
     }
 

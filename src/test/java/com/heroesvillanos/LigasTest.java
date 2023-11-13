@@ -15,7 +15,7 @@ import java.util.Map;
 public class LigasTest {
 
     @Test
-    public void dadaLigaVacia_entoncesToStringEsperado() {
+    public void dada_liga_vacia_entonces_to_string_esperado() {
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 
         Assertions.assertEquals("Liga vacia", liga.toString());
@@ -23,7 +23,7 @@ public class LigasTest {
 
     @Test
     @Disabled("solo funciona correctamente en modo debug (?????)")
-    public void dadoDosPersonajesHeroe_cuandoLigaCreadaConPersonajes_entoncesToStringEsperado() {
+    public void dado_dos_personajes_heroe_cuando_liga_creada_con_personajes_entonces_to_string_esperado() {
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.HEROE, caracteristicas);
         Personaje personaje2 = new Personaje(1, "Nombre 2", "Alias 2", TipoCompetidor.HEROE, caracteristicas);
@@ -33,7 +33,7 @@ public class LigasTest {
     }
 
     @Test
-    public void dadoTipoCompetidorIncorrecto_cuandoSeConstruyeLiga_entoncesLanzaExcepcion(){
+    public void dado_tipo_competidor_incorrecto_cuando_se_construye_liga_entonces_lanza_excepcion(){
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.VILLANO, caracteristicas);
 
@@ -43,7 +43,7 @@ public class LigasTest {
     }
 
     @Test
-    public void dadaLigaTipoHeroe_cuandoSeInsertaCompetidorVillano_entoncesSeLanzaExcepcion(){
+    public void dada_liga_tipo_heroe_cuando_se_inserta_competidor_villano_entonces_se_lanza_excepcion(){
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.VILLANO, caracteristicas);
 

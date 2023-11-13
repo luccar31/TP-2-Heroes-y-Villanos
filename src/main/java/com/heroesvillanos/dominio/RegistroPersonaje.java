@@ -9,6 +9,16 @@ public class RegistroPersonaje {
     private final int res;
     private final int des;
 
+    public RegistroPersonaje(String nombre, String alias, String tipo, int vel, int fue, int res, int des) {
+        this.nombre = nombre;
+        this.alias = alias;
+        this.tipo = TipoCompetidor.obtenerPor(tipo);
+        this.vel = vel;
+        this.fue = fue;
+        this.res = res;
+        this.des = des;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -35,15 +45,5 @@ public class RegistroPersonaje {
 
     public int getDes() {
         return des;
-    }
-
-    public RegistroPersonaje(String nombre, String alias, String tipo, int vel, int fue, int res, int des) {
-        this.nombre = nombre;
-        this.alias = alias;
-        this.tipo = TipoCompetidor.obtenerPor(tipo);
-        this.vel = vel;
-        this.fue = fue;
-        this.res = res;
-        this.des = des;
     }
 }

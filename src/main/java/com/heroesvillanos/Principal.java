@@ -1,8 +1,8 @@
 package com.heroesvillanos;
 
 import com.heroesvillanos.dominio.Liga;
-import com.heroesvillanos.dominio.RegistroLiga;
 import com.heroesvillanos.dominio.Personaje;
+import com.heroesvillanos.dominio.RegistroLiga;
 import com.heroesvillanos.dominio.RegistroPersonaje;
 import com.heroesvillanos.menu.MenuBase;
 import com.heroesvillanos.persistencia.Persistencia;

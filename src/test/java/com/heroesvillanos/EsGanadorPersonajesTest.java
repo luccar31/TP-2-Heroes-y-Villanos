@@ -24,22 +24,22 @@ public class EsGanadorPersonajesTest {
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaEsGanador() {
+	public void dado_personaje_cuando_pelea_es_ganador() {
 		Assertions.assertEquals(p1.esGanador(p2, Caracteristica.FUERZA), true);
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaEsPerdedor() {
+	public void dado_personaje_cuando_pelea_es_perdedor() {
 		Assertions.assertEquals(p1.esGanador(p2, Caracteristica.VELOCIDAD), false);
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaContraLigaEsGanador() {
+	public void dado_personaje_cuando_pelea_contra_liga_es_ganador() {
 		Assertions.assertEquals(p1.esGanador(liga, Caracteristica.VELOCIDAD), true);
 	}
 
 	@Test
-	public void dadoPersonajeCuandoPeleaContraLigaEsPerdedor() {
+	public void dado_personaje_cuando_pelea_contra_liga_es_perdedor() {
 		Assertions.assertEquals(p1.esGanador(liga, Caracteristica.RESISTENCIA), false);
 	}
 }

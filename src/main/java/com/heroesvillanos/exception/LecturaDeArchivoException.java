@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class LecturaDeArchivoException extends RuntimeException{
+public class LecturaDeArchivoException extends RuntimeException {
     public LecturaDeArchivoException() {
     }
 

@@ -20,7 +20,7 @@ import java.util.Map;
 public class PersistenciaLigasTest {
 
     @Test
-    public void dadoArchivoValidoDeLigas_cuandoSeLeeArchivo_entoncesSeLeeCorrectamente(){
+    public void dado_archivo_valido_de_ligas_cuando_se_lee_archivo_entonces_se_lee_correctamente(){
         //DADO
         Persistencia<RegistroLiga, Liga> persistencia = new PersistenciaLigasEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\ligasTest.in");
         //CUANDO
@@ -42,7 +42,7 @@ public class PersistenciaLigasTest {
     }
 
     @Test
-    public void dadoLigaVacia_cuandoSeGuardaEnArchivo_seGuardaCorrectamente() throws IOException {
+    public void dado_liga_vacia_cuando_se_guarda_en_archivo_se_guarda_correctamente() throws IOException {
         Liga liga1 = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
         List<Liga> ligas = new ArrayList<>();
         ligas.add(liga1);
@@ -59,7 +59,7 @@ public class PersistenciaLigasTest {
 
     @Test
     @Disabled("funciona bien en modo debug (?)")
-    public void dadoQueExisteSuperliga_cuandoSeGuardaEnArchivo_seGuardaCorrectamente() throws IOException {
+    public void dado_que_existe_superliga_cuando_se_guarda_en_archivo_se_guarda_correctamente() throws IOException {
         Map<Caracteristica, Integer> caracteristicas = new HashMap<>();
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.HEROE, caracteristicas);
         Personaje personaje2 = new Personaje(2, "Nombre 2", "Alias 2", TipoCompetidor.HEROE, caracteristicas);

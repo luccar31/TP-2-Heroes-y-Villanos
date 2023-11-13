@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class FormatoArchivoInvalidoException extends RuntimeException{
+public class FormatoArchivoInvalidoException extends RuntimeException {
     public FormatoArchivoInvalidoException() {
     }
 

@@ -29,11 +29,9 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
             while (scanner.hasNextLine()) {
                 datos.add(crearDto(scanner.nextLine()));
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new LecturaDeArchivoException(e);
-        }
-        finally {
+        } finally {
             if (scanner != null) {
                 scanner.close();
             }
@@ -45,12 +43,12 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
     private RegistroPersonaje crearDto(String dato) {
         //si el formato de la linea es valido se puede demostrar con
         //esta expresion regular ^(Héroe|Villano),[^,]+,[^,]+,\d+,\d+,\d+,\d+$
-        try{
+        try {
             String[] partes = dato.split(",");
 
             for (int i = 0; i < partes.length; i++) {
                 String trimmed = partes[i].trim();
-                if(trimmed.isEmpty()){
+                if (trimmed.isEmpty()) {
                     throw new RuntimeException("Cadena vacia");
                 }
                 partes[i] = trimmed;
@@ -65,8 +63,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
             int destreza = Integer.parseInt(partes[6]); // Destreza
 
             return new RegistroPersonaje(nombreReal, nombrePersonaje, tipo, velocidad, fuerza, resistencia, destreza);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new FormatoArchivoInvalidoException(e);
         }
     }
@@ -79,11 +76,9 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
             for (Personaje personaje : personajes) {
                 writer.write(personaje.toString() + "\n");
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new LecturaDeArchivoException(e);
-        }
-        finally {
+        } finally {
             cerrarWriter(writer);
         }
 
@@ -93,8 +88,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
         if (writer != null) {
             try {
                 writer.close();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 throw new LecturaDeArchivoException(e);
             }
         }

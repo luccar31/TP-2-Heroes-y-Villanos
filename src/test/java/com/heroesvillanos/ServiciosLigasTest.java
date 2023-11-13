@@ -50,7 +50,7 @@ public class ServiciosLigasTest {
     }
 
     @Test
-    public void dadoNombreYTipoCompetidor_DebeCrearLigaConIdCorrespondiente() {
+    public void dado_nombre_y_tipo_competidor_debe_crear_liga_con_id_correspondiente() {
         when(repositorio.listar()).thenReturn(list);
         doNothing().when(repositorio).guardar(any(Liga.class));
         Liga outputLiga = servicioLigas.crear(tipoCompetidor, nombreLiga);
@@ -58,7 +58,7 @@ public class ServiciosLigasTest {
     }
 
     @Test
-    public void listaCargada_DebeArrojarListaYaCargadaException() {
+    public void lista_cargada_debe_arrojar_lista_ya_cargada_exception() {
         when(repositorio.listar()).thenReturn(list);
         Assertions.assertThrows(LigasYaCargadasException.class, () -> {
             servicioLigas.cargar();
@@ -66,7 +66,7 @@ public class ServiciosLigasTest {
     }
 
     @Test
-    public void personajesNoCargadosEnCargarLista_DebeArrojarPersonajesNoCargadosException() {
+    public void personajes_no_cargados_en_cargar_lista_debe_arrojar_personajes_no_cargados_exception() {
         when(repositorioPersonajes.listar()).thenReturn(personajeEmptyList);
         Assertions.assertThrows(PersonajesNoCargadosException.class, () -> {
             servicioLigas.cargar();
