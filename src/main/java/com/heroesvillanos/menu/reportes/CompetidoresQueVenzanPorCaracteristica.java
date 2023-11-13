@@ -14,7 +14,7 @@ public class CompetidoresQueVenzanPorCaracteristica extends MenuBase {
 				"1 - Comenzar formulario",
 	            "0 - Volver al menu principal",
 		};
-		titulo = "Menu de Reportes";
+		titulo = "Competidores que vencen por caracteristica";
 	}
 	
 	protected void desplegarOpciones(int opcion) {

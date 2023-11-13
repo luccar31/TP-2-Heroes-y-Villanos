@@ -21,7 +21,7 @@ public class CreacionPersonajes extends MenuBase {
 	protected void desplegarOpciones(int opcion) {		
 		switch (opcion) {
 		case 1:
-			//formularioCreacion();
+			formularioCreacion();
 			break;
 		case 0:
 			DesplegarMenuPrincipal();
