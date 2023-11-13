@@ -7,7 +7,7 @@ public interface Repositorio<T> {
 
     void guardar(T entidad);
 
-    T obtenerPorNombre(String nombre);
+    T obtenerPorNombreCompetidor(String nombreCompetidor);
 
     T obtenerPorIdentificador(int id);
 }

@@ -37,12 +37,12 @@ public class ServicioLigas implements IServiciosLigas {
             throw new PersonajesNoCargadosException("Los personajes no están cargados. Deben cargarse previo a cargar las ligas");
         }
 
-        List<RegistroLiga> dtos = persistencia.leerDatos();
+        List<RegistroLiga> registros = persistencia.leerDatos();
 
-        for (RegistroLiga dto : dtos) {
+        for (RegistroLiga registro : registros) {
 
             //buscamos si ya existe el nombre de la liga en las ligas ya dadas de alta
-            if (repositorioLigas.obtenerPorNombre(dto.getNombre()) != null) {
+            if (repositorioLigas.obtenerPorNombreCompetidor(registro.getNombre()) != null) {
                 //excepcion porque ya existe la liga en la lista de ligas hasta ahora cargadas
                 throw new LigaYaExistenteException("La liga que se quiere crear ya existe");
             }
@@ -52,7 +52,7 @@ public class ServicioLigas implements IServiciosLigas {
             //para los nombres restantes buscamos si son ligas o son personajes,
             //y creamos una lista de competidores
             List<Competidor> competidores = new ArrayList<Competidor>();
-            for (String nombreCompetidor : dto.getNombreCompetidores()) {
+            for (String nombreCompetidor : registro.getNombreCompetidores()) {
                 Competidor c = obtenerCompetidor(nombreCompetidor);
 
                 //si no se encuentra ningun competidor con tal nombre
@@ -78,7 +78,7 @@ public class ServicioLigas implements IServiciosLigas {
             }
 
             repositorioLigas.guardar(
-                    new Liga(tipoCompetidor, dto.getNombre(), id++,
+                    new Liga(tipoCompetidor, registro.getNombre(), id++,
                             competidores.toArray(competidores.toArray(new Competidor[0]))
                     )
             );
@@ -93,7 +93,7 @@ public class ServicioLigas implements IServiciosLigas {
     private Competidor obtenerCompetidor(String nombreCompetidor) {
         Competidor c;
         //verificamos lista de ligas ya creadas para ver si encontramos si ya estaba cargada
-        c = repositorioLigas.obtenerPorNombre(nombreCompetidor);
+        c = repositorioLigas.obtenerPorNombreCompetidor(nombreCompetidor);
 
         //si se encontro retorno la liga
         if (c != null) {
@@ -102,7 +102,7 @@ public class ServicioLigas implements IServiciosLigas {
 
         //verificamos repositorio de personajes para comprobar
         // si hay un personaje que coincida con el nombre pasado
-        c = repositorioPersonajes.obtenerPorNombre(nombreCompetidor);
+        c = repositorioPersonajes.obtenerPorNombreCompetidor(nombreCompetidor);
 
         return c;
     }

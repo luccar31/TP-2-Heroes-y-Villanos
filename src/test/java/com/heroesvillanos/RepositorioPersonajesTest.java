@@ -2,7 +2,6 @@ package com.heroesvillanos;
 
 import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.Personaje;
-import com.heroesvillanos.dominio.Personaje;
 import com.heroesvillanos.dominio.TipoCompetidor;
 import com.heroesvillanos.repositorio.Repositorio;
 import com.heroesvillanos.repositorio.RepositorioPersonajeEnMemoria;
@@ -61,8 +60,8 @@ public class RepositorioPersonajesTest {
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
         repositorioPersonajes.guardar(personaje1);
 
-        Assertions.assertNotNull(repositorioPersonajes.obtenerPorNombre("Nombre 1"));
-        Assertions.assertEquals(1, repositorioPersonajes.obtenerPorNombre("Nombre 1").getId());
+        Assertions.assertNotNull(repositorioPersonajes.obtenerPorNombreCompetidor("Nombre 1"));
+        Assertions.assertEquals(1, repositorioPersonajes.obtenerPorNombreCompetidor("Nombre 1").getId());
     }
 
     @Test

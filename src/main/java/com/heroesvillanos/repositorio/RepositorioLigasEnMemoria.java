@@ -20,10 +20,10 @@ public class RepositorioLigasEnMemoria implements Repositorio<Liga> {
         this.ligas.add(entidad);
     }
 
-    public Liga obtenerPorNombre(String nombre) {
+    public Liga obtenerPorNombreCompetidor(String nombreCompetidor) {
         Liga busqueda = null;
         for (Liga liga : ligas) {
-            if (liga.getNombreCompetidor().equals(nombre)) {
+            if (liga.getNombreCompetidor().equals(nombreCompetidor)) {
                 busqueda = liga;
             }
         }

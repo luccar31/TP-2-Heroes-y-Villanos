@@ -24,20 +24,20 @@ public class ServicioPersonajes implements IServicioPersonajes {
     public List<Personaje> cargar() {
         int id = 0;
 
-        List<RegistroPersonaje> dtos = persistencia.leerDatos();
+        List<RegistroPersonaje> registros = persistencia.leerDatos();
 
-        for (RegistroPersonaje dto : dtos) {
+        for (RegistroPersonaje registro : registros) {
 
             //si el nombre del personaje ya existe en el repo, entonces no se puede crear
-        	Personaje p = repositorio.obtenerPorNombre(dto.getNombre());
+        	Personaje p = repositorio.obtenerPorNombreCompetidor(registro.getAlias());
             if (p != null) {
                 throw new PersonajeYaExistenteException("El personaje que se quiere crear ya existe: " + p.getAlias());
             }
 
             repositorio.guardar(
                     new Personaje(id++,
-                            dto.getNombre(), dto.getAlias(), dto.getTipo(),
-                            dto.getVel(), dto.getFue(), dto.getRes(), dto.getDes()
+                            registro.getNombre(), registro.getAlias(), registro.getTipo(),
+                            registro.getVel(), registro.getFue(), registro.getRes(), registro.getDes()
                     )
             );
         }

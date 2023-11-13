@@ -22,10 +22,10 @@ public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
         this.personajes.add(entidad);
     }
 
-    public Personaje obtenerPorNombre(String nombre) {
+    public Personaje obtenerPorNombreCompetidor(String nombreCompetidor) {
         Personaje busqueda = null;
         for (Personaje personaje : personajes) {
-            if (personaje.getNombreReal().equals(nombre)) {
+            if (personaje.getAlias().equals(nombreCompetidor)) {
                 busqueda = personaje;
             }
         }

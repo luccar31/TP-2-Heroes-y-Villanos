@@ -36,7 +36,7 @@ public class RepositorioLigasTest {
         Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
         repositorioLigas.guardar(liga);
 
-        Assertions.assertEquals(1, repositorioLigas.obtenerPorNombre("Liga vacia").getId());
+        Assertions.assertEquals(1, repositorioLigas.obtenerPorNombreCompetidor("Liga vacia").getId());
     }
 
     @Test

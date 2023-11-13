@@ -26,8 +26,8 @@ public class ServicioReportes implements IServicioReportes {
         return personajes;
     }
 
-    public List<Competidor> competidoresQueVenzan(String nombre, Caracteristica caracteristica) {
-        Personaje personaje = repositorioPersonajes.obtenerPorNombre(nombre);
+    public List<Competidor> competidoresQueVenzan(String alias, Caracteristica caracteristica) {
+        Personaje personaje = repositorioPersonajes.obtenerPorNombreCompetidor(alias);
 
         if (personaje == null) {
             throw new CompetidorNoEncontrado();

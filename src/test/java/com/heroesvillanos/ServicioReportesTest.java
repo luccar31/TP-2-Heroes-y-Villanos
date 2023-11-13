@@ -50,7 +50,7 @@ public class ServicioReportesTest {
 
     @Test
     public void dado_nombre_competidor_noexistente_cuando_se_llama_servicio_arroja_excepcion(){
-        when(repositorioPersonajes.obtenerPorNombre(anyString())).thenReturn(null);
+        when(repositorioPersonajes.obtenerPorNombreCompetidor(anyString())).thenReturn(null);
         Assertions.assertThrows(CompetidorNoEncontrado.class, () -> {
             servicioReportes.competidoresQueVenzan("cualquierNombre", Caracteristica.FUERZA);
         });
@@ -62,7 +62,7 @@ public class ServicioReportesTest {
         List<Personaje> personajes = dadoPersonajes();
         when(repositorioPersonajes.listar()).thenReturn(personajes);
         Personaje pEncontrado = personajes.get(0);
-        when(repositorioPersonajes.obtenerPorNombre(anyString())).thenReturn(pEncontrado);
+        when(repositorioPersonajes.obtenerPorNombreCompetidor(anyString())).thenReturn(pEncontrado);
         when(repositorioLigas.listar()).thenReturn(new ArrayList<>());
         //CUANDO
         List<Competidor> competidores = servicioReportes.competidoresQueVenzan("cualquierNombre", Caracteristica.VELOCIDAD);
