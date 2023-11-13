@@ -1,11 +1,7 @@
 package com.heroesvillanos;
 
 
-import com.heroesvillanos.dominio.Caracteristica;
-import com.heroesvillanos.dominio.DireccionOrden;
-import com.heroesvillanos.dominio.Liga;
-import com.heroesvillanos.dominio.Personaje;
-import com.heroesvillanos.dominio.TipoCompetidor;
+import com.heroesvillanos.dominio.*;
 import com.heroesvillanos.exception.CompetidorNoEncontrado;
 import com.heroesvillanos.repositorio.Repositorio;
 import com.heroesvillanos.repositorio.RepositorioLigasEnMemoria;
@@ -16,13 +12,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioReportesTest {
 
@@ -38,7 +33,7 @@ public class ServicioReportesTest {
     }
 
     @Test
-    public void dadoPersonajes_DebeOrdenarPorVelocidadAscendente() {
+    public void dado_personajes_debe_ordenar_por_velocidad_ascendente() {
         //DADO
         List<Personaje> personajes = dadoPersonajes();
         when(repositorioPersonajes.listar()).thenReturn(personajes);
@@ -54,7 +49,7 @@ public class ServicioReportesTest {
     }
 
     @Test
-    public void test1(){
+    public void dado_nombre_competidor_noexistente_cuando_se_llama_servicio_arroja_excepcion(){
         when(repositorioPersonajes.obtenerPorNombre(anyString())).thenReturn(null);
         Assertions.assertThrows(CompetidorNoEncontrado.class, () -> {
             servicioReportes.competidoresQueVenzan("cualquierNombre", Caracteristica.FUERZA);
@@ -62,15 +57,20 @@ public class ServicioReportesTest {
     }
 
     @Test
-    public void test2(){
+    public void dado_competidores_cuando_competidores_que_vencen_entonces_validacion(){
         //DADO
         List<Personaje> personajes = dadoPersonajes();
         when(repositorioPersonajes.listar()).thenReturn(personajes);
-        when(repositorioPersonajes.obtenerPorNombre(anyString())).thenReturn(personajes.get(0));
+        Personaje pEncontrado = personajes.get(0);
+        when(repositorioPersonajes.obtenerPorNombre(anyString())).thenReturn(pEncontrado);
         when(repositorioLigas.listar()).thenReturn(new ArrayList<>());
         //CUANDO
-        servicioReportes.competidoresQueVenzan("cualquierNombre", Caracteristica.VELOCIDAD);
+        List<Competidor> competidores = servicioReportes.competidoresQueVenzan("cualquierNombre", Caracteristica.VELOCIDAD);
         //ENTONCES
+        assertEquals(1, competidores.size());
+        Competidor c = competidores.get(0);
+        assertNotEquals(c.getTipo(), pEncontrado.getTipo());
+        assertTrue(c.getCaracteristica(Caracteristica.VELOCIDAD) > pEncontrado.getCaracteristica(Caracteristica.VELOCIDAD));
 
     }
 

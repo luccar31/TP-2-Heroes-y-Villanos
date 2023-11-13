@@ -40,15 +40,16 @@ public class ServicioReportes implements IServicioReportes {
         competidores.addAll(repositorioLigas.listar());
 
         for (Competidor competidor : competidores) {
-            if (personajeValido(personaje, competidor) && competidor.esGanador(personaje, caracteristica)) {
-                leGanan.add(competidor);
-            }
+            if (personajeValido(personaje, competidor))
+                if (competidor.esGanador(personaje, caracteristica)) {
+                    leGanan.add(competidor);
+                }
         }
 
         return leGanan;
     }
 
     private boolean personajeValido(Personaje personaje, Competidor competidor) {
-        return competidor.equals(personaje) && competidor.getTipo() != personaje.getTipo();
+        return !competidor.equals(personaje) && competidor.getTipo() != personaje.getTipo();
     }
 }
