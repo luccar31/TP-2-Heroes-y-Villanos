@@ -29,7 +29,7 @@ public class ServicioPersonajes implements IServicioPersonajes {
         for (RegistroPersonaje dto : dtos) {
 
             //si el nombre del personaje ya existe en el repo, entonces no se puede crear
-        	Personaje p = repositorio.obtenerPorNombre(dto.getNombre());
+        	Personaje p = repositorio.obtenerPorNombre(dto.getAlias());
             if (p != null) {
                 throw new PersonajeYaExistenteException("El personaje que se quiere crear ya existe: " + p.getAlias());
             }
