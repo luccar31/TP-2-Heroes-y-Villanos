@@ -1,11 +1,10 @@
 package com.heroesvillanos.dominio;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.heroesvillanos.comparators.CombateComparator;
 import com.heroesvillanos.exception.TipoCompetidorNoSoportado;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Personaje implements Competidor {
     private final int id;
@@ -59,19 +58,24 @@ public class Personaje implements Competidor {
     public int getCaracteristica(Caracteristica caracteristica) {
         return caracteristicas.getOrDefault(caracteristica, 0);
     }
+
     public TipoCompetidor getTipo() {
         return this.tipo;
     }
+
     @Override
     public String getNombreCompetidor() {
         return this.getAlias();
     }
+
     public String getNombreReal() {
         return nombreReal;
     }
+
     public String getAlias() {
         return alias;
     }
+
     public int getId() {
         return id;
     }

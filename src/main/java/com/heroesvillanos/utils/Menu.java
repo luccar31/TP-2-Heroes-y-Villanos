@@ -42,6 +42,19 @@ public class Menu {
             "0 - Volver al menu principal",
     };
 
+    private static int leerOpcion() {
+        Scanner s = new Scanner(System.in);
+        int opc;
+        try {
+            opc = s.nextInt();
+        } catch (InputMismatchException e) {
+            opc = -1;
+        } finally {
+            s.nextLine();
+        }
+        return opc;
+    }
+
     public void desplegarMenu() {
         menuPrincipal();
     }
@@ -60,7 +73,6 @@ public class Menu {
 
         System.out.print(builder);
     }
-
 
     private void menuPrincipal() {
         int opcion;
@@ -210,19 +222,5 @@ public class Menu {
                     System.out.println("Opción invalida!");
             }
         } while (opcion != 0);
-    }
-
-
-    private static int leerOpcion() {
-        Scanner s = new Scanner(System.in);
-        int opc;
-        try {
-            opc = s.nextInt();
-        } catch (InputMismatchException e) {
-            opc = -1;
-        } finally {
-            s.nextLine();
-        }
-        return opc;
     }
 }

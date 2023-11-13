@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class PersonajesNoCargadosException extends RuntimeException{
+public class PersonajesNoCargadosException extends RuntimeException {
     public PersonajesNoCargadosException() {
     }
 

@@ -4,7 +4,6 @@ import com.heroesvillanos.dominio.Personaje;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
     private final List<Personaje> personajes;

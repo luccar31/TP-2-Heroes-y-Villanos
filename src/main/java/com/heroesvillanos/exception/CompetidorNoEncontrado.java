@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class CompetidorNoEncontrado extends RuntimeException{
+public class CompetidorNoEncontrado extends RuntimeException {
     public CompetidorNoEncontrado() {
     }
 

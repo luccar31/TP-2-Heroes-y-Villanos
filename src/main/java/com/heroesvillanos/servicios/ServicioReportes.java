@@ -11,8 +11,8 @@ import java.util.List;
 
 public class ServicioReportes implements IServicioReportes {
 
-    private Repositorio<Personaje> repositorioPersonajes;
-    private Repositorio<Liga> repositorioLigas;
+    private final Repositorio<Personaje> repositorioPersonajes;
+    private final Repositorio<Liga> repositorioLigas;
 
     public ServicioReportes(Repositorio<Personaje> repositorioPersonajes, Repositorio<Liga> repositorioLigas) {
         this.repositorioPersonajes = repositorioPersonajes;
@@ -29,7 +29,7 @@ public class ServicioReportes implements IServicioReportes {
     public List<Competidor> competidoresQueVenzan(String nombre, Caracteristica caracteristica) {
         Personaje personaje = repositorioPersonajes.obtenerPorNombre(nombre);
 
-        if(personaje == null){
+        if (personaje == null) {
             throw new CompetidorNoEncontrado();
         }
 

@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class PersonajeYaExistenteException extends RuntimeException{
+public class PersonajeYaExistenteException extends RuntimeException {
     public PersonajeYaExistenteException() {
     }
 

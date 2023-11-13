@@ -34,8 +34,7 @@ public class PersistenciaLigasEnArchivo implements Persistencia<RegistroLiga, Li
 
         } catch (IOException e) {
             throw new LecturaDeArchivoException(e);
-        }
-        finally {
+        } finally {
             if (scanner != null) {
                 scanner.close();
             }
@@ -74,8 +73,7 @@ public class PersistenciaLigasEnArchivo implements Persistencia<RegistroLiga, Li
         } catch (IOException e) {
             cerrarWriter(writer);
             throw new LecturaDeArchivoException(e);
-        }
-        finally {
+        } finally {
             cerrarWriter(writer);
         }
     }
@@ -84,8 +82,7 @@ public class PersistenciaLigasEnArchivo implements Persistencia<RegistroLiga, Li
         if (writer != null) {
             try {
                 writer.close();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 throw new LecturaDeArchivoException(e);
             }
         }

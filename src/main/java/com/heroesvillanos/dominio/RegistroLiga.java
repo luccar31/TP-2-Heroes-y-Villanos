@@ -5,6 +5,12 @@ import java.util.List;
 
 public class RegistroLiga {
     private final String nombreLiga;
+    private final List<String> nombreCompetidores;
+
+    public RegistroLiga(String nombreLiga, String... nombreCompetidores) {
+        this.nombreLiga = nombreLiga;
+        this.nombreCompetidores = Arrays.asList(nombreCompetidores);
+    }
 
     public String getNombre() {
         return nombreLiga;
@@ -12,12 +18,5 @@ public class RegistroLiga {
 
     public List<String> getNombreCompetidores() {
         return nombreCompetidores;
-    }
-
-    private final List<String> nombreCompetidores;
-
-    public RegistroLiga(String nombreLiga, String... nombreCompetidores) {
-        this.nombreLiga = nombreLiga;
-        this.nombreCompetidores = Arrays.asList(nombreCompetidores);
     }
 }

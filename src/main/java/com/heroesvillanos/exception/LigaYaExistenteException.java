@@ -1,6 +1,6 @@
 package com.heroesvillanos.exception;
 
-public class LigaYaExistenteException extends RuntimeException{
+public class LigaYaExistenteException extends RuntimeException {
     public LigaYaExistenteException() {
     }
 
