@@ -73,7 +73,10 @@ public class Personaje implements Competidor {
     }
 
     @Override
-    public String getNombre() { return getAlias(); }
+    public String getNombre() {
+        return getAlias();
+    }
+
     public String getAlias() {
         return alias;
     }

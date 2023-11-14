@@ -5,7 +5,6 @@ import com.heroesvillanos.exception.CompetidorNoEncontrado;
 import com.heroesvillanos.exception.LigaYaExistenteException;
 import com.heroesvillanos.exception.LigasYaCargadasException;
 import com.heroesvillanos.exception.PersonajesNoCargadosException;
-import com.heroesvillanos.menu.Utils;
 import com.heroesvillanos.persistencia.Persistencia;
 import com.heroesvillanos.repositorio.Repositorio;
 
@@ -110,13 +109,13 @@ public class ServicioLigas implements IServiciosLigas {
 
     @Override
     public List<Liga> listar(TipoCompetidor... filtroTipo) {
-    	List<Liga> copiaLocal = new ArrayList<Liga>(repositorioLigas.listar());
-    	if (filtroTipo.length > 0) {
-    		for (Liga p : repositorioLigas.listar()) {
-    			if (p.getTipo() != filtroTipo[0])
-    				copiaLocal.remove(p);
-    		}    		
-    	}
+        List<Liga> copiaLocal = new ArrayList<Liga>(repositorioLigas.listar());
+        if (filtroTipo.length > 0) {
+            for (Liga p : repositorioLigas.listar()) {
+                if (p.getTipo() != filtroTipo[0])
+                    copiaLocal.remove(p);
+            }
+        }
         return copiaLocal;
     }
 
@@ -133,39 +132,39 @@ public class ServicioLigas implements IServiciosLigas {
         persistencia.guardar(repositorioLigas.listar());
     }
 
-	@Override
-	public void printLista(String header, TipoCompetidor... filtroTipo) {
-		
-		List<Liga> lista = listar(filtroTipo);
-		System.out.println(header);
-		if (lista.isEmpty()) {
-			System.out.println("-----------------------------------------------");
-			System.out.println("Nada que mostrar. Volviendo...");
-			System.out.println("-----------------------------------------------");
-			return;
-		}
-		
-		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-		System.out.printf("%-3s %-8s %-20s %-70s %-7s %-7s %-7s %-7s%n", "ID", "| Tipo", "| Nombre Liga", "| Alias Competidores", "| V", "| F", "| R", "| D");
-		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-		for (Liga l : lista) {
-			System.out.printf("%-3s %-8s %-20s %-70s %-7s %-7s %-7s %-7s%n", 	   l.getId(), "|"
-																				+  l.getTipo(), "|" 
-																				+  l.getNombre(), "|" 
-																				+  l.getNombreCompetidor(), "|" 
-																				+  l.getCaracteristica(Caracteristica.VELOCIDAD), "|" 
-																				+  l.getCaracteristica(Caracteristica.FUERZA), "|" 
-																				+  l.getCaracteristica(Caracteristica.RESISTENCIA), "|" 
-																				+  l.getCaracteristica(Caracteristica.DESTREZA));
-		}
-		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-	}
-	
-	@Override
-	public Liga GetPorID(int id, TipoCompetidor... filtroTipo) {
-    	for (Liga p : listar(filtroTipo)) {
-    		if (p.getId() == id) return p;
-    	}
-    	throw new CompetidorNoEncontrado("ID Liga invalida: " + id);
+    @Override
+    public void printLista(String header, TipoCompetidor... filtroTipo) {
+
+        List<Liga> lista = listar(filtroTipo);
+        System.out.println(header);
+        if (lista.isEmpty()) {
+            System.out.println("-----------------------------------------------");
+            System.out.println("Nada que mostrar. Volviendo...");
+            System.out.println("-----------------------------------------------");
+            return;
+        }
+
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-3s %-8s %-20s %-70s %-7s %-7s %-7s %-7s%n", "ID", "| Tipo", "| Nombre Liga", "| Alias Competidores", "| V", "| F", "| R", "| D");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+        for (Liga l : lista) {
+            System.out.printf("%-3s %-8s %-20s %-70s %-7s %-7s %-7s %-7s%n", l.getId(), "|"
+                    + l.getTipo(), "|"
+                    + l.getNombre(), "|"
+                    + l.getNombreCompetidor(), "|"
+                    + l.getCaracteristica(Caracteristica.VELOCIDAD), "|"
+                    + l.getCaracteristica(Caracteristica.FUERZA), "|"
+                    + l.getCaracteristica(Caracteristica.RESISTENCIA), "|"
+                    + l.getCaracteristica(Caracteristica.DESTREZA));
+        }
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+    }
+
+    @Override
+    public Liga getPorID(int id, TipoCompetidor... filtroTipo) {
+        for (Liga p : listar(filtroTipo)) {
+            if (p.getId() == id) return p;
+        }
+        throw new CompetidorNoEncontrado("ID Liga invalida: " + id);
     }
 }

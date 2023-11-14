@@ -48,33 +48,33 @@ public class ServicioReportes implements IServicioReportes {
 
         return leGanan;
     }
-    
-    public void printLista (List<Personaje> lista) {
 
-		if (lista.isEmpty()) {
-			System.out.println("-----------------------------------------------");
-			System.out.println("Nada que mostrar. Volviendo...");
-			System.out.println("-----------------------------------------------");
-			return;
-		}
-    	
-    	System.out.println("-----------------------------------------------------------------------------------------------------");
-		System.out.printf("%-3s %-8s %-20s %-20s %-7s %-7s %-7s %-7s%n", "ID", "| Tipo", "| Nombre Real", "| Alias", "| Velocidad", "| Fuerza", "| Resistencia", "|Destreza");
-		System.out.println("-----------------------------------------------------------------------------------------------------");
-		for (Personaje c : lista) {
-			//String[] results = l.toString().split(","); 
-			System.out.printf("%-3s %-8s %-20s %-20s %-11s %-8s %-13s %-7s%n", 	  c.getId(), "|"
-																				+ c.getTipo(), "|" 
-																				+ c.getNombreReal(), "|" 
-																				+ c.getAlias(), "|" 
-																				+ c.getCaracteristica(Caracteristica.VELOCIDAD), "|" 
-																				+ c.getCaracteristica(Caracteristica.FUERZA), "|" 
-																				+ c.getCaracteristica(Caracteristica.RESISTENCIA), "|" 
-																				+ c.getCaracteristica(Caracteristica.DESTREZA));
-		}
-		System.out.println("-----------------------------------------------------------------------------------------------");
+    public void printLista(List<Personaje> lista) {
+
+        if (lista.isEmpty()) {
+            System.out.println("-----------------------------------------------");
+            System.out.println("Nada que mostrar. Volviendo...");
+            System.out.println("-----------------------------------------------");
+            return;
+        }
+
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.printf("%-3s %-8s %-20s %-20s %-7s %-7s %-7s %-7s%n", "ID", "| Tipo", "| Nombre Real", "| Alias", "| Velocidad", "| Fuerza", "| Resistencia", "|Destreza");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        for (Personaje c : lista) {
+            //String[] results = l.toString().split(",");
+            System.out.printf("%-3s %-8s %-20s %-20s %-11s %-8s %-13s %-7s%n", c.getId(), "|"
+                    + c.getTipo(), "|"
+                    + c.getNombreReal(), "|"
+                    + c.getAlias(), "|"
+                    + c.getCaracteristica(Caracteristica.VELOCIDAD), "|"
+                    + c.getCaracteristica(Caracteristica.FUERZA), "|"
+                    + c.getCaracteristica(Caracteristica.RESISTENCIA), "|"
+                    + c.getCaracteristica(Caracteristica.DESTREZA));
+        }
+        System.out.println("-----------------------------------------------------------------------------------------------");
     }
-    
+
     private boolean personajeValido(Personaje personaje, Competidor competidor) {
         return !competidor.equals(personaje) && competidor.getTipo() != personaje.getTipo();
     }

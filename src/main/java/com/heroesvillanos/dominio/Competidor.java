@@ -8,5 +8,6 @@ public interface Competidor {
     int getCaracteristica(Caracteristica caracteristica);
 
     String getNombreCompetidor();
+
     String getNombre();
 }

@@ -9,9 +9,12 @@ public interface IServiciosLigas extends IServicioCompetidores<Liga> {
     List<Liga> cargar();
 
     List<Liga> listar(TipoCompetidor... filtroTipo);
+
     void printLista(String header, TipoCompetidor... filtroTipo);
 
     Liga crear(TipoCompetidor tipo, String nombre);
+
     void persistir();
-    public Liga GetPorID(int id, TipoCompetidor... filtroTipo);
+
+    Liga getPorID(int id, TipoCompetidor... filtroTipo);
 }

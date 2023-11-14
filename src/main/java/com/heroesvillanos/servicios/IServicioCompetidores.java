@@ -9,8 +9,10 @@ public interface IServicioCompetidores<T> {
     List<T> cargar();
 
     List<T> listar(TipoCompetidor... filtroTipo);
+
     void printLista(String header, TipoCompetidor... filtroTipo);
 
     void persistir();
-    public T GetPorID(int id, TipoCompetidor... filtroTipo);
+
+    T getPorID(int id, TipoCompetidor... filtroTipo);
 }
