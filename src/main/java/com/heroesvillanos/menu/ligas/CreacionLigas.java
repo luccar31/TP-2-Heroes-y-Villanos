@@ -2,7 +2,7 @@ package com.heroesvillanos.menu.ligas;
 
 import java.util.Scanner;
 
-import com.heroesvillanos.dominio.Personaje;
+import com.heroesvillanos.dominio.Liga;
 import com.heroesvillanos.dominio.TipoCompetidor;
 import com.heroesvillanos.menu.MenuBase;
 import com.heroesvillanos.menu.MenuPrincipal;
@@ -21,7 +21,7 @@ public class CreacionLigas extends MenuBase {
 	protected void desplegarOpciones(int opcion) {		
 		switch (opcion) {
 		case 1:
-			//formularioCreacion();
+			formularioCreacion();
 			break;
 		case 0:
 			DesplegarMenuPrincipal();
@@ -36,61 +36,33 @@ public class CreacionLigas extends MenuBase {
 	}
 	
 	private void formularioCreacion() {
-		String nombreReal = "";
-		String alias = "";
+		String nombreLiga = "";
 		TipoCompetidor tipo = null;
 		String _tipo = "";
-		int vel = 0;
-		int fue = 0;
-		int res = 0;
-		int des = 0;
 		
-		int opc = 0;
-		for (int i = 0 ; i < 7 ; ++i)
+		for (int i = 0 ; i < 2 ; ++i)
 		{
 			Scanner s = new Scanner(System.in);
 			switch (i) {
 				case 0:
-					System.out.println("Introducir nombre real: ");
-					nombreReal = s.nextLine();
+					System.out.println("Introducir nombre de la liga: ");
+					nombreLiga = s.nextLine();
 					continue;
 				case 1:
-					System.out.println("Introducir alias: ");
-					alias = s.nextLine();
-					continue;
-				case 2:
 					do {
-						System.out.println("Introducir tipo (H/V): ");
+						System.out.println("Introducir tipo de liga (H/V): ");
 						_tipo = s.nextLine();
 					} while (!_tipo.equals("H") && !_tipo.equals("V"));
 					tipo = TipoCompetidor.obtenerPor(_tipo == "H" ? "Heroe" : "Villano");
-					continue;
-				case 3:
-					System.out.println("Introducir velocidad: ");
-					vel = s.nextInt();
-					continue;
-				case 4:
-					System.out.println("Introducir fuerza: ");
-					fue = s.nextInt();
-					continue;
-				case 5:
-					System.out.println("Introducir resistencia: ");
-					res = s.nextInt();
-					continue;
-				case 6:
-					System.out.println("Introducir destreza: ");
-					des = s.nextInt();
 					continue;	
 			}
 		}
 		
-		Personaje p = servicioPersonajes.crear(nombreReal, alias, tipo, vel, fue, res, des);
+		Liga l = servicioLigas.crear(tipo, nombreLiga);
 		
 		System.out.println("");
 		System.out.println("---------------------");
-		System.out.println("Personaje creado!");
-		System.out.println("---------------------");
-		System.out.println(p.toString());
+		System.out.println("Liga " + l.getNombre() +  " creada!");
 		System.out.println("---------------------");
 		System.out.println("");
 	}

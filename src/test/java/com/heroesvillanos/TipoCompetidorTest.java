@@ -7,12 +7,12 @@ public class TipoCompetidorTest {
 
     @Test
     public void obtener_tipo_competidor_villano_por_string(){
-        Assertions.assertEquals(TipoCompetidor.VILLANO, TipoCompetidor.obtenerPor("Héroe"));
+        Assertions.assertEquals(TipoCompetidor.VILLANO, TipoCompetidor.obtenerPor("Villano"));
     }
 
     @Test
     public void obtener_tipo_competidor_heroe_por_string(){
-        Assertions.assertEquals(TipoCompetidor.HEROE, TipoCompetidor.obtenerPor("Villano"));
+        Assertions.assertEquals(TipoCompetidor.HEROE, TipoCompetidor.obtenerPor("Heroe"));
     }
 
     @Test

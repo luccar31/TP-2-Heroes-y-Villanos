@@ -25,7 +25,7 @@ public class RepositorioPersonajeEnMemoria implements Repositorio<Personaje> {
     public Personaje obtenerPorNombre(String nombre) {
         Personaje busqueda = null;
         for (Personaje personaje : personajes) {
-            if (personaje.getNombreReal().equals(nombre)) {
+            if (personaje.getAlias().equals(nombre)) {
                 busqueda = personaje;
             }
         }

@@ -7,7 +7,7 @@ import com.heroesvillanos.menu.personajes.CreacionPersonajes;
 public class ReportesBase extends MenuBase {
 	public ReportesBase() {
 		opciones = new String[] {
-				"1 - Listado por multiples caracteristicas",
+				"1 - Listado ordenado por caracteristica",
 	            "2 - Competidores que venzan a un personaje dado en una caracteristica",
 	            "0 - Volver al menu principal",
 		};
@@ -17,7 +17,7 @@ public class ReportesBase extends MenuBase {
 	protected void desplegarOpciones(int opcion) {
 		switch (opcion) {
 	        case 1:
-	            //
+	            new OrdenadoPorCaracteristica().loopOpciones();
 	            break;
 	        case 2:
 	            new CompetidoresQueVenzanPorCaracteristica().loopOpciones();

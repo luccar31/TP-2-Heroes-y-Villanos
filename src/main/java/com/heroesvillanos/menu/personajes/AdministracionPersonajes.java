@@ -9,7 +9,7 @@ public class AdministracionPersonajes extends MenuBase {
 	public AdministracionPersonajes() {
 		opciones = new String[] {
 				"1 - Carga desde archivo",
-	            "2 - Creación",
+	            "2 - Creacion",
 	            "3 - Listado",
 	            "4 - Guardar en archivo",
 	            "0 - Volver al menu principal",
@@ -21,14 +21,14 @@ public class AdministracionPersonajes extends MenuBase {
 	protected void desplegarOpciones(int opcion) {
 		switch (opcion) {
         case 1:
-        	Utils.PrintLista(servicioPersonajes.cargar(), "Carga desde archivo");
+        	servicioPersonajes.cargar();
+        	servicioPersonajes.printLista("Carga desde archivo");
             break;
         case 2:
             new CreacionPersonajes().loopOpciones();
             break;
         case 3:
-        	System.out.println();
-        	Utils.PrintLista(servicioPersonajes.listar(), "Listado de Personajes");
+        	servicioPersonajes.printLista("Listado de Personajes");
             break;
         case 4:
         	servicioPersonajes.persistir();
@@ -40,7 +40,7 @@ public class AdministracionPersonajes extends MenuBase {
             System.out.println("Input invalido!");
             break;
         default:
-            System.out.println("Opción invalida!");
+            System.out.println("Opcion invalida!");
 		}
 	}
 

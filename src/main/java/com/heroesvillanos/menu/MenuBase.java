@@ -28,15 +28,20 @@ public class MenuBase {
     }
     
     public void loopOpciones() {
-        int opcion;
-        do {
-            imprimir();
-            opcion = leerOpcion();
-            desplegarOpciones(opcion);
-            
-        } while (opcion != 0);
-        System.out.println("Saliendo...");
-        System.exit(0);
+    	try {
+    		int opcion;
+    		do {
+    			imprimir();
+    			opcion = leerOpcion();
+    			desplegarOpciones(opcion);
+    			
+    		} while (opcion != 0);
+    		System.out.println("Saliendo...");
+    		System.exit(0);    	
+    	} catch (Exception e) {
+    		System.out.println(e.getMessage());
+    		loopOpciones();
+    	}
     }
 
     private void imprimir() {

@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.Competidor;
+import com.heroesvillanos.dominio.DireccionOrden;
 import com.heroesvillanos.menu.MenuBase;
 import com.heroesvillanos.menu.Utils;
 
-public class CompetidoresQueVenzanPorCaracteristica extends MenuBase {
-	public CompetidoresQueVenzanPorCaracteristica() {
+public class OrdenadoPorCaracteristica extends MenuBase {
+	public OrdenadoPorCaracteristica() {
 		opciones = new String[] {
 				"1 - Comenzar formulario",
 	            "0 - Volver al menu principal",
@@ -34,7 +35,8 @@ public class CompetidoresQueVenzanPorCaracteristica extends MenuBase {
 	}
 	
 	private void formularioReporte() {
-		String nombre = "";
+		DireccionOrden orden = null;
+		String _orden = "";
 		Caracteristica caracteristica = null;
 		String _caracteristica = "";
 		
@@ -43,8 +45,11 @@ public class CompetidoresQueVenzanPorCaracteristica extends MenuBase {
 			Scanner s = new Scanner(System.in);
 			switch (i) {
 				case 0:
-					System.out.println("Introducir nombre: ");
-					nombre = s.nextLine();
+					do {
+						System.out.println("Introducir orden (A(Ascendente)/D(Descendente): ");
+						_orden = s.nextLine().toUpperCase();
+					} while (!_orden.equals("A") && !_orden.equals("D"));
+					orden = _orden.equals("A") ? DireccionOrden.ASCENDENTE : DireccionOrden.DESCENDENTE;
 					continue;
 				case 1:
 					do {
@@ -54,15 +59,6 @@ public class CompetidoresQueVenzanPorCaracteristica extends MenuBase {
 					caracteristica = Utils.GetCaracteristicaByString(_caracteristica);
 			}
 		}
-		List<Competidor> result = servicioReportes.competidoresQueVenzan(nombre, caracteristica);
-		System.out.println("-----------------------------------------------");
-		System.out.println("Personajes que vencen a: " + nombre);
-		System.out.println("-----------------------------------------------");
-		System.out.printf("%-7s %-20s %-20s %-7s %-7s %-7s %-7s%n", "Tipo", "| Nombre Real", "| Alias", "| Velocidad", "| Fuerza", "| Resistencia", "|Destreza");
-		for (Competidor c : result) {
-			String[] results = c.toString().split(","); 
-			System.out.printf("%-7s %-20s %-20s %-11s %-8s %-13s %-7s%n", results[0], "|" + results[1], "|" + results[2], "|" + results[3], "|" + results[4], "|" + results[5], "|" + results[6]);
-		}
-		System.out.println("-----------------------------------------------");
+		servicioReportes.printLista(servicioReportes.ordenarPersonajesPor(orden, caracteristica));
 	}
 }

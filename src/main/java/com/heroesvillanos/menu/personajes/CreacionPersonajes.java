@@ -1,5 +1,6 @@
 package com.heroesvillanos.menu.personajes;
 
+import java.util.IllegalFormatException;
 import java.util.Scanner;
 
 import com.heroesvillanos.dominio.Personaje;
@@ -14,7 +15,7 @@ public class CreacionPersonajes extends MenuBase {
 				"1 - Comenzar con el formualario",
 	            "0 - Volver al menu principal",
 		};
-		titulo = "Creacion de Ligas";
+		titulo = "Creacion de Personajes";
 	}
 
 	@Override
@@ -39,7 +40,6 @@ public class CreacionPersonajes extends MenuBase {
 		String nombreReal = "";
 		String alias = "";
 		TipoCompetidor tipo = null;
-		String _tipo = "";
 		int vel = 0;
 		int fue = 0;
 		int res = 0;
@@ -47,38 +47,27 @@ public class CreacionPersonajes extends MenuBase {
 		
 		for (int i = 0 ; i < 7 ; ++i)
 		{
-			Scanner s = new Scanner(System.in);
 			switch (i) {
 				case 0:
-					System.out.println("Introducir nombre real: ");
-					nombreReal = s.nextLine();
+					nombreReal = validacionTexto("nombre real");
 					continue;
 				case 1:
-					System.out.println("Introducir alias: ");
-					alias = s.nextLine();
+					alias = validacionTexto("alias");
 					continue;
 				case 2:
-					do {
-						System.out.println("Introducir tipo (H/V): ");
-						_tipo = s.nextLine();
-					} while (!_tipo.equals("H") && !_tipo.equals("V"));
-					tipo = TipoCompetidor.obtenerPor(_tipo == "H" ? "Heroe" : "Villano");
+					tipo = validacionCaracter("tipo");
 					continue;
 				case 3:
-					System.out.println("Introducir velocidad: ");
-					vel = s.nextInt();
+					vel = validacionNumerica("velocidad");
 					continue;
 				case 4:
-					System.out.println("Introducir fuerza: ");
-					fue = s.nextInt();
+					fue = validacionNumerica("fuerza");
 					continue;
 				case 5:
-					System.out.println("Introducir resistencia: ");
-					res = s.nextInt();
+					res = validacionNumerica("resistencia");
 					continue;
 				case 6:
-					System.out.println("Introducir destreza: ");
-					des = s.nextInt();
+					des = validacionNumerica("destreza");
 					continue;	
 			}
 		}
@@ -86,12 +75,67 @@ public class CreacionPersonajes extends MenuBase {
 		Personaje p = servicioPersonajes.crear(nombreReal, alias, tipo, vel, fue, res, des);
 		
 		System.out.println("");
-		System.out.println("---------------------");
+		System.out.println("-----------------------------------------------");
 		System.out.println("Personaje creado!");
-		System.out.println("---------------------");
+		System.out.println("-----------------------------------------------");
 		System.out.println(p.toString());
-		System.out.println("---------------------");
+		System.out.println("-----------------------------------------------");
 		System.out.println("");
 	}
-
+	
+	public int validacionNumerica(String caracteristica) {
+		int res;
+		Scanner s = new Scanner(System.in);
+		System.out.println("Introducir " + caracteristica + ": ");
+		while (true) {
+            try {
+            	res = Integer.parseInt(s.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, ingrese una " + caracteristica +  " con valor numerico: ");
+            }
+        }
+		return res;
+	}
+	
+	public String validacionTexto(String prop) {
+		String res;
+		Scanner s = new Scanner(System.in);
+		System.out.println("Introducir el " + prop + ": ");
+		while (true) {
+            try {
+            	res = s.nextLine();
+            	if(res.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s]+$")) {
+            		break;
+            	} else {
+            		throw new IllegalArgumentException("Por favor, ingrese un " + prop +  " con formato de texto: ");
+            	}
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+		return res;
+	}
+	
+	public TipoCompetidor validacionCaracter(String prop) {
+		TipoCompetidor _tipo;
+		String caracter;
+		Scanner s = new Scanner(System.in);
+		System.out.println("Introducir tipo (H/V): ");
+		while (true) {
+			try {
+				caracter = s.nextLine().toUpperCase();
+				if(caracter.equals("H") || caracter.equals("V")) {
+					_tipo = TipoCompetidor.obtenerPor(caracter.equals("H") ? "Heroe" : "Villano");
+					break;
+				} else {
+					throw new IllegalArgumentException("Por favor, ingrese un " + prop +  " de un solo caracter (H/V): ");
+				}
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return _tipo;
+	}
+	
 }

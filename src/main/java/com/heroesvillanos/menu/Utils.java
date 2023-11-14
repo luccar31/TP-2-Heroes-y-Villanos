@@ -3,6 +3,8 @@ package com.heroesvillanos.menu;
 import java.util.List;
 
 import com.heroesvillanos.dominio.Caracteristica;
+import com.heroesvillanos.dominio.Competidor;
+import com.heroesvillanos.dominio.Personaje;
 
 public final class Utils {
     public static String repetirString(int n, String s) {
@@ -40,22 +42,15 @@ public final class Utils {
 		return null;
 	}
 	
-	public static <T> void PrintLista(List<T> lista, String... header)
+	public static void wait(int ms)
 	{
-		if (header.length > 0) {
-			System.out.println(header[0]);
-		}
-		if (lista.isEmpty()) {
-			System.out.println("-----------------------------------------------");
-			System.out.println("Nada que mostrar. Volviendo...");
-			System.out.println("-----------------------------------------------");
-			return;
-		}
-		
-		System.out.println("-----------------------------------------------");
-		for (T l : lista) {
-			System.out.println(l.toString());
-		}
-		System.out.println("-----------------------------------------------");
+	    try
+	    {
+	        Thread.sleep(ms);
+	    }
+	    catch(InterruptedException ex)
+	    {
+	        Thread.currentThread().interrupt();
+	    }
 	}
 }

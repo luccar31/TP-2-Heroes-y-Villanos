@@ -21,13 +21,14 @@ public class AdministracionLigas extends MenuBase {
 	protected void desplegarOpciones(int opcion) {
 		switch (opcion) {
 	        case 1:
-	        	Utils.PrintLista(servicioLigas.cargar(), "Carga desde Archivo");
+	        	servicioLigas.cargar();
+	        	servicioLigas.printLista("Carga desde Archivo");
 	            break;
 	        case 2:
 	            new CreacionLigas().loopOpciones();
 	            break;
 	        case 3:
-	        	Utils.PrintLista(servicioLigas.listar(), "Listado de Ligas");
+	        	servicioLigas.printLista("Listado de Ligas");
 	            break;
 	        case 4:
 	        	servicioLigas.persistir();
