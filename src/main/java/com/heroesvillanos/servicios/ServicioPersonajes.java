@@ -54,7 +54,7 @@ public class ServicioPersonajes implements IServicioPersonajes {
         if (repositorio.listar().isEmpty()) {
             ultimoId = 0;
         } else {
-            ultimoId = repositorio.listar().get(repositorio.listar().size()).getId() + 1;
+            ultimoId = repositorio.listar().size();
         }
         Personaje personaje = new Personaje(ultimoId, nombreReal, alias, tipo, vel, fue, res, des);
         repositorio.guardar(personaje);
