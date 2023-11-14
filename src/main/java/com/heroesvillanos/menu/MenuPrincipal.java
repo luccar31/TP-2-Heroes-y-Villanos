@@ -9,8 +9,8 @@ public final class MenuPrincipal extends MenuBase {
 	private static MenuPrincipal instance;
     public MenuPrincipal() {
 		opciones = new String[] {
-	            "1 - Administración de Personajes",
-	            "2 - Administración de Ligas",
+	            "1 - Administracion de Personajes",
+	            "2 - Administracion de Ligas",
 	            "3 - Realización de combates",
 	            "4 - Reportes",
 	            "0 - Salir",
@@ -46,7 +46,7 @@ public final class MenuPrincipal extends MenuBase {
 	            System.out.println("Input invalido!");
 	            break;
 	        default:
-	            System.out.println("Opción invalida!");
+	            System.out.println("Opcion invalida!");
 		}
 	}
 

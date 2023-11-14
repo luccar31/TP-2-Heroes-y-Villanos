@@ -9,7 +9,7 @@ public class AdministracionPersonajes extends MenuBase {
 	public AdministracionPersonajes() {
 		opciones = new String[] {
 				"1 - Carga desde archivo",
-	            "2 - Creación",
+	            "2 - Creacion",
 	            "3 - Listado",
 	            "4 - Guardar en archivo",
 	            "0 - Volver al menu principal",
@@ -40,7 +40,7 @@ public class AdministracionPersonajes extends MenuBase {
             System.out.println("Input invalido!");
             break;
         default:
-            System.out.println("Opción invalida!");
+            System.out.println("Opcion invalida!");
 		}
 	}
 
