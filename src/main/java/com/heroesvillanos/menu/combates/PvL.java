@@ -21,9 +21,7 @@ public class PvL extends CombatesBase {
 				break;
 			case 1:
 				segundaSeleccion(opcion);
-				System.out.println("Volviendo al menu principal...");
-				Utils.wait(1500);
-				DesplegarMenuPrincipal();
+				break;
 		}
 	}	
 	

@@ -1,5 +1,7 @@
 package com.heroesvillanos.menu.combates;
 
+import java.util.Scanner;
+
 import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.Competidor;
 import com.heroesvillanos.dominio.TipoCompetidor;
@@ -84,10 +86,23 @@ public class CombatesBase extends MenuBase {
 		pelea();
 	}
 	
-	protected void pelea() { 
-		String formato = p1.esGanador(p2, Caracteristica.VELOCIDAD) ? "ha vencido a" : "ha perdido contra";
+	protected void pelea() {
+		Scanner s = new Scanner(System.in);
+		Caracteristica caracteristica = null;
+		String _caracteristica = "";
+		do {
+			System.out.println("Elegir caracteristica (V(Velocidad)/F(Fuerza)/R(Resistencia)/D(Destreza): ");
+			_caracteristica = s.nextLine();
+		} while (!_caracteristica.equals("V") && !_caracteristica.equals("F") && !_caracteristica.equals("R") && !_caracteristica.equals("D"));
+		caracteristica = Utils.GetCaracteristicaByString(_caracteristica);
+		
+		String formato = p1.esGanador(p2, caracteristica) ? "ha vencido a" : "ha perdido contra";
 		System.out.println(p1.getNombre() + " " + formato + " " + p2.getNombre());
 		System.out.println("----------------------------------------------------");
+		
+		System.out.println("Volviendo al menu principal...");
+		Utils.wait(1500);
+		DesplegarMenuPrincipal();
 	}
 	
 	
