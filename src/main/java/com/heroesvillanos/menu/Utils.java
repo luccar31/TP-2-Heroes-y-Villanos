@@ -51,11 +51,13 @@ public final class Utils {
 			System.out.println("-----------------------------------------------");
 			return;
 		}
-		
-		System.out.println("-----------------------------------------------");
+
+		System.out.println("-----------------------------------------------------------------------------------------------");
+		System.out.printf("%-7s %-20s %-20s %-7s %-7s %-7s %-7s%n", "Tipo", "| Nombre Real", "| Alias", "| Velocidad", "| Fuerza", "| Resistencia", "|Destreza");
 		for (T l : lista) {
-			System.out.println(l.toString());
+			String[] results = l.toString().split(","); 
+			System.out.printf("%-7s %-20s %-20s %-11s %-8s %-13s %-7s%n", results[0], "|" + results[1], "|" + results[2], "|" + results[3], "|" + results[4], "|" + results[5], "|" + results[6]);
 		}
-		System.out.println("-----------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------------------------");
 	}
 }
