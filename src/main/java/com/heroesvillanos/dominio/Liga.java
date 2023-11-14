@@ -62,25 +62,30 @@ public class Liga implements Competidor {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(this.nombre);
-        int i = 0;
-        for (Competidor competidor : competidores) {
-            if (i < competidores.size()) {
-                builder.append(", ");
-            }
-            builder.append(competidor.getNombreCompetidor());
-            i++;
-        }
-
+        builder.append(", ");
+        builder.append(getNombreCompetidores());
         return builder.toString();
     }
-
+    
+    @Override
     public String getNombre() {
         return nombre;
     }
-
+    private StringBuilder getNombreCompetidores() {
+    	 StringBuilder builder = new StringBuilder();
+    	 int i = 0;
+         for (Competidor competidor : competidores) {
+             builder.append(competidor.getNombreCompetidor());
+             if (i+1 < competidores.size()) {
+                 builder.append(", ");
+             }
+             i++;
+         }
+         return builder;
+    }
     @Override
     public String getNombreCompetidor() {
-        return this.getNombre();
+    	return getNombreCompetidores().toString();
     }
 
     public int getId() {

@@ -11,4 +11,6 @@ public interface IServicioReportes {
     List<Personaje> ordenarPersonajesPor(DireccionOrden direccionOrden, Caracteristica... caracteristicas);
 
     List<Competidor> competidoresQueVenzan(String nombre, Caracteristica caracteristica);
+    
+    public void printLista (List<Personaje> lista);
 }

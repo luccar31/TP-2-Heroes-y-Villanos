@@ -3,6 +3,8 @@ package com.heroesvillanos.menu;
 import java.util.List;
 
 import com.heroesvillanos.dominio.Caracteristica;
+import com.heroesvillanos.dominio.Competidor;
+import com.heroesvillanos.dominio.Personaje;
 
 public final class Utils {
     public static String repetirString(int n, String s) {
@@ -40,24 +42,15 @@ public final class Utils {
 		return null;
 	}
 	
-	public static <T> void PrintLista(List<T> lista, String... header)
+	public static void wait(int ms)
 	{
-		if (header.length > 0) {
-			System.out.println(header[0]);
-		}
-		if (lista.isEmpty()) {
-			System.out.println("-----------------------------------------------");
-			System.out.println("Nada que mostrar. Volviendo...");
-			System.out.println("-----------------------------------------------");
-			return;
-		}
-
-		System.out.println("-----------------------------------------------------------------------------------------------");
-		System.out.printf("%-7s %-20s %-20s %-7s %-7s %-7s %-7s%n", "Tipo", "| Nombre Real", "| Alias", "| Velocidad", "| Fuerza", "| Resistencia", "|Destreza");
-		for (T l : lista) {
-			String[] results = l.toString().split(","); 
-			System.out.printf("%-7s %-20s %-20s %-11s %-8s %-13s %-7s%n", results[0], "|" + results[1], "|" + results[2], "|" + results[3], "|" + results[4], "|" + results[5], "|" + results[6]);
-		}
-		System.out.println("-----------------------------------------------------------------------------------------------");
+	    try
+	    {
+	        Thread.sleep(ms);
+	    }
+	    catch(InterruptedException ex)
+	    {
+	        Thread.currentThread().interrupt();
+	    }
 	}
 }

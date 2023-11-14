@@ -21,14 +21,14 @@ public class AdministracionPersonajes extends MenuBase {
 	protected void desplegarOpciones(int opcion) {
 		switch (opcion) {
         case 1:
-        	Utils.PrintLista(servicioPersonajes.cargar(), "Carga desde archivo");
+        	servicioPersonajes.cargar();
+        	servicioPersonajes.printLista("Carga desde archivo");
             break;
         case 2:
             new CreacionPersonajes().loopOpciones();
             break;
         case 3:
-        	System.out.println();
-        	Utils.PrintLista(servicioPersonajes.listar(), "Listado de Personajes");
+        	servicioPersonajes.printLista("Listado de Personajes");
             break;
         case 4:
         	servicioPersonajes.persistir();
