@@ -122,7 +122,7 @@ public class ServicioLigas implements IServiciosLigas {
 
     @Override
     public Liga crear(TipoCompetidor tipo, String nombre) {
-        int ultimoId = repositorioLigas.listar().get(repositorioLigas.listar().size() - 1).getId();
+        int ultimoId = repositorioLigas.listar().size();
         Liga liga = new Liga(tipo, nombre, ultimoId + 1);
         repositorioLigas.guardar(liga);
         return liga;

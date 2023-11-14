@@ -61,10 +61,10 @@ public class CombatesBase extends MenuBase {
 	
 	protected int primerSeleccion(int opcion, String tipoCompetidor1, String tipoCompetidor2) {
 		p1 = servicio1.GetPorID(opcion);
-		System.out.println("--------------------------");
+		System.out.println("----------------------------------------------------");
 		System.out.println(tipoCompetidor1 + " seleccionado:");
 		System.out.println(p1.toString());
-		System.out.println("--------------------------");
+		System.out.println("----------------------------------------------------");
 		System.out.println();
 		Utils.wait(1000);
 		TipoCompetidor tipoEnemigo = TipoCompetidor.HEROE.equals(p1.getTipo()) ? TipoCompetidor.VILLANO : TipoCompetidor.HEROE;
@@ -74,12 +74,12 @@ public class CombatesBase extends MenuBase {
 	
 	protected void segundaSeleccion(int opcion) {		
 		p2 = servicio2.GetPorID(opcion);
-		System.out.println("--------------------------");
+		System.out.println("----------------------------------------------------");
 		System.out.println("Competidores seleccionados:");
 		System.out.println(p1.toString());
 		System.out.println("VS");
 		System.out.println(p2.toString());
-		System.out.println("--------------------------");
+		System.out.println("----------------------------------------------------");
 		Utils.wait(500);
 		pelea();
 	}
@@ -87,6 +87,7 @@ public class CombatesBase extends MenuBase {
 	protected void pelea() { 
 		String formato = p1.esGanador(p2, Caracteristica.VELOCIDAD) ? "ha vencido a" : "ha perdido contra";
 		System.out.println(p1.getNombre() + " " + formato + " " + p2.getNombre());
+		System.out.println("----------------------------------------------------");
 	}
 	
 	

@@ -11,7 +11,7 @@ public final class MenuPrincipal extends MenuBase {
 		opciones = new String[] {
 	            "1 - Administracion de Personajes",
 	            "2 - Administracion de Ligas",
-	            "3 - Realización de combates",
+	            "3 - Realizacion de combates",
 	            "4 - Reportes",
 	            "0 - Salir",
 	    	};

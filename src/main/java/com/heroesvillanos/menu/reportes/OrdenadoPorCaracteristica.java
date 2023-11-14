@@ -47,9 +47,9 @@ public class OrdenadoPorCaracteristica extends MenuBase {
 				case 0:
 					do {
 						System.out.println("Introducir orden (A(Ascendente)/D(Descendente): ");
-						_orden = s.nextLine();
+						_orden = s.nextLine().toUpperCase();
 					} while (!_orden.equals("A") && !_orden.equals("D"));
-					orden = _orden == "A" || _orden == "a" ? DireccionOrden.ASCENDENTE : DireccionOrden.DESCENDENTE;
+					orden = _orden.equals("A") ? DireccionOrden.ASCENDENTE : DireccionOrden.DESCENDENTE;
 					continue;
 				case 1:
 					do {
