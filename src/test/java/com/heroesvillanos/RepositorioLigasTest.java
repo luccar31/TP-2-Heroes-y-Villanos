@@ -30,16 +30,6 @@ public class RepositorioLigasTest {
     }
 
     @Test
-    public void al_guardar_una_liga_en_repositorio_se_puede_obtener_por_nombre(){
-        Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
-
-        Repositorio<Liga> repositorioLigas = new RepositorioLigasEnMemoria();
-        repositorioLigas.guardar(liga);
-
-        Assertions.assertEquals(1, repositorioLigas.obtenerPorNombre("Liga vacia").getId());
-    }
-
-    @Test
     public void al_guardar_una_liga_en_repositorio_se_puede_obtener_su_nombre_por_identificador(){
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 

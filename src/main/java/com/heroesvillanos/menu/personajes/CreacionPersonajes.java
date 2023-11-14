@@ -87,9 +87,11 @@ public class CreacionPersonajes extends MenuBase {
         while (true) {
             try {
                 res = Integer.parseInt(s.nextLine());
+                if(res < 0)
+                    throw new NumberFormatException();
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Por favor, ingrese una " + caracteristica + " con valor numerico: ");
+                System.out.println("Por favor, ingrese una " + caracteristica + " con valor numerico mayor a cero: ");
             }
         }
         return res;

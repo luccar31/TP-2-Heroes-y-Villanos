@@ -61,8 +61,8 @@ public class RepositorioPersonajesTest {
         Repositorio<Personaje> repositorioPersonajes = new RepositorioPersonajeEnMemoria();
         repositorioPersonajes.guardar(personaje1);
 
-        Assertions.assertNotNull(repositorioPersonajes.obtenerPorNombre("Nombre 1"));
-        Assertions.assertEquals(1, repositorioPersonajes.obtenerPorNombre("Nombre 1").getId());
+        Assertions.assertNotNull(repositorioPersonajes.obtenerPorNombre("Alias 1"));
+        Assertions.assertEquals(1, repositorioPersonajes.obtenerPorNombre("Alias 1").getId());
     }
 
     @Test

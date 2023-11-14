@@ -22,7 +22,7 @@ public class PersistenciaLigasTest {
     @Test
     public void dado_archivo_valido_de_ligas_cuando_se_lee_archivo_entonces_se_lee_correctamente(){
         //DADO
-        Persistencia<RegistroLiga, Liga> persistencia = new PersistenciaLigasEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\ligasTest.in");
+        Persistencia<RegistroLiga, Liga> persistencia = new PersistenciaLigasEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/ligasTest.in");
         //CUANDO
         List<RegistroLiga> registros = persistencia.leerDatos();
 

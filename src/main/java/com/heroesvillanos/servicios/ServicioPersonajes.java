@@ -91,11 +91,11 @@ public class ServicioPersonajes implements IServicioPersonajes {
     public Personaje crear(String nombreReal, String alias, TipoCompetidor tipo, int vel, int fue, int res, int des) {
         int ultimoId;
         if (repositorio.listar().isEmpty()) {
-            ultimoId = 0;
+            ultimoId = 1;
         } else {
-            ultimoId = repositorio.listar().size();
+            ultimoId = repositorio.listar().size()+1;
         }
-        Personaje personaje = new Personaje(ultimoId, nombreReal, alias, tipo, vel, fue, res, des);
+        Personaje personaje = new Personaje(ultimoId++, nombreReal, alias, tipo, vel, fue, res, des);
         repositorio.guardar(personaje);
         return personaje;
     }

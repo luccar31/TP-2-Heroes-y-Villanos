@@ -23,7 +23,7 @@ public class PersistenciaPersonajesTest {
 
     @Test
     public void dado_que_tenemos_un_archivo_vacio_cuando_leemos_no_hay_registros(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesVacioTest.in");
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/personajesVacioTest.in");
         List<RegistroPersonaje> registros = persistencia.leerDatos();
 
         Assertions.assertEquals(0, registros.size());
@@ -31,7 +31,7 @@ public class PersistenciaPersonajesTest {
 
     @Test
     public void dado_que_tenemos_un_archivo_con_personaje_cuando_leemos_existe_registro_yes_correcto(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesCorrectosTest.in");
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/personajesCorrectosTest.in");
         List<RegistroPersonaje> registros = persistencia.leerDatos();
 
         Assertions.assertEquals(1, registros.size());
@@ -46,7 +46,7 @@ public class PersistenciaPersonajesTest {
 
     @Test
     public void dado_que_tenemos_un_archivo_invalido_cuando_leemos_se_lanza_excepcion_formato_incorrecto_1(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato1Test.in");
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/personajesMalFormato1Test.in");
         Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
             persistencia.leerDatos();
         });
@@ -54,7 +54,7 @@ public class PersistenciaPersonajesTest {
 
     @Test
     public void dado_que_tenemos_un_archivo_invalido_cuando_leemos_se_lanza_excepcion_formato_incorrecto_2(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato2Test.in");
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/personajesMalFormato2Test.in");
         Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
             persistencia.leerDatos();
         });
@@ -62,7 +62,7 @@ public class PersistenciaPersonajesTest {
 
     @Test
     public void dado_que_tenemos_un_archivo_invalido_cuando_leemos_se_lanza_excepcion_formato_incorrecto_3(){
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesMalFormato3Test.in");
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/personajesMalFormato3Test.in");
         Assertions.assertThrows(FormatoArchivoInvalidoException.class, () -> {
             persistencia.leerDatos();
         });
@@ -82,16 +82,16 @@ public class PersistenciaPersonajesTest {
         personajes.add(personaje1);
         personajes.add(personaje2);
 
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesGuardadoTest.in");
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/personajesGuardadoTest.in");
         persistencia.guardar(personajes);
 
-        Path path = Paths.get("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\personajesGuardadoTest.in");
+        Path path = Paths.get("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/personajesGuardadoTest.in");
         List<String> lineas = Files.readAllLines(path);
 
         Assertions.assertNotNull(lineas);
         Assertions.assertEquals(2, lineas.size());
-        Assertions.assertEquals("Héroe, Nombre 1, Alias 1, 100, 100, 100, 100", lineas.get(0));
-        Assertions.assertEquals("Héroe, Nombre 2, Alias 2, 100, 100, 100, 100", lineas.get(1));
+        Assertions.assertEquals("Heroe, Nombre 1, Alias 1, 100, 100, 100, 100", lineas.get(0));
+        Assertions.assertEquals("Heroe, Nombre 2, Alias 2, 100, 100, 100, 100", lineas.get(1));
     }
 
 

@@ -28,10 +28,10 @@ public class ServicioPersonajesTest {
         caracteristicas.put(Caracteristica.DESTREZA, 100);
         caracteristicas.put(Caracteristica.RESISTENCIA, 100);
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.HEROE, caracteristicas);
-        RegistroPersonaje registro = new RegistroPersonaje("Nombre 1", "Alias 1", "Héroe", 100,100,100,100);
+        RegistroPersonaje registro = new RegistroPersonaje("Nombre 1", "Alias 1", "Heroe", 100,100,100,100);
 
         Repositorio<Personaje> repositorio = new RepositorioPersonajeEnMemoria();
-        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("C:\\Users\\Lucas\\Desktop\\TP-2-Heroes-y-Villanos\\src\\test\\resources\\archivos\\servicioPersonaje\\personajes.in");
+        Persistencia<RegistroPersonaje, Personaje> persistencia = new PersistenciaPersonajesEnArchivo("/home/lucas/projects/TP-2-Heroes-y-Villanos/src/test/resources/archivos/servicioPersonaje/personajes.in");
         IServicioPersonajes servicioPersonajes = new ServicioPersonajes(repositorio, persistencia);
 
         //CUANDO
