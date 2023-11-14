@@ -42,7 +42,7 @@ public class PersistenciaPersonajesEnArchivo implements Persistencia<RegistroPer
 
     private RegistroPersonaje crearDto(String dato) {
         //si el formato de la linea es valido se puede demostrar con
-        //esta expresion regular ^(Héroe|Villano),[^,]+,[^,]+,\d+,\d+,\d+,\d+$
+        //esta expresion regular ^(Heroe|Villano),[^,]+,[^,]+,\d+,\d+,\d+,\d+$
         try {
             String[] partes = dato.split(",");
 

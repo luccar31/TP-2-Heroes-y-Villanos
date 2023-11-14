@@ -24,7 +24,7 @@ public class PersonajesTest {
         Personaje personaje1 = new Personaje(1, "Nombre 1", "Alias 1", TipoCompetidor.HEROE, caracteristicas);
 
         //ENTONCES
-        Assertions.assertEquals("Héroe, Nombre 1, Alias 1, 100, 100, 100, 100", personaje1.toString());
+        Assertions.assertEquals("Heroe, Nombre 1, Alias 1, 100, 100, 100, 100", personaje1.toString());
     }
 
 }

@@ -2,7 +2,7 @@ package com.heroesvillanos.dominio;
 
 public enum TipoCompetidor {
 
-    HEROE("Héroe"),
+    HEROE("Heroe"),
     VILLANO("Villano");
     private final String nombreEnArchivo;
 
