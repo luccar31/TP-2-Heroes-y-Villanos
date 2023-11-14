@@ -109,10 +109,11 @@ public class ServicioPersonajes implements IServicioPersonajes {
         persistencia.guardar(repositorio.listar());
     }
     
-    public Personaje GetPorID(int id) {
-    	for (Personaje p : repositorio.listar()) {
+    @Override
+    public Personaje GetPorID(int id, TipoCompetidor... filtroTipo) {
+    	for (Personaje p : listar(filtroTipo)) {
     		if (p.getId() == id) return p;
     	}
-    	throw new CompetidorNoEncontrado("ID competidor: " + id);
+    	throw new CompetidorNoEncontrado("ID competidor invalido: " + id);
     }
 }

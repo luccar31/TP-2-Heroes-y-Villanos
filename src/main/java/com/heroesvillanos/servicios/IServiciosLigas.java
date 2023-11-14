@@ -13,5 +13,5 @@ public interface IServiciosLigas extends IServicioCompetidores<Liga> {
 
     Liga crear(TipoCompetidor tipo, String nombre);
     void persistir();
-    public Liga GetPorID(int id);
+    public Liga GetPorID(int id, TipoCompetidor... filtroTipo);
 }

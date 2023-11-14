@@ -14,6 +14,7 @@ public class PvP extends CombatesBase {
 	
 	@Override
 	protected void desplegarOpciones(int opcion) {
+		if (opcion == 0) DesplegarMenuPrincipal();
 		switch (paso) {
 			case 0:
 				paso = primerSeleccion(opcion, "Personaje", "Personaje");

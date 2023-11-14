@@ -15,5 +15,5 @@ public interface IServicioPersonajes extends IServicioCompetidores<Personaje>{
                     int vel, int fue, int res, int des);
 
     void persistir();
-    public Personaje GetPorID(int id);
+    public Personaje GetPorID(int id, TipoCompetidor... filtroTipo);
 }

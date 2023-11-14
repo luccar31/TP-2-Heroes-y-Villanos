@@ -2,6 +2,8 @@ package com.heroesvillanos.menu.combates;
 
 import java.util.Scanner;
 
+import javax.swing.plaf.BorderUIResource.EmptyBorderUIResource;
+
 import com.heroesvillanos.dominio.Caracteristica;
 import com.heroesvillanos.dominio.Competidor;
 import com.heroesvillanos.dominio.TipoCompetidor;
@@ -62,20 +64,30 @@ public class CombatesBase extends MenuBase {
 	}
 	
 	protected int primerSeleccion(int opcion, String tipoCompetidor1, String tipoCompetidor2) {
-		p1 = servicio1.GetPorID(opcion);
+		try {
+			p1 = servicio1.GetPorID(opcion);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			loopOpciones();
+		}
 		System.out.println("----------------------------------------------------");
 		System.out.println(tipoCompetidor1 + " seleccionado:");
 		System.out.println(p1.toString());
 		System.out.println("----------------------------------------------------");
 		System.out.println();
 		Utils.wait(1000);
-		TipoCompetidor tipoEnemigo = TipoCompetidor.HEROE.equals(p1.getTipo()) ? TipoCompetidor.VILLANO : TipoCompetidor.HEROE;
-		servicio2.printLista("Seleccione " + tipoCompetidor2 + " contra quien competir: ", tipoEnemigo);
+
+		servicio2.printLista("Seleccione " + tipoCompetidor2 + " contra quien competir: ", getTipoEnemigo(p1));
 		return 1;
 	}
 	
 	protected void segundaSeleccion(int opcion) {		
-		p2 = servicio2.GetPorID(opcion);
+		try {
+			p2 = servicio2.GetPorID(opcion, getTipoEnemigo(p1));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			loopOpciones();
+		}
 		System.out.println("----------------------------------------------------");
 		System.out.println("Competidores seleccionados:");
 		System.out.println(p1.toString());
@@ -105,5 +117,8 @@ public class CombatesBase extends MenuBase {
 		DesplegarMenuPrincipal();
 	}
 	
-	
+	// Retorna Heroe si es Villano y viceversa.
+	private TipoCompetidor getTipoEnemigo(Competidor p) {
+		return TipoCompetidor.HEROE.equals(p.getTipo()) ? TipoCompetidor.VILLANO : TipoCompetidor.HEROE;
+	}
 }

@@ -161,10 +161,11 @@ public class ServicioLigas implements IServiciosLigas {
 		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
 	}
 	
-	public Liga GetPorID(int id) {
-    	for (Liga p : repositorioLigas.listar()) {
+	@Override
+	public Liga GetPorID(int id, TipoCompetidor... filtroTipo) {
+    	for (Liga p : listar(filtroTipo)) {
     		if (p.getId() == id) return p;
     	}
-    	throw new CompetidorNoEncontrado("ID liga: " + id);
+    	throw new CompetidorNoEncontrado("ID Liga invalida: " + id);
     }
 }

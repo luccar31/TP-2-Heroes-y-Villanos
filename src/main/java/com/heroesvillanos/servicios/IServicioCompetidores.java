@@ -12,5 +12,5 @@ public interface IServicioCompetidores<T> {
     void printLista(String header, TipoCompetidor... filtroTipo);
 
     void persistir();
-    public T GetPorID(int id);
+    public T GetPorID(int id, TipoCompetidor... filtroTipo);
 }
