@@ -60,9 +60,7 @@ public class Liga implements Competidor {
 
     @Override
     public String toString() {
-        String competidores = getNombreCompetidores().toString();
-        if(competidores.isEmpty()) return this.nombre;
-        return this.nombre + ", " + competidores;
+        return this.nombre + ", " + getNombreCompetidores();
     }
 
     @Override

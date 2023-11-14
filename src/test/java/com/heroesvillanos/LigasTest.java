@@ -18,7 +18,7 @@ public class LigasTest {
     public void dada_liga_vacia_entonces_to_string_esperado() {
         Liga liga = new Liga(TipoCompetidor.HEROE, "Liga vacia", 1);
 
-        Assertions.assertEquals("Liga vacia", liga.toString());
+        Assertions.assertEquals("Liga vacia, ", liga.toString());
     }
 
     @Test

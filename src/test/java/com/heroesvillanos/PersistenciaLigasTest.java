@@ -54,7 +54,7 @@ public class PersistenciaLigasTest {
         List<String> lineas = Files.readAllLines(path);
 
         Assertions.assertEquals(1, lineas.size());
-        Assertions.assertEquals("Liga vacia", lineas.get(0));
+        Assertions.assertEquals("Liga vacia, ", lineas.get(0));
     }
 
     @Test

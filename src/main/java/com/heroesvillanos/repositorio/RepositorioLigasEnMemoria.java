@@ -23,7 +23,7 @@ public class RepositorioLigasEnMemoria implements Repositorio<Liga> {
     public Liga obtenerPorNombre(String nombre) {
         Liga busqueda = null;
         for (Liga liga : ligas) {
-            if (liga.getNombreCompetidor().equals(nombre)) {
+            if (liga.getNombre().equals(nombre)) {
                 busqueda = liga;
             }
         }
